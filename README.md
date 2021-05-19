@@ -21,10 +21,10 @@ cd builddir
 meson compile
 ```
 
-This will generate a binary called <kbd>higgs</kbd> in the `builddir` directory. To run
+This will generate a binary called <kbd>higgspt</kbd> in the `builddir` directory. To run
 the code, use one of the run cards in the `runcards` folder as follows:
 ```bash
-./higgs ../runcards/inputfile.yaml
+./higgspt ../runcards/inputfile.yaml
 ```
 
 Every time changes are made, the code can be re-compiled by running `meson compile`

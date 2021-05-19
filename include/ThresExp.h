@@ -40,9 +40,10 @@ class ThresExp{
         virtual ~ThresExp();
 
         // Attribute that compute the expanded results
-        std::vector<std::complex<double>> ThresExpExpr(
-            std::complex<double> N, double xp
-        );
+        /* std::vector<std::complex<double>> ThresExpExpr( */
+        /*     std::complex<double> N, double xp */
+        /* ); */
+        std::complex<double> ThresExpExpr(std::complex<double> N, double xp);
 
         // Matching Coefficients
         double Hth1gggH(double xp);
@@ -56,6 +57,7 @@ class ThresExp{
 
     private:
         int NC, NF, CA, ORD, CHANNEL;
+        double LF, LR, LQ;
         double MH2, MUF2, MUR2, SROOT;
         double CF, aass, SIGMA0;
 
@@ -72,6 +74,20 @@ class ThresExp{
         double Ath2q;
         double Bth1g;
         double Bth1q;
+
+        // Sigma functions
+        // gg->g
+        double Sigma22ggg(double xp);
+        double Sigma21ggg(double xp);
+        double Sigma20ggg(double xp);
+        // gq->g
+        double Sigma22gqg(double xp);
+        double Sigma21gqg(double xp);
+        double Sigma20gqg(double xp);
+        // qq->g
+        double Sigma22qqg(double xp);
+        double Sigma21qqg(double xp);
+        double Sigma20qqg(double xp);
 
         // Zeta functions
         const double zeta2=gsl_sf_zeta_int(2);

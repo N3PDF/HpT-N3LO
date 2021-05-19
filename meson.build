@@ -30,7 +30,7 @@ subdir('include')
 subdir('src')
 
 higgsexe = executable(
-  'higgs', 'main.cpp',
+  'higgspt', 'main.cpp',
   include_directories : inc,
   dependencies : [glib_dep, higgsfo_lib, yaml_lib],
   link_with : higgslib,

@@ -547,7 +547,7 @@ void HSum::TestInterpolatedFunction(){
   g.push_back(g36(NTest));g.push_back(g37(NTest));g.push_back(g38(NTest));g.push_back(g39(NTest));
   bool test=true;
   std::vector<int >error;
-  for (int i=0;i<g.size();i++){
+  for (int i=0;i<static_cast<int>(g.size());i++){
     std::complex<double> DIFF=g[i]-g_v[i];
     if ((std::abs(std::real(DIFF))<2e-8)&&(std::abs(std::imag(DIFF))<2e-8)){
     }
@@ -1263,8 +1263,7 @@ std::complex<double> HSum::H_1(std::complex<double> N){
   return(PolyGamma(0,N+1.)+EulerGamma);
 }
 std::complex<double> HSum::H_m1(std::complex<double> N){
-  double frac,nn=0.;
-  frac=modf(std::real(N),&nn);
+  double nn=0.;
   return(pow(-1.,nn)*B(0,N+1.)-log2);
 }
 
@@ -1273,9 +1272,9 @@ std::complex<double> HSum::H_m1(std::complex<double> N){
 std::complex<double> HSum::H_2(std::complex<double> N){
   return(-PolyGamma(1,N+1.)+zeta2);
 }
+
 std::complex<double> HSum::H_m2(std::complex<double> N){
-  double frac,nn=0.;
-  frac=modf(std::real(N),&nn);
+  double nn=0.;
   return(-pow(-1.,nn)*B(1,N+1.)-0.5*zeta2);
 }
 
@@ -1284,14 +1283,12 @@ std::complex<double> HSum::H_m1_m1(std::complex<double> N){
 }
 
 std::complex<double> HSum::H_m1_1(std::complex<double> N){
-  double frac,nn=0.;
-  frac=modf(std::real(N),&nn);
+  double nn=0.;
   return(pow(-1.,nn)*g1(N)+H_1(N)*H_m1(N)+H_m2(N)+(H_1(N)-H_m1(N))*log2-0.5*log2q);
 }
 
 std::complex<double> HSum::H_1_m1(std::complex<double> N){
-  double frac,nn=0.;
-  frac=modf(std::real(N),&nn);
+  double nn=0.;
   return(-pow(-1.,nn)*g1(N)-(H_1(N)-H_m1(N))*log2+0.5*log2q);
 }
 
@@ -1306,8 +1303,7 @@ std::complex<double> HSum::H_3(std::complex<double> N){
 }
 
 std::complex<double> HSum::H_m3(std::complex<double> N){
-  double frac,nn=0.;
-  frac=modf(std::real(N),&nn);
+  double nn=0.;
   return(pow(-1.,nn)/2.*B(2,N+1.)-3./4.*zeta3);
 }
 
@@ -1316,14 +1312,12 @@ std::complex<double> HSum::H_m2_m1(std::complex<double> N){
 }
 
 std::complex<double> HSum::H_m2_1(std::complex<double> N){
-  double frac,nn=0.;
-  frac=modf(std::real(N),&nn);
+  double nn=0.;
   return(-pow(-1.,nn)*g3(N)+zeta2*H_m1(N)-5./8.*zeta3+zeta2*log2);
 }
 
 std::complex<double> HSum::H_2_m1(std::complex<double> N){
-  double frac,nn=0.;
-  frac=modf(std::real(N),&nn);
+  double nn=0.;
   return(-pow(-1.,nn)*g4(N)-log2*(H_2(N)-H_m2(N))-0.5*zeta2*H_m1(N)+1./4.*zeta3-0.5*zeta2*log2);
 }
 
@@ -1356,8 +1350,7 @@ std::complex<double> HSum::H_m1_1_m1(std::complex<double> N){
 }
 
 std::complex<double> HSum::H_1_1_m1(std::complex<double> N){
-  double frac,nn=0.;
-  frac=modf(std::real(N),&nn);
+  double nn=0.;
   return(0.5*pow(-1.,nn)*g2(N)+log2*(H_1_m1(N)-H_1_1(N))+0.5*log2q*(H_1(N)-H_m1(N))-1./6.*log2c);
 }
 
@@ -1388,8 +1381,7 @@ std::complex<double> HSum::H_4(std::complex<double> N){
 }
 
 std::complex<double> HSum::H_m4(std::complex<double> N){
-  double frac,nn=0.;
-  frac=modf(std::real(N),&nn);
+  double nn=0.;
   return(-pow(-1.,nn)/6.*B(3,N+1.)-7./20.*zeta2q);
 }
 
@@ -1398,14 +1390,12 @@ std::complex<double> HSum::H_m2_m2(std::complex<double> N){
 }
 
 std::complex<double> HSum::H_m3_1(std::complex<double> N){
-  double frac,nn=0.;
-  frac=modf(std::real(N),&nn);
+  double nn=0.;
   return(pow(-1.,nn)*g6(N)+zeta2*H_m2(N)-zeta3*H_m1(N)-3./5.*zeta2q+2.*Li4+3./4.*zeta3*log2-0.5*zeta2*log2q+1./12.*log2c*log2);
 }
 
 std::complex<double> HSum::H_m2_2(std::complex<double> N){
-  double frac,nn=0.;
-  frac=modf(std::real(N),&nn);
+  double nn=0.;
   return(pow(-1.,nn)*g5(N)-2.*H_m3_1(N)+2.*zeta2*H_m2(N)+3./40.*zeta2q);
 }
 
@@ -1418,8 +1408,7 @@ std::complex<double> HSum::H_2_2(std::complex<double> N){
 }
 
 std::complex<double> HSum::H_3_m1(std::complex<double> N){
-  double frac,nn=0.;
-  frac=modf(std::real(N),&nn);
+  double nn=0.;
   return(pow(-1.,nn)*g7(N)-log2*(H_3(N)-H_m3(N))-0.5*zeta2*H_m2(N)+3./4.*zeta3*H_m1(N)-1./8.*zeta2q+3./4.*zeta3*log2);
 }
 
@@ -1448,8 +1437,7 @@ std::complex<double> HSum::H_1_3(std::complex<double> N){
 }
 
 std::complex<double> HSum::H_m2_1_1(std::complex<double> N){
-  double frac,nn=0.;
-  frac=modf(std::real(N),&nn);
+  double nn=0.;
   return(-pow(-1.,nn)*g8(N)+zeta3*H_m1(N)-Li4+1./8.*zeta2q+1./8.*zeta3*log2+1./4.*zeta2*log2q-1./24.*log2c*log2);
 }
 
@@ -1469,16 +1457,14 @@ std::complex<double> HSum::H_m2_m1_1(std::complex<double> N){
 }
 
 std::complex<double> HSum::H_2_1_m1(std::complex<double> N){
-  double frac,nn=0.;
-  frac=modf(std::real(N),&nn);
+  double nn=0.;
   return(-pow(-1.,nn)*g9(N)-log2*(H_2_1(N)-H_2_m1(N))+0.5*log2q*(H_2(N)-H_m2(N))
 	+1./8.*zeta3*H_m1(N)+3.*Li4-6./5.*zeta2q+11./4.*zeta3*log2
 	-3./4.*zeta2*log2q+1./8.*log2q*log2q);
 }
 
 std::complex<double> HSum::H_1_2_m1(std::complex<double> N){
-  double frac,nn=0.;
-  frac=modf(std::real(N),&nn);
+  double nn=0.;
   return(pow(-1.,nn)*g13(N)-1./40.*(48.*zeta2q+20.*zeta2*H_1_m1(N)+80.*H_2_1_m1(N)
   -40.*H_1_m2(N)*log2+40.*H_1_2(N)*log2-80.*H_2_m1(N)*log2
   +80.*H_2_1(N)*log2-5.*log2q*log2q-10.*zeta2*H_m1(N)*2.*log2+10.*zeta2*H_1(N)*2.*log2+20.*zeta2*log2q
@@ -1492,8 +1478,7 @@ std::complex<double> HSum::H_m1_2_m1(std::complex<double> N){
 }
 
 std::complex< double > HSum::H_m1_2_1(std::complex<double> N){
-  double frac,nn=0.;
-  frac=modf(std::real(N),&nn);
+  double nn=0.;
   return(g11(N)*pow(-1.,nn)+1./1440.*(1044.*zeta2q+1440.*zeta2*H_m1_1(N)-2880.*H_m2_1_1(N)+360.*zeta2*log2q-180.*(log2q*log2q+24.*Li4)+2880.*H_m1(N)*zeta3));
 }
 
@@ -1531,8 +1516,7 @@ std::complex<double> HSum::H_1_1_m2(std::complex<double> N){
 }
 
 std::complex<double> HSum::H_m1_m2_m1(std::complex<double> N){
-  double frac,nn=0.;
-  frac=modf(std::real(N),&nn);
+  double nn=0.;
   return(2.*pow(-1.,nn)*g12(N)-1./12.*(12.*zeta2*H_m1_1(N)+18.*zeta2*log2q
   -4.*log2q*log2q+12.*H_2(N)*(zeta2-log2q)+12.*H_m2(N)*(-zeta2+log2q+H_m1(N)*2.*log2)
   +12.*(3.*zeta2q+H_m2_2(N)+H_3_m1(N)+2.*H_2_m1_1(N)+H_3(N)*2.*log2-(H_m2_1(N)+H_m1_2(N))*2.*log2-8.*Li4)
@@ -1573,8 +1557,7 @@ std::complex<double> HSum::H_m1_m1_m1_m1(std::complex<double> N){
 }
 
 std::complex<double> HSum::H_m1_1_1_1(std::complex<double> N){
-  double frac,nn=0.;
-  frac=modf(std::real(N),&nn);
+  double nn=0.;
   return(-pow(-1.,nn)/6.*g29(N)-Li4);
 }
 
@@ -1588,16 +1571,14 @@ std::complex<double> HSum::H_1_m1_1_m1(std::complex<double> N){
 }
 
 std::complex<double> HSum::H_m1_1_m1_m1(std::complex<double> N){
-  double frac,nn=0.;
-  frac=modf(std::real(N),&nn);
+  double nn=0.;
   return(pow(-1.,nn)*g33(N)+1./288.*(36.*zeta2q-288.*H_m1_1_m1(N)*log2-12.*6.*zeta2*log2q
   -48.*H_m1(N)*log2c-12.*log2q*log2q+24.*6.*H_m1_1(N)*(zeta2-log2q)
   +12.*6.*zeta2*H_m1(N)*2.*log2+12.*6.*zeta2*2.*log2q-252.*H_m1(N)*zeta3-252.*log2*zeta3));
 }
 
 std::complex<double> HSum::H_m1_m1_1_m1(std::complex<double> N){
-  double frac,nn=0.;
-  frac=modf(std::real(N),&nn);
+  double nn=0.;
   return(-pow(-1.,nn)*g35(N)-1./120.*(4.*36.*zeta2q+120.*H_m1_m1_1(N)*log2+15.*6.*zeta2*log2q
   +60.*H_m1_m1(N)*log2q+20.*H_m1(N)*log2c-10.*log2q*log2q-360.*Li4
   -15.*H_m1(N)*zeta3-330.*log2*zeta3));
@@ -1609,8 +1590,7 @@ std::complex<double> HSum::H_1_1_m1_m1(std::complex<double> N){
 }
 
 std::complex<double> HSum::H_1_1_1_m1(std::complex<double> N){
-  double frac,nn=0.;
-  frac=modf(std::real(N),&nn);
+  double nn=0.;
   return(-pow(-1.,nn)/6.*g30(N)+log2*(H_1_1_m1(N)-H_1_1_1(N))+0.5*log2q*(H_1_1(N)-H_1_m1(N))-1./6.*log2c*(H_1(N)-H_m1(N))+1./24.*log2q*log2q);
 }
 
@@ -1619,16 +1599,14 @@ std::complex<double> HSum::H_1_1_1_1(std::complex<double> N){
 }
 
 std::complex<double> HSum::H_1_m1_m1_m1(std::complex<double> N){
-  double frac,n=0.;
-  frac=modf(std::real(N),&n);
+  double n=0.;
   return(pow(-1.,n)*g36(N)-1./120.*(4.*36.*zeta2q+240.*H_m1_m1_1_m1(N)+10.*6.*zeta2*H_m1(N)*log2-10.*6.*zeta2*log2*H_1(N)
   -120.*H_m1_m1_m1(N)*log2+240.*H_m1_m1_1(N)*log2+120.*H_1_m1_m1(N)*log2+20.*6.*zeta2*log2q-20.*H_m1(N)*log2c+20.*H_1(N)*log2c
     -20.*log2q*log2q-10.*H_1_m1(N)*(6.*zeta2-6.*log2q)-360.*Li4-30.*H_m1(N)*zeta3+30.*H_1(N)*zeta3-345.*log2*zeta3));
 }
 
 std::complex<double> HSum::H_1_1_m1_1(std::complex<double> N){
-  double frac,nn=0.;
-  frac=modf(std::real(N),&nn);
+  double nn=0.;
   return(-pow(-1.,nn)/2.*g37(N)-1./360.*(4.*36.*zeta2q+360.*H_m1_m1_1_m1(N)+360.*H_1_m1_m1_m1(N)
   +30*6.*zeta2*log2*(H_m1(N)-H_1(N))-360.*log2*(H_m1_m1_m1(N)-H_m1_m1_1(N)-H_1_m1_m1(N)+H_1_m1_1(N))
     +30.*6.*zeta2*log2q-180.*log2q*(H_m1_m1(N)-H_m1_1(N))-120.*log2c*(H_m1(N)-H_1(N))-60.*log2q*log2q

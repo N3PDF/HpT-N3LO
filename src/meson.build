@@ -2,7 +2,8 @@ sources = [
   'MellinFunc.cpp',
   'ThresExp.cpp',
   'ComplexDefs.cpp',
-  'HarmonicSum.cpp'
+  'HarmonicSum.cpp',
+  'SmallptExp.cpp'
 ]
 
 higgslib = static_library(

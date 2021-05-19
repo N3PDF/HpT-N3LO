@@ -17,12 +17,14 @@
  */
 
 
-#include "../include/ThresExp.h"
 #include <cmath>
 #include <higgs-fo/params.h>
 
+#include "../include/ThresExp.h"
 
-ThresExp::ThresExp(int order, int channel, void *params){
+
+ThresExp::ThresExp(int order, int channel, void *params)
+{
 	PhysParams param = *reinterpret_cast<PhysParams*>(params); 
 
 
@@ -52,6 +54,8 @@ ThresExp::ThresExp(int order, int channel, void *params){
             *NF+(11./9.*CF+79./54.*CA)*NF*NF))/std::pow(4.*M_PI,3);
 
     // One & too loop Cusp Anomalous Dimensions
+	// In the following, the 1/PI is contained in the definitions
+	// of the cusp Anomalous dimensions not in the normalization of as
     Bth1g = -Beta0;
     Ath1g = CA/M_PI;
     Ath1q = CF/M_PI;
@@ -130,18 +134,18 @@ std::complex<double> ThresExp::LOqqgH(std::complex<double> NN, double xp)
 //------------------------------------------------------------------------------------------//
 
 // gg->g
-double Sigma22ggg(double xp)
+double ThresExp::Sigma22ggg(double xp)
 {
 	return 3.*Ath1g/8.;
 }
 
-double Sigma21ggg(double xp)
+double ThresExp::Sigma21ggg(double xp)
 {
 	double xQp = std::sqrt(1+xp)+std::sqrt(xp);
 	return -Bth1g/2.-Ath1g/2.*std::log(xp/xQp)-2.*Ath1g*LF;
 }
 
-double Sigma20ggg(double xp)
+double ThresExp::Sigma20ggg(double xp)
 {
 	return 3./2.*Ath1g*zeta2;
 }
@@ -153,7 +157,7 @@ double Sigma20ggg(double xp)
 
 
 // TODO: change this into a vector
-std::complex<double> ThresExpExpr(std::complex<double> N, double xp)
+std::complex<double> ThresExp::ThresExpExpr(std::complex<double> N, double xp)
 {
 	std::complex<double> zero(0.,0.);
 	std::complex<double> result;
@@ -171,20 +175,20 @@ std::complex<double> ThresExpExpr(std::complex<double> N, double xp)
 			if ((CHANNEL==2)||(CHANNEL==5)) return zero; // qq-channel or ALL
 		}
 		break;
-		case(1) // order as^1
+        case(1): // order as^1
 		{
-			if ((CHANNEL==0)||(CHANNEL==5) {result += LOgggH(N,xp);}
-			if ((CHANNEL==1)||(CHANNEL==5) {result += LOgqqH(N,xp);}
-			if ((CHANNEL==2)||(CHANNEL==5) {result += LOqqgH(N,xp);}
+			if ((CHANNEL==0)||(CHANNEL==5)) {result += LOgggH(N,xp);}
+			if ((CHANNEL==1)||(CHANNEL==5)) {result += LOgqqH(N,xp);}
+			if ((CHANNEL==2)||(CHANNEL==5)) {result += LOqqgH(N,xp);}
 		}
 		break;
-		case(2) // order as^2
+        case(2): // order as^2
 		{
 			if ((CHANNEL==0)||(CHANNEL==5))
 			{
 				std::complex<double> SIGMAGG = Sigma22ggg(xp)*std::pow(LNbar,2) \
 					+Sigma21ggg(xp)*LNbar+Sigma20ggg(xp);
-				result += aass*LOgggH(xp)*SIGMAGG;
+				result += aass*LOgggH(N,xp)*SIGMAGG;
 			}
 			if ((CHANNEL==1)||(CHANNEL==5))
 			{

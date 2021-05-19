@@ -1,9 +1,23 @@
-#include "ComplexDefs.h"
+/*
+ * =====================================================================================
+ *
+ *       Filename:
+ *
+ *    Description: 
+ *
+ *        Version:  1.0
+ *        Created:  
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  
+ *   Organization:  N3PDF
+ *
+ * =====================================================================================
+ */
 
-/*#####################################################################################
- *             DEFINITION OF COMPLEX OPERATORS AND FUNCTIONS
- *          Authors: Taken from Muselli's and Bonvini's Codes
- *####################################################################################*/
+
+#include "ComplexDefs.h"
 
 
 std::complex<double> operator*(const std::complex<double>& a, const double& b)

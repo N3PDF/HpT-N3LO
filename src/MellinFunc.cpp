@@ -1,3 +1,22 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:
+ *
+ *    Description: 
+ *
+ *        Version:  1.0
+ *        Created:  
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  
+ *   Organization:  N3PDF
+ *
+ * =====================================================================================
+ */
+
+
 #include "MellinFunc.h"
 
 //Table of Important Mellin of logarithms and harmonic polylogarithms

@@ -1,3 +1,22 @@
+/*
+ * =====================================================================================
+ *
+ *       Filename:
+ *
+ *    Description: 
+ *
+ *        Version:  1.0
+ *        Created:  
+ *       Revision:  none
+ *       Compiler:  gcc
+ *
+ *         Author:  
+ *   Organization:  N3PDF
+ *
+ * =====================================================================================
+ */
+
+
 #include "../include/ThresExp.h"
 #include <higgs-fo/params.h>
 

@@ -558,7 +558,7 @@ void HSum::TestInterpolatedFunction(){
   }
   if (test==false){
     std::cout << "ERROR in functions:" << endl;
-    for (int i=0;i<error.size();i++){
+    for (int i=0;i<static_cast<int>(error.size());i++){
       std::cout << "g" << error[i] << " ";
     }
   }
@@ -640,7 +640,7 @@ void HSum::TestHarmonicSums(int n){
   }
   if ((test1==false)||(test2==false)||(test3==false)||(test4==false)){
     cout << "ERROR in Harmonic Sums with indices" << endl;
-    for( int i=0;i<error.size();i++){
+    for( int i=0;i<static_cast<int>(error.size());i++){
       if (error[i] !=0){
 	cout << error[i];
       }
@@ -818,7 +818,7 @@ void HSum::InizializeConst(){
 
 std::complex <double> HSum::g1(std::complex<double > N){
 std::complex<double> sum;
-for (int i=0;i<a2.size();i++){
+for (int i=0;i<static_cast<int>(a2.size());i++){
   std::complex<double> k((double) i,0.);
   sum+=a2[i]/(N+k+1.);
 }
@@ -826,7 +826,7 @@ return (0.5*(log2q-N*sum));
 }
 std::complex <double> HSum::g2(std::complex<double > N){
 std::complex<double> sum;
-for (int i=0;i<a3.size();i++){
+for (int i=0;i<static_cast<int>(a3.size());i++){
   std::complex<double> k((double) i,0.);
   sum+=a3[i]/(N+k+1.);
 }
@@ -834,7 +834,7 @@ return (1./3.*(log2c-N*sum));
 }
 std::complex <double> HSum::g3(std::complex<double > N){
 std::complex<double> sum;
-for (int i=0;i<a1.size();i++){
+for (int i=0;i<static_cast<int>(a1.size());i++){
   std::complex<double> k((double) i,0.);
   sum+=a1[i]*(N/(N+k+1.)*zeta2+(k+1.)/(N+k+1.)/(N+k+1.)*H_1(N+k+1.));
 }
@@ -843,7 +843,7 @@ return (zeta2*log2-sum);
 
 std::complex <double> HSum::g4(std::complex<double > N){
 std::complex<double> sum;
-for (int i=0;i<a1.size();i++){
+for (int i=0;i<static_cast<int>(a1.size());i++){
   std::complex<double> k((double) i,0.);
   sum+=a1[i]*(N/(N+k+1.)*zeta2/2.+(k+1.)/(N+k+1.)/(N+k+1.)*(log2-B(0,N+k+2.)));
 }
@@ -852,7 +852,7 @@ return (-0.5*zeta2*log2+sum);
 
 std::complex <double> HSum::g5(std::complex<double > N){
 std::complex<double> sum;
-for (int i=0;i<a1.size();i++){
+for (int i=0;i<static_cast<int>(a1.size());i++){
   std::complex<double> k((double) i,0.);
   sum+=a1[i]*((k+1)/(N+k+1.)/(N+k+1.)*(zeta2+PolyGamma(1,N+k+2.)-2.*H_1(N+k+1.)/(N+k+1.)));
 }
@@ -861,7 +861,7 @@ return (-sum);
 
 std::complex <double> HSum::g6(std::complex<double > N){
 std::complex<double> sum;
-for (int i=0;i<a1.size();i++){
+for (int i=0;i<static_cast<int>(a1.size());i++){
   std::complex<double> k((double) i,0.);
   sum+=a1[i]*(N/(N+k+1.)*zeta3+(k+1.)/(N+k+1.)/(N+k+1.)*(zeta2-H_1(N+k+1.)/(N+k+1.)));
 }
@@ -870,7 +870,7 @@ return (zeta3*log2-sum);
 
 std::complex <double> HSum::g7(std::complex<double > N){
 std::complex<double> sum;
-for (int i=0;i<a1.size();i++){
+for (int i=0;i<static_cast<int>(a1.size());i++){
   std::complex<double> k((double) i,0.);
   sum+=a1[i]*(N/(N+k+1.)*zeta3*3./4.+(k+1.)/(N+k+1.)/(N+k+1.)*0.5*zeta2-(k+1.)/pow(N+k+1.,3.)*(log2-B(0,N+k+2.)));
 }
@@ -879,7 +879,7 @@ return (-3./4.*zeta3*log2+sum);
 
 std::complex <double> HSum::g8(std::complex<double > N){
 std::complex<double> sum;
-for (int i=0;i<a1.size();i++){
+for (int i=0;i<static_cast<int>(a1.size());i++){
   std::complex<double> k((double) i,0.);
   sum+=a1[i]*(N/(N+k+1.)*zeta3+(k+1.)/(N+k+1.)/(N+k+1.)*0.5*(H_1(N+k+1.)*H_1(N+k+1.)+H_2(N+k+1.)));
 }
@@ -888,10 +888,10 @@ return (zeta3*log2-sum);
 
 std::complex <double> HSum::g9(std::complex<double > N){
 std::complex<double> sum,sum3;
-for (int i=0;i<a1.size();i++){
+for (int i=0;i<static_cast<int>(a1.size());i++){
   std::complex<double> sum2;
   std::complex<double> k((double) i,0.);
-  for (int j=0;j<a2.size();j++){
+  for (int j=0;j<static_cast<int>(a2.size());j++){
     std::complex<double> l((double) j,0.);
     sum2+=a2[j]/(N+k+l+2.);
   }
@@ -906,16 +906,16 @@ return (1/8.*zeta3*log2-sum-sum3);
 
 std::complex <double> HSum::g10(std::complex<double > N){
 std::complex<double> sum,sum3;
-for (int i=0;i<a1.size();i++){
+for (int i=0;i<static_cast<int>(a1.size());i++){
   std::complex<double> sum2;
   std::complex<double> k((double) i,0.);
-  for (int j=0;j<a1.size();j++){
+  for (int j=0;j<static_cast<int>(a1.size());j++){
     std::complex<double> l((double) j,0.);
     sum2+=a1[j]/(N+k+l+2.)*H_1(N+k+l+2.);
   }
   sum+=a1[i]*N/(N+k+1.)*(5.*zeta3/8.-sum2);
 }
-for (int h=0;h<a2.size();h++){
+for (int h=0;h<static_cast<int>(a2.size());h++){
   std::complex<double> m((double) h,0.);
   sum3+=a2[h]/(N+m+1.)*H_1(N+m+1.);
 }
@@ -924,10 +924,10 @@ return (-5./8.*zeta3*log2+sum+sum3);
 
 std::complex <double> HSum::g11(std::complex<double > N){
   std::complex<double> sum1;
-  for (int i=0;i<c1.size();i++){
+  for (int i=0;i<static_cast<int>(c1.size());i++){
     std::complex<double> k((double) i,0.);
     std::complex<double> sum2;
-    for (int j=0;j<a1.size();j++){
+    for (int j=0;j<static_cast<int>(a1.size());j++){
       std::complex<double> l((double) j,0.);
       sum2+=a1[j]*((l+1.)/(N+k+l+1.)*H_1(N+k+l+1.)-H_1(l+1.));
     }
@@ -937,7 +937,7 @@ std::complex <double> HSum::g11(std::complex<double > N){
   for(int i=0;i<P21.size();i++){
     std::complex<double> k((double) i,0.);
     std::complex<double> sum4;
-    for (int j=0;j<a1.size();j++){
+    for (int j=0;j<static_cast<int>(a1.size());j++){
       std::complex<double> l((double) j,0.);
       sum4+=a1[j]*((l+1.)/(N+l+k+1.)*(H_1(N+k+l+1.)*H_1(N+k+l+1.)+H_2(N+l+k+1.))-H_1(l+1.)*H_1(l+1.)-H_2(l+1.));
     }
@@ -948,10 +948,10 @@ std::complex <double> HSum::g11(std::complex<double > N){
 
 std::complex <double> HSum::g12(std::complex<double > N){
   std::complex<double> sum;
-  for (int i=0;i<a1.size();i++){
+  for (int i=0;i<static_cast<int>(a1.size());i++){
     std::complex<double> k((double)i,0.);
     std::complex<double> sum2;
-    for(int j=0;j<a2.size();j++){
+    for(int j=0;j<static_cast<int>(a2.size());j++){
       std::complex<double> l((double)j,0.);
       sum2+=a2[j]*(N+k+1.)/(N+k+l+2.);
     }
@@ -962,11 +962,11 @@ std::complex <double> HSum::g12(std::complex<double > N){
 
 std::complex <double> HSum::g13(std::complex<double > N){
   std::complex<double> sum;
-  for (int i=0;i<a3.size();i++){
+  for (int i=0;i<static_cast<int>(a3.size());i++){
     std::complex<double> k((double) i,0.);
     sum+=a3[i]/(N+k+1.);
   }
-  for(int i=0;i<a2.size();i++){
+  for(int i=0;i<static_cast<int>(a2.size());i++){
     std::complex<double> k((double) i,0.);
     sum+=a2[i]*N/(N+k+1.)*(0.5*zeta2-(log2-B(0,N+k+2.))/(N+k+1.));
   }
@@ -975,7 +975,7 @@ std::complex <double> HSum::g13(std::complex<double > N){
 
 std::complex <double> HSum::g14(std::complex<double > N){
   std::complex<double> sum;
-  for (int i=0;i<b2.size();i++){
+  for (int i=0;i<static_cast<int>(b2.size());i++){
     std::complex<double> k((double) i,0.);
     sum+=b2[i]/(N+k+1.);
   }
@@ -984,7 +984,7 @@ std::complex <double> HSum::g14(std::complex<double > N){
 
 std::complex <double> HSum::g15(std::complex<double > N){
   std::complex<double> sum;
-  for (int i=0;i<b1.size();i++){
+  for (int i=0;i<static_cast<int>(b1.size());i++){
     std::complex<double> k((double) i,0.);
     sum+=b1[i]/(N+k+1.)*(zeta2-H_1(N+k+1.)/(N+k+1.));
   }
@@ -1002,7 +1002,7 @@ std::complex <double> HSum::g16(std::complex<double > N){
 
 std::complex <double> HSum::g17(std::complex<double > N){
   std::complex<double> sum;
-  for (int i=0;i<b2.size();i++){
+  for (int i=0;i<static_cast<int>(b2.size());i++){
     std::complex<double> k((double) i,0.);
     sum+=b2[i]/(N+k+1.)/(N+k+1.);
   }

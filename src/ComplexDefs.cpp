@@ -973,7 +973,7 @@ std::complex<double> hyp_PS_infinity (const std::complex<double> &a,const std::c
   const std::complex<double> a_pm = a+m,a_mc_p1_pm = a_mc_p1+m,cma = c-a;
   const std::complex<double> eps_pa = eps+a, eps_pm_p1 = eps+m+1;
   const std::complex<double> eps_pa_mc_p1_pm = eps+a_mc_p1_pm, Pi_eps = M_PI*eps;
-  const std::complex<double> eps_pa_pm = eps_pa+m,eps_pm = eps+m;
+  const std::complex<double> eps_pa_pm = eps_pa+m;
   const std::complex<double> Gamma_c = 1.0/Gamma_inv(c), Gamma_inv_eps_pa_pm = Gamma_inv(eps_pa_pm);
   const std::complex<double> Gamma_inv_cma = Gamma_inv(cma), z_inv = 1.0/z;
   const std::complex<double> pow_mz_ma = std::pow(-z,-a), Gamma_inv_one_meps = Gamma_inv(one_meps);

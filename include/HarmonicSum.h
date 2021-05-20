@@ -47,9 +47,9 @@ class HSum
         std::complex<double> HS(int i, int j, int k, int m, std::complex<double> N);
 
     private:
+        bool _verbose;
         bool _testinterpolatedfunction;
         bool _testharmonicsums;
-        bool _verbose;
 
         void InizializeConst();
 

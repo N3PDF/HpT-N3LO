@@ -181,7 +181,7 @@ std::complex<double> SmallptExp::SmallptExpExpr(std::complex<double> N, double p
 
                 // constant terms when pt->0
                 double h2gg = 0.;
-                std::complex<double> HH2GG = zero;
+                std::complex<double> HH2GG = 2.*h2gg+zero;
 
                 result += aass*aass*(Sigma24gg*LC2(xp)+Sigma23gg*LC3(xp)+Sigma22gg \
                     *LC2(xp)+Sigma21gg*LC1(xp)+HH2GG);

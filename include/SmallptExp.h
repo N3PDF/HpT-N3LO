@@ -40,7 +40,7 @@ class SmallptExp{
         virtual ~SmallptExp();
 
         // Attribute that compute the expanded results
-        std::complex<double> SmallptExpExpr(std::complex<double> N, double xp);
+        std::complex<double> SmallptExpExpr(std::complex<double> N, double pt);
 
     private:
         AnomDimensions AD;

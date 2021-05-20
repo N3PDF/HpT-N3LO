@@ -43,7 +43,7 @@ class ThresExp{
         /* std::vector<std::complex<double>> ThresExpExpr( */
         /*     std::complex<double> N, double xp */
         /* ); */
-        std::complex<double> ThresExpExpr(std::complex<double> N, double xp);
+        std::complex<double> ThresExpExpr(std::complex<double> N, double pt);
 
         // Matching Coefficients
         double Hth1gggH(double xp);

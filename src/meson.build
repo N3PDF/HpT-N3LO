@@ -3,7 +3,8 @@ sources = [
   'ThresExp.cpp',
   'ComplexDefs.cpp',
   'HarmonicSum.cpp',
-  'SmallptExp.cpp'
+  'SmallptExp.cpp',
+  'CombinedRes.cpp'
 ]
 
 higgslib = static_library(

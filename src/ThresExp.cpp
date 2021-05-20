@@ -157,8 +157,11 @@ double ThresExp::Sigma20ggg(double xp)
 
 
 // TODO: change this into a vector
-std::complex<double> ThresExp::ThresExpExpr(std::complex<double> N, double xp)
+std::complex<double> ThresExp::ThresExpExpr(std::complex<double> N, double pt)
 {
+ 	// TODO: re-check definition MH2 vs. Qs2
+ 	double xp = std::pow(pt,2)/std::pow(MH2,2);
+
 	std::complex<double> zero(0.,0.);
 	std::complex<double> result;
 
@@ -201,4 +204,6 @@ std::complex<double> ThresExp::ThresExpExpr(std::complex<double> N, double xp)
 		}
 		break;
 	}
+
+	return 2.*pt/MH2*SIGMA0*result;
 }

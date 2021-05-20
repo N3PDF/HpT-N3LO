@@ -115,7 +115,7 @@ std::complex<double> SmallptExp::C1GQ(std::complex<double> N)
 //                            Sigma pt-enhanced functions                                   //
 //------------------------------------------------------------------------------------------//
 
-std::complex<double> SmallptExp::SmallptExpExpr(std::complex<double> N, double xp)
+std::complex<double> SmallptExp::SmallptExpExpr(std::complex<double> N, double pt)
 {
     int pc = 2; // TODO: double-check this
 	AD.ComputeGamma(N,1); // Init. Anomalous Dimensions
@@ -125,6 +125,9 @@ std::complex<double> SmallptExp::SmallptExpExpr(std::complex<double> N, double x
 
     // Hard functions
     double h1gg = (11.+3.*M_PI*M_PI)/2.;
+
+ 	// TODO: re-check definition MH2 vs. Qs2
+ 	double xp = std::pow(pt,2)/std::pow(MH2,2);
 
 	switch (ORD)
 	{
@@ -194,6 +197,6 @@ std::complex<double> SmallptExp::SmallptExpExpr(std::complex<double> N, double x
         }
         break;
 	}
-
-    return result;
+	
+    return 2.*pt/MH2*SIGMA0*result;
 }

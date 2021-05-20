@@ -19,10 +19,10 @@ void AnomDimensions::ComputeGamma(std::complex<double> N, int order)
 {
     if(order>=0)
     {
-        gg0 = gammagg0(N);          // \gamma_gg^0
-        gq0 = gammagS0(N);          // \gamma_gq^0
-        qg0 = gammaSg0(N);          // \gamma_qg^0
-        qq0 = gammansplus0(N);      // \gamma_qq^0
+        gg0 = gammagg0(N)*M_PI;          // \gamma_gg^0
+        gq0 = gammagS0(N)*M_PI;          // \gamma_gq^0
+        qg0 = gammaSg0(N)*M_PI;          // \gamma_qg^0
+        qq0 = gammansplus0(N)*M_PI;      // \gamma_qq^0
 
         // Define the Eigenvalues of the Singlet Matrix
         plus0 = 0.5*(gg0+qq0+std::sqrt((gg0-qq0)*(gg0-qq0)+4.*qg0*gq0));
@@ -33,25 +33,25 @@ void AnomDimensions::ComputeGamma(std::complex<double> N, int order)
         sums(N);
         DEF1(N);
 
-        gg1 = gammagg1(N);
-        gq1 = gammagS1(N);
-        qg1 = gammaSg1(N);
-        WW1 = gammansplus1(N);
-        qq1 = WW1+gammaps1(N);
-        TT1 = gammansminus1(N);
+        gg1 = gammagg1(N)*std::pow(M_PI,2);
+        gq1 = gammagS1(N)*std::pow(M_PI,2);
+        qg1 = gammaSg1(N)*std::pow(M_PI,2);
+        WW1 = gammansplus1(N)*std::pow(M_PI,2);
+        qq1 = WW1+gammaps1(N)*std::pow(M_PI,2);
+        TT1 = gammansminus1(N)*std::pow(M_PI,2);
         VV1 = TT1;
     }
     if(order>=2)
     {
         DEF2(N);
 
-        gg2 = gammagg2(N);
-        gq2 = gammagS2(N);
-        qg2 = gammaSg2(N);
-        WW2 = gammansplus2(N);
-        qq2 = WW2+gammaps2(N);
-        TT2 = gammansminus2(N);
-        VV2 = gammansval2(N);
+        gg2 = gammagg2(N)*std::pow(M_PI,3);
+        gq2 = gammagS2(N)*std::pow(M_PI,3);
+        qg2 = gammaSg2(N)*std::pow(M_PI,3);
+        WW2 = gammansplus2(N)*std::pow(M_PI,3);
+        qq2 = WW2+gammaps2(N)*std::pow(M_PI,3);
+        TT2 = gammansminus2(N)*std::pow(M_PI,3);
+        VV2 = gammansval2(N)*std::pow(M_PI,3);
     }
 }
 

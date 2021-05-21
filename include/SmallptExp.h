@@ -44,6 +44,7 @@ class SmallptExp{
 
     private:
         AnomDimensions AD;
+
         int NC, NF, CA, ORD, CHANNEL;
         double LF, LR, LQ;
         double QS2, MH2, MUF2, MUR2, SROOT;

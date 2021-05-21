@@ -27,7 +27,6 @@ SmallptExp::SmallptExp(int order, int channel, void *params):AD(params)
 {
 	PhysParams param = *reinterpret_cast<PhysParams*>(params); 
 
-
     ORD = order;
     CHANNEL = channel;
 	NC = param.nc;

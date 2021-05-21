@@ -1,6 +1,7 @@
 sources = [
   'MellinFunc.cpp',
   'ThresExp.cpp',
+  'AnomalousDim.cpp',
   'ComplexDefs.cpp',
   'HarmonicSum.cpp',
   'SmallptExp.cpp',

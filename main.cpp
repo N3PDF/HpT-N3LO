@@ -27,12 +27,14 @@
 #include <iostream>
 #include <exception>
 
+#include "include/CombinedRes.h"
 #include "yaml-cpp/yaml.h"
 #include "higgs-fo/params.h"
 #include "higgs-fo/higgspt.h"
 #include "higgs-fo/higgsptpartonic.h"
 #include "higgs-fo/partonic.h"
 #include "higgs-fo/hadronic.h"
+#include "higgs-fo/luminosity.h"
 
 
 // Exception for wrong inputs
@@ -51,6 +53,8 @@ int main(int argc, char* argv[]) {
     int order = node["order"].as<int>();
     int _nf = node["nf"].as<int>();
     int channel = node["channel"].as<int>();
+    int scheme = node["scheme"].as<int>();
+
     double _mh = node["mh"].as<double>();
     double _mur = node["mur"].as<double>();
     double _muf = node["muf"].as<double>();
@@ -59,8 +63,10 @@ int main(int argc, char* argv[]) {
     double ptmax = node["ptmax"].as<double>();
     double ptbin = node["ptbin"].as<double>();
     double nn = node["N"].as<double>();
-    double y1 = node["y1"].as<double>();
-    double y2 = node["y2"].as<double>();
+
+    /* double y1 = node["y1"].as<double>(); */
+    /* double y2 = node["y2"].as<double>(); */
+
     std::string sectype = node["sectype"].as<std::string>();
     std::string pdfname = node["pdfname"].as<std::string>();
     std::string filename = node["outfile"].as<std::string>();
@@ -76,7 +82,6 @@ int main(int argc, char* argv[]) {
 
     try {
         if (order<0 || order>1) throw err_message();
-        if (y1 > y2) throw err_message();
         if (channel<0 || channel>5) throw err_message();
         filename += ord_fixod[order];
         filename += par_chanl[channel];
@@ -116,9 +121,8 @@ int main(int argc, char* argv[]) {
     physparam.sroot = _sroot;
     physparam.sigma0 = _sigma0;
 
-    // Init. higgs partonic class
-    CrossHiggs higgspart(order, channel, pdfname, &physparam);
-    HadronicHiggs higgshard(order, channel, pdfname, &physparam);
+    // Init. combined resummation class
+    CombinedRes combres(order, channel, pdfname, &physparam);
 
     // Construct output fie
     std::ofstream output_file(filename);
@@ -135,23 +139,17 @@ int main(int argc, char* argv[]) {
                 << std::setw(space) << "[error (pb)]" << "\n";
 
     double pt = ptmin;
-    std::vector<double> results;
+    std::complex<double> results;
     while (pt <= ptmax) {
-        if (sectype == "hadronic") {
-            results = higgshard.higgsdpt(pt,y1,y2);
-        } else if (sectype == "partonic") {
-            results = higgspart.partonichiggsdpt(pt,nn);
-        } else {
-            std::cout << "Error in entry sectype!" << std::endl;
-            exit(EXIT_FAILURE);
-        }
+        std::complex<double> Ncmpx(nn,0.);
+        results = combres.CombinedResExpr(Ncmpx, pt, scheme);
 
         // Generate some output logs & write to output file
-        printf("pt=%e: dHdpt = %e +- %e. \n", pt, results[0], results[1]);
+        printf("pt=%e: dHdpt = %e + %e II. \n",
+            pt, results.real(), results.imag());
         output_file.setf(std::ios_base::scientific);
         output_file << pt << std::setw(space)
-                    << results[0] << std::setw(space)
-                    << results[1] << "\n";
+                    << results << "\n";
         output_file.flush();
 
         pt += ptbin;

@@ -44,7 +44,8 @@ class AnomDimensions
         HSum HAP;
         gamma1sums g1s;
 
-        double NF, NC, CA, CF;
+		int NC, NF;
+        double CA, CF;
         double EulerGamma=0.5772156649;
 
         std::complex<double> PNPA,PNSB,PNSC,PNMA,PPSA,PQGA;

@@ -15,7 +15,8 @@ higgslib = static_library(
   	glib_dep,
 	higgsfo_lib,
 	cuba_lib,
-	yaml_lib
+	yaml_lib,
+	cmpx_bessel
   ],
   install: true
 )

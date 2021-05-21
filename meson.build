@@ -20,6 +20,7 @@ glib_dep = [
 ]
 higgsfo_lib = cxx.find_library('higgsfo', required : true)
 cuba_lib = cxx.find_library('cuba', required : true)
+cmpx_bessel = cxx.find_library('complex_bessel', required : true)
 yaml_lib = cxx.find_library('yaml-cpp', required : true)
 
 inc = include_directories(

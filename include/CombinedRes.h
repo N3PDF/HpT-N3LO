@@ -39,13 +39,13 @@ class CombinedRes{
         virtual ~CombinedRes();
 
         // Attribute that compute the expanded results
-        std::complex<double> CombinedResExpr(std::complex<double> N, double pt, int scheme);
+        std::complex<long double> CombinedResExpr(std::complex<long double> N, long double pt, int scheme);
 
     private:
         int EXACT_ORD;
-        /* double LF, LR, LQ; */
-        double QS2, MH2, MUF2, MUR2;
-        /* double aass, SIGMA0; */
+        /* long double LF, LR, LQ; */
+        long double QS2, MH2, MUF2, MUR2;
+        /* long double aass, SIGMA0; */
 
         // Init. resummation classes
         SmallptExp *SMALLPT;
@@ -56,5 +56,5 @@ class CombinedRes{
 
 
         // Matching function
-        std::complex<double> Matching(std::complex<double> N, double pt, int scheme);
+        std::complex<long double> Matching(std::complex<long double> N, long double pt, int scheme);
 };

@@ -40,48 +40,48 @@ class SmallptExp{
         virtual ~SmallptExp();
 
         // Attribute that compute the expanded results
-        std::complex<double> SmallptExpExpr(std::complex<double> N, double pt);
+        std::complex<long double> SmallptExpExpr(std::complex<long double> N, long double pt);
 
     private:
         AnomDimensions AD;
 
         int NC, NF, CA, ORD, CHANNEL;
-        double LF, LR, LQ;
-        double QS2, MH2, MUF2, MUR2, SROOT;
-        double CF, aass, SIGMA0;
+        long double LF, LR, LQ;
+        long double QS2, MH2, MUF2, MUR2, SROOT;
+        long double CF, aass, SIGMA0;
 
 
         // Beta functions
-        double Beta0;
-        double Beta1;
-        double Beta2;
+        long double Beta0;
+        long double Beta1;
+        long double Beta2;
 
         // Cusp Anomalous Dimensions
-        double Apt1g;
-        double Apt2g;
-        double Bpt1g;
-		double Bpt2g;
+        long double Apt1g;
+        long double Apt2g;
+        long double Bpt1g;
+		long double Bpt2g;
 
 
         // Fourier Inverse of ln b
-        double LC1(double xp);
-        double LC2(double xp);
-        double LC3(double xp);
-        double LC4(double xp);
+        long double LC1(long double xp);
+        long double LC2(long double xp);
+        long double LC3(long double xp);
+        long double LC4(long double xp);
 
         // Ceofficient functions
 		// LO
-		std::complex<double> C1GG(std::complex<double> N);
-		std::complex<double> C1GQ(std::complex<double> N);
+		std::complex<long double> C1GG(std::complex<long double> N);
+		std::complex<long double> C1GQ(std::complex<long double> N);
 
 
         // Zeta functions
-        const double zeta2=gsl_sf_zeta_int(2);
-        const double zeta3=gsl_sf_zeta_int(3);
-        const double zeta4=gsl_sf_zeta_int(4);
+        const long double zeta2=gsl_sf_zeta_int(2);
+        const long double zeta3=gsl_sf_zeta_int(3);
+        const long double zeta4=gsl_sf_zeta_int(4);
 
 
         // EulerGamma
         // TODO: Move this to global
-        const double EulerGamma=0.5772156649;
+        const long double EulerGamma=0.5772156649;
 };

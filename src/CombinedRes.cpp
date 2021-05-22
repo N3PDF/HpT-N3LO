@@ -27,9 +27,9 @@ CombinedRes::CombinedRes(int order, int channel, std::string pdfname, void *para
 {
 	PhysParams param = *reinterpret_cast<PhysParams*>(params); 
 
-    MH2  = std::pow(param.mh, 2);
-    MUR2 = std::pow(param.mur, 2);
-    MUF2 = std::pow(param.muf, 2);
+    MH2  = static_cast<long double>(std::pow(param.mh, 2));
+    MUR2 = static_cast<long double>(std::pow(param.mur, 2));
+    MUF2 = static_cast<long double>(std::pow(param.muf, 2));
 
     EXACT_ORD = order-1;
 
@@ -48,10 +48,10 @@ CombinedRes::~CombinedRes()
         
 
 
-std::complex<double> CombinedRes::Matching(std::complex<double> N, double pt, int scheme)
+std::complex<long double> CombinedRes::Matching(std::complex<long double> N, long double pt, int scheme)
 {
  	// TODO: re-check definition MH2 vs. Qs2
- 	double xp = std::pow(pt,2)/std::pow(MH2,2);
+ 	long double xp = std::pow(pt,2)/std::pow(MH2,2);
 	if (scheme==0) 			// small-pt only
 	{
 		return (0.);
@@ -66,14 +66,17 @@ std::complex<double> CombinedRes::Matching(std::complex<double> N, double pt, in
     
 
 
-std::complex<double> CombinedRes::CombinedResExpr(std::complex<double> N, double pt, int scheme)
+std::complex<long double> CombinedRes::CombinedResExpr(std::complex<long double> N, long double pt, int scheme)
 {
-	double nn = N.real(); // take only real part. Does not work for complex
+	double pp = static_cast<double>(pt);
+	double nn = static_cast<double>(N.real()); // take only real part. Does not work for complex
 
-	std::vector<double> ExactMellin = MELLINPARTONIC->partonichiggsdpt(pt,nn);
-	std::complex<double> SptMellin = SMALLPT->SmallptExpExpr(N,pt);
-	std::complex<double> ThresMellin = THRESHOLD->ThresExpExpr(N,pt);
+	std::vector<double> ResultsMellin = MELLINPARTONIC->partonichiggsdpt(pp,nn);
+	std::vector<long double> ExactMellin(ResultsMellin.begin(), ResultsMellin.end());
 
-	std::complex<double> ExactMellinCmpx(ExactMellin[0],0.);
+	std::complex<long double> SptMellin = SMALLPT->SmallptExpExpr(N,pt);
+	std::complex<long double> ThresMellin = THRESHOLD->ThresExpExpr(N,pt);
+
+	std::complex<long double> ExactMellinCmpx(ExactMellin[0],0.);
 	return (1.-Matching(N,pt,scheme))*SptMellin+Matching(N,pt,scheme)*ThresMellin;
 }

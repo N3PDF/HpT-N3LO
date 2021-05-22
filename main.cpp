@@ -28,6 +28,7 @@
 #include <exception>
 
 #include "include/CombinedRes.h"
+/* #include "include/ThresExp.h" */
 #include "yaml-cpp/yaml.h"
 #include "higgs-fo/params.h"
 #include "higgs-fo/higgspt.h"
@@ -58,16 +59,16 @@ int main(int argc, char* argv[]) {
     double _mh = node["mh"].as<double>();
     double _mur = node["mur"].as<double>();
     double _muf = node["muf"].as<double>();
+
     double _sroot = node["sroot"].as<double>();
-    double ptmin = node["ptmin"].as<double>();
-    double ptmax = node["ptmax"].as<double>();
-    double ptbin = node["ptbin"].as<double>();
-    double nn = node["N"].as<double>();
+    long double ptmin = node["ptmin"].as<long double>();
+    long double ptmax = node["ptmax"].as<long double>();
+    long double ptbin = node["ptbin"].as<long double>();
+    long double nn = node["N"].as<long double>();
 
     /* double y1 = node["y1"].as<double>(); */
     /* double y2 = node["y2"].as<double>(); */
 
-    std::string sectype = node["sectype"].as<std::string>();
     std::string pdfname = node["pdfname"].as<std::string>();
     std::string filename = node["outfile"].as<std::string>();
 
@@ -122,12 +123,12 @@ int main(int argc, char* argv[]) {
     physparam.sigma0 = _sigma0;
 
     // Init. combined resummation class
+	/* ThresExp ThresResult(order, channel, &physparam); */
     CombinedRes combres(order, channel, pdfname, &physparam);
 
     // Construct output fie
     std::ofstream output_file(filename);
-    output_file << "# Process type         : " << sectype << "\n"
-                << "# PDF set name         : " << pdfname << "\n"
+    output_file << "# PDF set name         : " << pdfname << "\n"
                 << "# Fixed Order          : " << order   << "\n"
                 << "# Partonic channel     : " << channel << "\n"
                 << "# Center of M.E. (GeV) : " << _sroot  << "\n"
@@ -138,18 +139,19 @@ int main(int argc, char* argv[]) {
     output_file << "# [pt value]" << std::setw(space) << "[dHpt (pb)]"
                 << std::setw(space) << "[error (pb)]" << "\n";
 
-    double pt = ptmin;
-    std::complex<double> results;
+    long double pt = ptmin;
+    std::complex<long double> results;
     while (pt <= ptmax) {
-        std::complex<double> Ncmpx(nn,0.);
-        results = combres.CombinedResExpr(Ncmpx, pt, scheme);
+        std::complex<long double> Ncmpx(nn,0.);
+		/* long double xp = pt/_mh/_mh; */
+		results = combres.CombinedResExpr(Ncmpx, pt, scheme);
 
         // Generate some output logs & write to output file
-        printf("pt=%e: dHdpt = %e + %e II. \n",
+        printf("pt=%Le: dHdpt = %Le + %Le II. \n",
             pt, results.real(), results.imag());
         output_file.setf(std::ios_base::scientific);
         output_file << pt << std::setw(space)
-                    << results << "\n";
+                    << results.real() << "\n";
         output_file.flush();
 
         pt += ptbin;

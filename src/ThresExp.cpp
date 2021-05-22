@@ -30,38 +30,38 @@ ThresExp::ThresExp(int order, int channel, void *params)
 
     ORD = order;
     CHANNEL = channel;
-	NC = param.nc;
-	NF = param.nf;
+	NC = static_cast<long double>(param.nc);
+	NF = static_cast<long double>(param.nf);
 
 	CA = NC;
 	CF = (NC*NC-1.)/(2.*NC);
 
-    MH2  = std::pow(param.mh, 2);
-    MUR2 = std::pow(param.mur, 2);
-    MUF2 = std::pow(param.muf, 2);
+    MH2  = static_cast<long double>(std::pow(param.mh, 2));
+    MUR2 = static_cast<long double>(std::pow(param.mur, 2));
+    MUF2 = static_cast<long double>(std::pow(param.muf, 2));
 
  	LF = std::log(MH2/MUF2);
  	LR = std::log(MH2/MUR2);
 
-    aass = param.alphas; // TODO; double-check PI normalization
-    SROOT = param.sroot;
-    SIGMA0 = param.sigma0;
+    aass   = static_cast<long double>(param.alphas); // TODO; long double-check PI normalization
+    SROOT  = static_cast<long double>(param.sroot);
+    SIGMA0 = static_cast<long double>(param.sigma0);
 
     // Compute Beta Functions
-    Beta0 = (11.*CA-2.*NF)/(12.*M_PI);
-    Beta1 = ((17.*CA*CA-5.*CA*NF-3.*CF*NF)*2./3.)/(16.*M_PI*M_PI);
+    Beta0 = (11.*CA-2.*NF)/(12.*M_PIl);
+    Beta1 = ((17.*CA*CA-5.*CA*NF-3.*CF*NF)*2./3.)/(16.*M_PIl*M_PIl);
     Beta2 = ((2857./54.*CA*CA*CA+(CF*CF-205./18.*CF*CA-1415./54.*CA*CA)
-            *NF+(11./9.*CF+79./54.*CA)*NF*NF))/std::pow(4.*M_PI,3);
+            *NF+(11./9.*CF+79./54.*CA)*NF*NF))/std::pow(4.*M_PIl,3);
 
     // One & too loop Cusp Anomalous Dimensions
 	// In the following, the 1/PI is contained in the definitions
 	// of the cusp Anomalous dimensions not in the normalization of as
     Bth1g = -Beta0;
-    Ath1g = CA/M_PI;
-    Ath1q = CF/M_PI;
-    Bth1q = -3./4.*CF/M_PI;
-    Ath2g = (CA/2.*(CA*(67./18.-zeta2)-5./9.*NF))/std::pow(M_PI,2);
-    Ath2q = (CF/2.*(CA*(67./18.-zeta2)-5./9.*NF))/std::pow(M_PI,2);
+    Ath1g = CA/M_PIl;
+    Ath1q = CF/M_PIl;
+    Bth1q = -3./4.*CF/M_PIl;
+    Ath2g = (CA/2.*(CA*(67./18.-zeta2)-5./9.*NF))/std::pow(M_PIl,2);
+    Ath2q = (CF/2.*(CA*(67./18.-zeta2)-5./9.*NF))/std::pow(M_PIl,2);
 }
 
 ThresExp::~ThresExp(){}
@@ -72,15 +72,15 @@ ThresExp::~ThresExp(){}
 //------------------------------------------------------------------------------------------//
 
 // gg->g
-std::complex<double> ThresExp::LOgggH(std::complex<double> NN, double xp)
+std::complex<long double> ThresExp::LOgggH(std::complex<long double> NN, long double xp)
 {
-    std::complex<double> CLOgggH;
+    std::complex<long double> CLOgggH;
     // TODO: verify correspondence with small-pt
-    std::complex<double> N = NN;
-    std::complex<double> half(0.5,0.);
-    std::complex<double> xprad(std::pow(std::sqrt(1.+xp)-std::sqrt(xp),4),0.);
+    std::complex<long double> N = NN;
+    std::complex<long double> half(0.5,0.);
+    std::complex<long double> xprad(std::pow(std::sqrt(1.+xp)-std::sqrt(xp),4),0.);
 
-    CLOgggH = 2. * aass * CA/std::sqrt(M_PI) * 1./xp*std::exp(LogGamma(N)-LogGamma(N+0.5))* \
+    CLOgggH = 2. * aass * CA/std::sqrt(M_PIl) * 1./xp*std::exp(LogGamma(N)-LogGamma(N+0.5))* \
     (Hyp2F1(half,N,N+0.5,xprad) -2. *(1.+xp)/(std::pow(std::sqrt(1.+xp)+std::sqrt(xp),2.))* \
     N/(N+0.5) *Hyp2F1(half,N+1.,N+1.5,xprad) +((1.+xp)*(3.+xp))/(std::pow(std::sqrt(1.+xp)+ \
     std::sqrt(xp),4.))*N*(N+1.)/((N+0.5)*(N+1.5))*Hyp2F1(half,N+2.,N+2.5,xprad)-2.*(1.+xp)/ \
@@ -92,15 +92,15 @@ std::complex<double> ThresExp::LOgggH(std::complex<double> NN, double xp)
 }
 
 // gq->q
-std::complex<double> ThresExp::LOgqqH(std::complex<double> NN, double xp)
+std::complex<long double> ThresExp::LOgqqH(std::complex<long double> NN, long double xp)
 {
-    std::complex<double> CLOgqqH;
+    std::complex<long double> CLOgqqH;
     // TODO: verify correspondence with small-pt
-    std::complex<double> N=NN;
-    std::complex<double> half(0.5,0.);
-    std::complex<double> xprad(std::pow(std::sqrt(1.+xp)-std::sqrt(xp),4.),0.);
+    std::complex<long double> N=NN;
+    std::complex<long double> half(0.5,0.);
+    std::complex<long double> xprad(std::pow(std::sqrt(1.+xp)-std::sqrt(xp),4.),0.);
 
-    CLOgqqH = aass * CF/std::sqrt(M_PI) * 1./xp * std::exp(LogGamma(N)-LogGamma(N+0.5))* \
+    CLOgqqH = aass * CF/std::sqrt(M_PIl) * 1./xp * std::exp(LogGamma(N)-LogGamma(N+0.5))* \
     (Hyp2F1(half,N,N+0.5,xprad) - (4.+3.*xp)/(std::pow(std::sqrt(1.+xp)+std::sqrt(xp),2.))* \
     N/(N+0.5) * Hyp2F1(half,N+1.,N+1.5,xprad) + 3. * (1.+xp)/(std::pow(std::sqrt(1.+xp)+ \
     std::sqrt(xp),4.)) * N * (N+1.)/((N+0.5) * (N+1.5)) * Hyp2F1(half,N+2.,N+2.5,xprad)-1./ \
@@ -111,15 +111,15 @@ std::complex<double> ThresExp::LOgqqH(std::complex<double> NN, double xp)
 }
 
 // qq->g
-std::complex<double> ThresExp::LOqqgH(std::complex<double> NN, double xp)
+std::complex<long double> ThresExp::LOqqgH(std::complex<long double> NN, long double xp)
 {
-    std::complex<double> CLOqqgH;
+    std::complex<long double> CLOqqgH;
     // TODO: verify correspondence with small-pt
-    std::complex<double> N = NN;
-    std::complex<double> half(0.5,0.);
-    std::complex<double> xprad(std::pow(std::sqrt(1.+xp)-std::sqrt(xp),4.),0.);
+    std::complex<long double> N = NN;
+    std::complex<long double> half(0.5,0.);
+    std::complex<long double> xprad(std::pow(std::sqrt(1.+xp)-std::sqrt(xp),4.),0.);
 
-    CLOqqgH = 2.*aass*CF*CF/std::sqrt(M_PI)*1./(std::pow(std::sqrt(1.+xp)+std::sqrt(xp),2.)) \
+    CLOqqgH = 2.*aass*CF*CF/std::sqrt(M_PIl)*1./(std::pow(std::sqrt(1.+xp)+std::sqrt(xp),2.)) \
     * std::exp(LogGamma(N)-LogGamma(N+0.5)) * (Hyp2F1(half,N,N+0.5,xprad)-2.*(1.+xp)/ \
     (std::pow(std::sqrt(1.+xp)+std::sqrt(xp),2.))*N/(N+0.5)*Hyp2F1(half,N+1.,N+1.5,xprad) \
     + 1./(std::pow(std::sqrt(1.+xp)+std::sqrt(xp),4.)) * N * (N+1.)/((N+0.5)*(N+1.5))* \
@@ -134,18 +134,18 @@ std::complex<double> ThresExp::LOqqgH(std::complex<double> NN, double xp)
 //------------------------------------------------------------------------------------------//
 
 // gg->g
-double ThresExp::Sigma22ggg(double xp)
+long double ThresExp::Sigma22ggg(long double xp)
 {
 	return 3.*Ath1g/8.;
 }
 
-double ThresExp::Sigma21ggg(double xp)
+long double ThresExp::Sigma21ggg(long double xp)
 {
-	double xQp = std::sqrt(1+xp)+std::sqrt(xp);
+	long double xQp = std::sqrt(1+xp)+std::sqrt(xp);
 	return -Bth1g/2.-Ath1g/2.*std::log(xp/xQp)-2.*Ath1g*LF;
 }
 
-double ThresExp::Sigma20ggg(double xp)
+long double ThresExp::Sigma20ggg(long double xp)
 {
 	return 3./2.*Ath1g*zeta2;
 }
@@ -157,16 +157,16 @@ double ThresExp::Sigma20ggg(double xp)
 
 
 // TODO: change this into a vector
-std::complex<double> ThresExp::ThresExpExpr(std::complex<double> N, double pt)
+std::complex<long double> ThresExp::ThresExpExpr(std::complex<long double> N, long double pt)
 {
  	// TODO: re-check definition MH2 vs. Qs2
- 	double xp = std::pow(pt,2)/std::pow(MH2,2);
+ 	long double xp = std::pow(pt,2)/std::pow(MH2,2);
 
-	std::complex<double> zero(0.,0.);
-	std::complex<double> result;
+	std::complex<long double> zero(0.,0.);
+	std::complex<long double> result;
 
-	std::complex<double> Nbar = N*std::exp(EulerGamma);
-	std::complex<double> LNbar = 2.*aass*Beta0*std::log(Nbar);
+	std::complex<long double> Nbar = N*std::exp(EulerGamma);
+	std::complex<long double> LNbar = 2.*aass*Beta0*std::log(Nbar);
 
 	switch (ORD)
 	{
@@ -189,7 +189,7 @@ std::complex<double> ThresExp::ThresExpExpr(std::complex<double> N, double pt)
 		{
 			if ((CHANNEL==0)||(CHANNEL==5))
 			{
-				std::complex<double> SIGMAGG = Sigma22ggg(xp)*std::pow(LNbar,2) \
+				std::complex<long double> SIGMAGG = Sigma22ggg(xp)*std::pow(LNbar,2) \
 					+Sigma21ggg(xp)*LNbar+Sigma20ggg(xp);
 				result += aass*LOgggH(N,xp)*SIGMAGG;
 			}

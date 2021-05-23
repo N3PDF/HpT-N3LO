@@ -216,21 +216,14 @@ std::complex<long double> ThresExp::ThresExpExpr(std::complex<long double> N, lo
 	switch (ORD)
 	{
 		// TODO: Match CASES with HpT-MON
-		case(0): // order as^0
-		{
-			if ((CHANNEL==0)||(CHANNEL==5)) return zero; // gg-channel or ALL
-			if ((CHANNEL==1)||(CHANNEL==5)) return zero; // gq-channel or ALL
-			if ((CHANNEL==2)||(CHANNEL==5)) return zero; // qq-channel or ALL
-		}
-		break;
-        case(1): // order as^1
+        case(0): // order as^1
 		{
 			if ((CHANNEL==0)||(CHANNEL==5)) {result += LOgggH(N,xp);}
 			if ((CHANNEL==1)||(CHANNEL==5)) {result += LOgqqH(N,xp);}
 			if ((CHANNEL==2)||(CHANNEL==5)) {result += LOqqgH(N,xp);}
 		}
 		break;
-        case(2): // order as^2
+        case(1): // order as^2
 		{
 			if ((CHANNEL==0)||(CHANNEL==5))
 			{

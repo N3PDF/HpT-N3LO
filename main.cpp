@@ -28,7 +28,8 @@
 #include <exception>
 
 #include "include/CombinedRes.h"
-/* #include "include/ThresExp.h" */
+#include "include/ThresExp.h"
+#include "include/SmallptExp.h"
 #include "yaml-cpp/yaml.h"
 #include "higgs-fo/params.h"
 #include "higgs-fo/higgspt.h"
@@ -88,6 +89,7 @@ int main(int argc, char* argv[]) {
         filename += par_chanl[channel];
     } catch(err_message& err) {
         std::cout << err.what() << std::endl;
+        exit(EXIT_FAILURE);
     }
 
     // Factors for Born cross-section
@@ -124,7 +126,8 @@ int main(int argc, char* argv[]) {
 
     // Init. combined resummation class
 	/* ThresExp ThresResult(order, channel, &physparam); */
-    CombinedRes combres(order, channel, pdfname, &physparam);
+	SmallptExp SpTresults(order, channel, &physparam);
+    /* CombinedRes combres(order, channel, pdfname, &physparam); */
 
     // Construct output fie
     std::ofstream output_file(filename);
@@ -143,8 +146,10 @@ int main(int argc, char* argv[]) {
     std::complex<long double> results;
     while (pt <= ptmax) {
         std::complex<long double> Ncmpx(nn,0.);
-		/* long double xp = pt/_mh/_mh; */
-		results = combres.CombinedResExpr(Ncmpx, pt, scheme);
+
+		results = SpTresults.SmallptExpExpr(Ncmpx, pt);
+        /* results = ThresResult.ThresExpExpr(Ncmpx, pt); */
+		/* results = combres.CombinedResExpr(Ncmpx, pt, scheme); */
 
         // Generate some output logs & write to output file
         printf("pt=%Le: dHdpt = %Le + %Le II. \n",

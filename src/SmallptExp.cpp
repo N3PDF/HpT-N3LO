@@ -18,6 +18,7 @@
 
 
 #include <cmath>
+#include <complex>
 #include <higgs-fo/params.h>
 
 #include "../include/SmallptExp.h"
@@ -63,7 +64,8 @@ SmallptExp::SmallptExp(int order, int channel, void *params):AD(params)
 	Apt1g = CA;
 	Bpt1g = -1./6.*(11.*CA-2.*NF);
 	Apt2g = CA/2.*((67./18.-std::pow(M_PIl,2)/6.)*CA-5./9.*NF);
-    Bpt2g = 0.; // TODO: Implemente correct expression here
+    Bpt2g = (-2.*(-8./3.*CA*NF+(32./3.+12.*zeta3)*CA*CA-2.*CF*NF)/ \
+            (std::pow(4.,2)))/std::pow(M_PIl,2)+Beta0*CA*zeta2/M_PIl;
 }
 
 SmallptExp::~SmallptExp(){}
@@ -116,8 +118,13 @@ std::complex<long double> SmallptExp::C1GQ(std::complex<long double> N)
 
 std::complex<long double> SmallptExp::SmallptExpExpr(std::complex<long double> N, long double pt)
 {
-    int pc = 2; // TODO: long double-check this
+    // Init. Anomalous Dimensions;
+    // Notice that in order to compare the AD here and
+    // in the notebooks, the AD has to be shifted by (-1)
+    // i.e computed at (N-1).
 	AD.ComputeGamma(N,1); // Init. Anomalous Dimensions
+
+    int pc = 2; // TODO: long double-check this
     std::complex<long double> zero(0.,0.);
 	std::complex<long double> ones(1.,0.);
     std::complex<long double> result(0.,0.);
@@ -126,18 +133,11 @@ std::complex<long double> SmallptExp::SmallptExpExpr(std::complex<long double> N
     long double h1gg = (11.+3.*M_PIl*M_PIl)/2.;
 
  	// TODO: re-check definition MH2 vs. Qs2
- 	long double xp = std::pow(pt,2)/std::pow(MH2,2);
+ 	long double xp = std::pow(pt,2)/MH2;
 
 	switch (ORD)
 	{
-        case(0): // order as^0
-		{
-			if ((CHANNEL==0)||(CHANNEL==4)) {result += ones;}
-			if ((CHANNEL==1)||(CHANNEL==4)) {result += zero;}
-			if ((CHANNEL==2)||(CHANNEL==4)) {result += zero;}
-		}
-		break;
-        case(1): // order as^1
+        case(0): // order as^1
         {
             if ((CHANNEL==0)||(CHANNEL==4)) // gg-channel or ALL
             {
@@ -161,7 +161,7 @@ std::complex<long double> SmallptExp::SmallptExpExpr(std::complex<long double> N
             }
         }
         break;
-        case(2):
+        case(1): // order as^2
         {
             if ((CHANNEL==0)||(CHANNEL==4)) // gg-channel or ALL
             {
@@ -169,14 +169,19 @@ std::complex<long double> SmallptExp::SmallptExpExpr(std::complex<long double> N
                 std::complex<long double> Sigma24gg = std::pow(Apt1g,2)/8.;
                 std::complex<long double> Sigma23gg = -Apt1g*(Beta0/3.+1./2. \
                     *(-Bpt1g-Apt1g*LQ-2.*AD.gg0));
-                std::complex<long double> Sigma22gg = (-Apt2g-(Bpt1g+Apt1g*LQ-Beta0) \
-                    *(-Bpt1g-Apt1g-2.*AD.gg0))/2.-Apt1g/2.*(h1gg-LQ*(Bpt1g+(Bpt1g \
-                    *LQ)/2.)-(-LQ+LR)*Beta0-pc*LR*Beta0+2.*C1GG(N)+2.*(LF-LQ)*AD.gg0) \
-                    +1./2.*(-2.*(-Bpt1g-Apt1g*LQ-2.*AD.gg0)*AD.gg0+2.*AD.gq0*AD.qg0);
-                std::complex<long double> Sigma21gg = -Bpt2g-Apt2g*LQ+(LQ-LR)*Beta0 \
-                    *(-Bpt1g-Apt1g-2.*AD.gg0)-(Bpt1g+Apt1g*LQ+2.*AD.gg0)*(h1gg-LQ \
-                    *(Bpt1g+(Bpt1g*LQ)/2.)-pc*LR*Beta0+2.*C1GG(N)+2.*(LF-LQ)*AD.gg0) \
-                    -2.*(C1GQ(N)+(LF-LQ)*AD.gq0)*AD.qg0+Beta0*(2.*C1GG(N)+2.*AD.gg1);
+                std::complex<long double> Sigma22gg = (-Apt2g-(-Bpt1g-2.*AD.gg0 \
+                    -Apt1g*LQ)*(Bpt1g-Beta0+Apt1g*LQ))/2.-(Apt1g*(2*C1GG(N)+h1gg \
+                    +2.*AD.gg0*(LF-LQ)-LQ*(Bpt1g+(Bpt1g*LQ)/2.)-(Beta0*(-LQ+LR)) \
+                    -Beta0*LR*pc))/2.+(-2.*AD.gg0*(-Bpt1g-2.*AD.gg0-Apt1g*LQ)+2. \
+                    *AD.gq0*AD.qg0)/2.;
+                // TODO: check discrepency between AD.GG1 with notebook's implementation
+                std::complex<long double> Sigma21gg = -Bpt2g+Beta0*(2.*C1GG(N)+2. \
+                    *AD.gg1)-Apt2g*LQ+Beta0*(-Bpt1g-2.*AD.gg0-Apt1g*LQ)*(LQ-LR) \
+                    -(Bpt1g+2.*AD.gg0+Apt1g*LQ)*(2.*C1GG(N)+h1gg+2.*AD.gg0*(LF-LQ)-LQ \
+                    *(Bpt1g+(Bpt1g*LQ)/2.)-Beta0*LR*pc)-2.*(C1GQ(N)+AD.gq0*(LF-LQ)) \
+                    *AD.qg0;
+
+                /* std::cout << "Apt2g=" << Apt2g << std::endl; */
 
                 // constant terms when pt->0
                 long double h2gg = 0.;

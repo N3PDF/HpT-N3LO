@@ -51,9 +51,14 @@ class ThresExp{
         long double Hth1qqgH(long double xp);
 
         // LO pt-distribution
-        std::complex<long double> LOgggH(std::complex<long double> N, long double xp);
-        std::complex<long double> LOgqqH(std::complex<long double> N, long double xp);
-        std::complex<long double> LOqqgH(std::complex<long double> N, long double xp);
+        std::complex<long double> LOgggH(std::complex<long double> NN, long double xp);
+        std::complex<long double> LOgqqH(std::complex<long double> NN, long double xp);
+        std::complex<long double> LOqqgH(std::complex<long double> NN, long double xp);
+
+				// Matching function G)
+				long double GOgggH(long double);
+				long double GOgqqH(long double);
+				long double GOqqgH(long double);
 
     private:
         int NC, NF, CA, ORD, CHANNEL;

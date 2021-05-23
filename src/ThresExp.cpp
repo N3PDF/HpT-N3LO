@@ -19,6 +19,7 @@
 
 #include <cmath>
 #include <higgs-fo/params.h>
+#include <ostream>
 
 #include "../include/ThresExp.h"
 
@@ -74,9 +75,10 @@ ThresExp::~ThresExp(){}
 // gg->g
 std::complex<long double> ThresExp::LOgggH(std::complex<long double> NN, long double xp)
 {
+	// CHECKED //
+	// TODO: verify correspondence with small-pt 
     std::complex<long double> CLOgggH;
-    // TODO: verify correspondence with small-pt
-    std::complex<long double> N = NN;
+	std::complex<long double> N = NN;
     std::complex<long double> half(0.5,0.);
     std::complex<long double> xprad(std::pow(std::sqrt(1.+xp)-std::sqrt(xp),4),0.);
 
@@ -141,13 +143,57 @@ long double ThresExp::Sigma22ggg(long double xp)
 
 long double ThresExp::Sigma21ggg(long double xp)
 {
-	long double xQp = std::sqrt(1+xp)+std::sqrt(xp);
-	return -Bth1g/2.-Ath1g/2.*std::log(xp/xQp)-2.*Ath1g*LF;
+	long double xQp = std::sqrt(1.+xp)+std::sqrt(xp);
+	return -Bth1g/2.-Ath1g/2.*std::log(std::sqrt(xp)/xQp)-2.*Ath1g*LF;
 }
 
 long double ThresExp::Sigma20ggg(long double xp)
 {
-	return 3./2.*Ath1g*zeta2;
+	return -3./2.*Ath1g*zeta2;
+}
+
+
+//==========================================================================================//
+//                  Sigma functions (factor of ln N-enhanced terms)                         //
+//------------------------------------------------------------------------------------------//
+// gg->g
+long double ThresExp::GOgggH(long double xp)
+{
+    const long double g1gg = 67./36.*CA-5./18.*NF+CA*gsl_sf_zeta(2.)-Beta0*M_PIl*std::log(xp/(1.+xp)) \
+    -1./8.*CA * std::pow(std::log(xp/(1.+xp)),2) +2.* CA * gsl_sf_dilog(1.-std::sqrt(xp/(1.+xp))) +CA* \
+    std::log(1.-std::sqrt(xp/(1.+xp))) *std::log(xp/(1.+xp))-0.5*CA*std::log(1.+std::sqrt(xp/(1.+xp))) \
+    *std::log(xp/(1.+xp)) + 0.5 * CA * std::pow(std::log(1.+std::sqrt(xp/(1.+xp))),2)+2.*Beta0*M_PIl* \
+    std::pow(std::log(1.+std::sqrt(xp/(1.+xp))),2)+CA*gsl_sf_dilog((2.*std::sqrt(xp))/(std::sqrt(1.+xp) \
+    +std::sqrt(xp)))-((CA-NF)*(std::sqrt(xp)*std::sqrt(1.+xp)*(1.+xp)-2.*xp-xp*xp))/(6.*(1.+8.*xp \
+	+9.*xp*xp));
+    return g1gg/M_PIl;
+}
+
+// gq->q
+long double ThresExp::GOgqqH(long double xp)
+{
+    const long double g1gq=-7./4.*CF+134./36.*CA-20./36.*NF-8.*CF*gsl_sf_zeta(2.)+12.*CA*gsl_sf_zeta(2.) \
+    -4.*Beta0*M_PIl*std::log(xp/(1.+xp))+3./2.*CF*std::log(xp/(1.+xp))-0.5*CA*std::pow(std::log(xp/(1.+xp)),2) \
+    +4.*(CF+CA) *gsl_sf_dilog(1.-std::sqrt(xp/(1.+xp)))+(2.*(CA-CF)*(1.+3.*xp+3.*std::sqrt(xp*(1.+xp))))/ \
+    (2.*std::sqrt(xp*(1.+xp))+1.+3.*xp) + 8.* Beta0 * M_PIl * std::log(1.+std::sqrt(xp/(1.+xp))) -3.*CF* \
+    std::log(1.+std::sqrt(xp/(1.+xp)))+2.*CF*std::log(1.-std::sqrt(xp/(1.+xp)))*std::log(xp/(1.+xp))+2.*CA \
+    * std::log(1.-std::sqrt(xp/(1.+xp))) * std::log(xp/(1.+xp)) -2.*CF*std::log(1.+std::sqrt(xp/(1.+xp)))* \
+    std::log(xp/(1.+xp))-2.*CF*std::pow(std::log(1.+std::sqrt(xp/(1.+xp))),2)+4.*CF*gsl_sf_dilog(2.* \
+	std::sqrt(xp)/(std::sqrt(1.+xp)+std::sqrt(xp)));
+    return g1gq/M_PIl;
+}
+
+// qq->g
+long double ThresExp::GOqqgH(long double xp)
+{
+    const long double g1qq=-9./2.*CF+79./12.*CA-5./6.*NF+12.*CF*gsl_sf_zeta(2.)-10.*CA*gsl_sf_zeta(2.) \
+    -(CF-CA) * std::sqrt(1.+xp)/std::sqrt(xp) +4.*CF * gsl_sf_dilog(1.-std::sqrt(xp/(1.+xp)))-3./4.*CF* \
+    std::log(xp/(1.+xp)) -Beta0 * M_PIl * std::log(xp/(1.+xp))+0.25*CA*std::pow(std::log(xp/(1.+xp)),2) \
+    -0.5*CF*std::pow(std::log(xp/(1.+xp)),2)+2.*CF*std::log(1.-std::sqrt(xp/(1.+xp)))*std::log(xp/(1.+xp)) \
+    + 1.5 *CF*std::log(1.+std::sqrt(xp/(1.+xp))) +2.*Beta0*M_PIl*std::log(1.+std::sqrt(xp/(1.+xp)))+CA* \
+    std::pow(std::log(1.+std::sqrt(xp/(1.+xp))),2)-CA*std::log(1.+std::sqrt(xp/(1.+xp)))*std::log(xp/(1.+xp)) \
+    +2.*CA*gsl_sf_dilog(2.*std::sqrt(xp)/(std::sqrt(1.+xp)+std::sqrt(xp)));
+    return g1qq/M_PIl;
 }
 
 
@@ -160,10 +206,9 @@ long double ThresExp::Sigma20ggg(long double xp)
 std::complex<long double> ThresExp::ThresExpExpr(std::complex<long double> N, long double pt)
 {
  	// TODO: re-check definition MH2 vs. Qs2
- 	long double xp = std::pow(pt,2)/std::pow(MH2,2);
-
+ 	long double xp = std::pow(pt,2)/MH2;
 	std::complex<long double> zero(0.,0.);
-	std::complex<long double> result;
+	std::complex<long double> result(0.,0.);
 
 	std::complex<long double> Nbar = N*std::exp(EulerGamma);
 	std::complex<long double> LNbar = 2.*aass*Beta0*std::log(Nbar);
@@ -190,8 +235,9 @@ std::complex<long double> ThresExp::ThresExpExpr(std::complex<long double> N, lo
 			if ((CHANNEL==0)||(CHANNEL==5))
 			{
 				std::complex<long double> SIGMAGG = Sigma22ggg(xp)*std::pow(LNbar,2) \
-					+Sigma21ggg(xp)*LNbar+Sigma20ggg(xp);
-				result += aass*LOgggH(N,xp)*SIGMAGG;
+					+Sigma21ggg(xp)*LNbar; /* +Sigma20ggg(xp); */
+				/* result += LOgggH(N,xp)+aass*LOgggH(N,xp)*(GOgggH(xp)+SIGMAGG); */
+				result += aass*LOgggH(N,xp)*(GOgggH(xp)+SIGMAGG);
 			}
 			if ((CHANNEL==1)||(CHANNEL==5))
 			{

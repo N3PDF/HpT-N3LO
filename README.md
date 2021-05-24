@@ -7,9 +7,16 @@ resummations.
 
 #### Dependency
 
-`HpT-N3LO` relies on [HpT-MON](https://github.com/N3PDF/HpT-MON) for the computation
-of the exact FO (up to NNLO) results. The instruction on how to install `HpT-MON` is
-described in the `README` file.
+`HpT-N3LO` relies on the following libraries:
+
+* [HpT-MON](https://github.com/N3PDF/HpT-MON): for the computation of the exact 
+  FO (up to NNLO) results. The instruction on how to install `HpT-MON` is described 
+  in the `README` file.
+
+* [Complex Bessel](https://blog.joey-dumont.ca/complex_bessel/): for the computation
+  of various Bessel functions with complex arguments. This is not currently being
+  used yet but might be useful in the future (plus stripping it away from the rest
+  of the code also demands some time).
 
 
 #### Compile & run the code

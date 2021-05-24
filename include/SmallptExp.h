@@ -73,6 +73,7 @@ class SmallptExp{
 		// LO
 		std::complex<long double> C1GG(std::complex<long double> N);
 		std::complex<long double> C1GQ(std::complex<long double> N);
+		std::complex<long double> C2GG(std::complex<long double> N);
 
 
         // Zeta functions

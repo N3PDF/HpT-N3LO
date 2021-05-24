@@ -126,9 +126,9 @@ std::complex<long double> SmallptExp::SmallptExpExpr(std::complex<long double> N
 {
     // Init. Anomalous Dimensions;
     // Notice that in order to compare the AD here and
-    // in the notebooks, the AD has to be shifted by (-1)
-    // i.e computed at (N-1).
-	AD.ComputeGamma(N,1); // Init. Anomalous Dimensions
+    // in the notebooks, the AD here have to be shifted by
+    // (+1) i.e computed at (N+1).
+	AD.ComputeGamma(N+1.,1); // Init. Anomalous Dimensions
 
     int pc = 2; // TODO: long double-check this
     std::complex<long double> zero(0.,0.);

@@ -126,8 +126,8 @@ int main(int argc, char* argv[]) {
 
     // Init. combined resummation class
 	/* ThresExp ThresResult(order, channel, &physparam); */
-	SmallptExp SpTresults(order, channel, &physparam);
-    /* CombinedRes combres(order, channel, pdfname, &physparam); */
+	/* SmallptExp SpTresults(order, channel, &physparam); */
+    CombinedRes combres(order, channel, pdfname, &physparam);
 
     // Construct output fie
     std::ofstream output_file(filename);
@@ -147,9 +147,9 @@ int main(int argc, char* argv[]) {
     while (pt <= ptmax) {
         std::complex<long double> Ncmpx(nn,0.);
 
-		results = SpTresults.SmallptExpExpr(Ncmpx, pt);
+		/* results = SpTresults.SmallptExpExpr(Ncmpx, pt); */
         /* results = ThresResult.ThresExpExpr(Ncmpx, pt); */
-		/* results = combres.CombinedResExpr(Ncmpx, pt, scheme); */
+		results = combres.CombinedResExpr(Ncmpx, pt, scheme);
 
         // Generate some output logs & write to output file
         printf("pt=%Le: dHdpt = %Le + %Le II. \n",

@@ -52,13 +52,13 @@ std::complex<long double> CombinedRes::Matching(std::complex<long double> N, lon
 {
  	// TODO: re-check definition MH2 vs. Qs2
  	long double xp = std::pow(pt,2)/std::pow(MH2,2);
-	if (scheme==0) 			// small-pt only
+	if (scheme==0) 					// small-pt only
 	{
 		return (0.);
 	} else if (scheme==1) 	// threshold only
 	{
 		return (1.);
-	} else  				// combined
+	} else  								// combined
 	{
 		return (std::pow(N,3)*std::pow(xp,2)/(1.+std::pow(N,3)*std::pow(xp,2)));
 	}

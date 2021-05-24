@@ -4,12 +4,15 @@ outfile : hadronic
 pdfname : PDF4LHC15_nnlo_100
 
 # scheme for matching
-scheme  : 2
+# 0<==>Small-pt
+# 1<==>Threshold
+# 2<==>Combined
+scheme  : 0
 
 # order
 # 0<==>(LO)
 # 1<==>(NLO)
-order   : 1
+order   : 0
 
 # pt bins
 ptmin   : 10

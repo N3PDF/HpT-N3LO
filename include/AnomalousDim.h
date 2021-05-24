@@ -63,6 +63,7 @@ class AnomDimensions
 
         // NLO anomalous dimensions
         std::complex<long double> gammagg1(std::complex<long double> N);
+        std::complex<long double> gammaggx1(std::complex<long double> N);
         std::complex<long double> gammaSg1(std::complex<long double> N);
         std::complex<long double> gammagS1(std::complex<long double> N);
         std::complex<long double> gammaps1(std::complex<long double> N);

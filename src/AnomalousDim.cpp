@@ -197,6 +197,27 @@ void AnomDimensions::DEF1(std::complex<long double> N)
 
 
 //NLO anomalous dimensions
+std::complex<long double> AnomDimensions::gammaggx1(std::complex<long double> N)
+{
+    std::complex<long double> GG1 = 4.*CA*NF*(2./3.-16./3.*HAP.HS(1,N)-23./9. \
+    *(HAP.HS(1,N-2.)+HAP.HS(1,N+2.))+14./3.*(HAP.HS(1,N-1.)+HAP.HS(1,N+1.))+2. \
+    /3.*(HAP.HS(2,N-2.)-HAP.HS(2,N+2.)));
+    std::complex<long double> GG2 = 4.*CA*CA*(2.*HAP.HS(-3,N)-8./3.-14./3. \
+    *HAP.HS(1,N)+2.*HAP.HS(3,N)-4.*(HAP.HS(1,-2,N-2.)-2.*HAP.HS(1,-2,N-1.)-2. \
+    *HAP.HS(1,-2,N+1.)+HAP.HS(1,-2,N+2.)+3.*HAP.HS(1,-2,N))-4.*(HAP.HS(1,2,N-2.) \
+    -2.*HAP.HS(1,2,N-1.)-2.*HAP.HS(1,2,N+1.)+HAP.HS(1,2,N+2.)+3.*HAP.HS(1,2,N)) \
+    -4.*(HAP.HS(2,1,N-2.)-2.*HAP.HS(2,1,N-1.)-2.*HAP.HS(2,1,N+1.)+HAP.HS(2,1,N+2.) \
+    +3.*HAP.HS(2,1,N))+8./3.*(HAP.HS(2,N+1.)-HAP.HS(2,N+2.))-12.*(HAP.HS(2,N-1.) \
+    -3.*HAP.HS(2,N+1.)+HAP.HS(2,N+2.)+HAP.HS(2,N))+(HAP.HS(3,N-1.)-3.* \
+    HAP.HS(3,N+1.)+HAP.HS(3,N+2.)+HAP.HS(3,N))+109./18.*(HAP.HS(1,N-1.) \
+    +HAP.HS(1,N+1.))+61./3.*(HAP.HS(2,N-1.)-HAP.HS(2,N+1.)));
+    std::complex<long double> GG3 = 4.*CF*NF*(1./2.+2./3.*(HAP.HS(1,N-2.) \
+    -13.*HAP.HS(1,N-1.)-HAP.HS(1,N+1.)-5.*HAP.HS(1,N+2.)+18.*HAP.HS(1,N)) \
+    +(3.*HAP.HS(2,N-1.)-5.*HAP.HS(2,N+1.)+2.*HAP.HS(2,N))-2.*(HAP.HS(3,N-1.) \
+    -HAP.HS(3,N+3.)));
+    return (GG1+GG2+GG3)/pow(M_PIl,2);
+}
+
 std::complex<long double> AnomDimensions::gammagg1(std::complex<long double> N)
 {
     return (CA*CA*PGGA+0.5*NF*(CA*PGGB+CF*PGGC))*4./pow(4*M_PIl,2);

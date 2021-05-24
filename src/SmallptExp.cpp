@@ -187,20 +187,22 @@ std::complex<long double> SmallptExp::SmallptExpExpr(std::complex<long double> N
                     *(Bpt1g+(Bpt1g*LQ)/2.)-Beta0*LR*pc)-2.*(C1GQ(N)+AD.gq0*(LF-LQ)) \
                     *AD.qg0;
 
-                /* std::cout << "Apt2g=" << Apt2g << std::endl; */
+                std::cout << "AD1GG=" << AD.gg1 << std::endl;
 
                 // constant terms when pt->0
                 // TODO: Implement/check expression of h2gg & C2GG!!!
-                long double h2gg = 0.;
-                std::complex<long double> HH2GG = std::pow(C1GG(N),2)+2.*C2GG(N) \
-                    +2.*C1GG(N)*h1gg+h2gg+2.*AD.gg1*LF+Beta0*AD.gg0*std::pow(LF,2) \
-                    +(Apt1g*Beta0*std::pow(LQ,3))/6.+(std::pow(LQ,2)*(Apt2g+Beta0* \
-                    (-Bpt1g-2.*AD.gg0-Apt1g*LQ)))/2.-(Beta1*LR+(std::pow(Beta0,2) \
-                    *std::pow(LR,2))/2.)*pc-Beta0*LR*(2.*C1GG(N)+h1gg+2.*AD.gg0* \
-                    (LF-LQ)-LQ*(Bpt1g+(Bpt1g*LQ)/2.)-Beta0*LR*pc)+AD.gg0*(LF-LQ)* \
-                    (4.*C1GG(N)+2.*h1gg+2.*AD.gg0*(LF-LQ)-LQ*(Bpt1g+(Bpt1g*LQ)/2.) \
-                    -Beta0*LR*pc)*(LQ*(Bpt1g+(Apt1g*LQ)/2.)+Beta0*LR*pc)-LQ*(Bpt2g \
-                    +2.*AD.gg1+Apt2g*LQ-2.*C1GG(N)*Beta0);
+                /* long double h2gg = 0.; */
+                /* std::complex<long double> HH2GG = std::pow(C1GG(N),2)+2.*C2GG(N) \ */
+                /*     +2.*C1GG(N)*h1gg+h2gg+2.*AD.gg1*LF+Beta0*AD.gg0*std::pow(LF,2) \ */
+                /*     +(Apt1g*Beta0*std::pow(LQ,3))/6.+(std::pow(LQ,2)*(Apt2g+Beta0* \ */
+                /*     (-Bpt1g-2.*AD.gg0-Apt1g*LQ)))/2.-(Beta1*LR+(std::pow(Beta0,2) \ */
+                /*     *std::pow(LR,2))/2.)*pc-Beta0*LR*(2.*C1GG(N)+h1gg+2.*AD.gg0* \ */
+                /*     (LF-LQ)-LQ*(Bpt1g+(Bpt1g*LQ)/2.)-Beta0*LR*pc)+AD.gg0*(LF-LQ)* \ */
+                /*     (4.*C1GG(N)+2.*h1gg+2.*AD.gg0*(LF-LQ)-LQ*(Bpt1g+(Bpt1g*LQ)/2.) \ */
+                /*     -Beta0*LR*pc)*(LQ*(Bpt1g+(Apt1g*LQ)/2.)+Beta0*LR*pc)-LQ*(Bpt2g \ */
+                /*     +2.*AD.gg1+Apt2g*LQ-2.*C1GG(N)*Beta0); */
+
+                std::complex<long double> HH2GG = zero;
 
                 result += aass*aass*(Sigma24gg*LC2(xp)+Sigma23gg*LC3(xp)+Sigma22gg \
                     *LC2(xp)+Sigma21gg*LC1(xp)+HH2GG);

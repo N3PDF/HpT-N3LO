@@ -75,11 +75,16 @@ int main(int argc, char* argv[]) {
 
     std::string ord_fixod[2] = {"_LO", "_NLO"};
     std::string par_chanl[5] = {
-        "_gg_channel.dat",
-        "_gq_channel.dat",
-        "_qq_channel.dat",
-        "_qqb_channel.dat",
-        "_all_channels.dat"
+        "_gg_channel",
+        "_gq_channel",
+        "_qq_channel",
+        "_qqb_channel",
+        "_all_channels"
+    };
+    std::string matsch[3] = {
+        "_smallpt.dat",
+        "_threshold.dat",
+        "_combined.dat"
     };
 
     try {
@@ -87,6 +92,7 @@ int main(int argc, char* argv[]) {
         if (channel<0 || channel>5) throw err_message();
         filename += ord_fixod[order];
         filename += par_chanl[channel];
+        filename += matsch[scheme];
     } catch(err_message& err) {
         std::cout << err.what() << std::endl;
         exit(EXIT_FAILURE);
@@ -125,30 +131,25 @@ int main(int argc, char* argv[]) {
     physparam.sigma0 = _sigma0;
 
     // Init. combined resummation class
-	/* ThresExp ThresResult(order, channel, &physparam); */
-	/* SmallptExp SpTresults(order, channel, &physparam); */
     CombinedRes combres(order, channel, pdfname, &physparam);
 
     // Construct output fie
     std::ofstream output_file(filename);
-    output_file << "# PDF set name         : " << pdfname << "\n"
-                << "# Fixed Order          : " << order   << "\n"
-                << "# Partonic channel     : " << channel << "\n"
-                << "# Center of M.E. (GeV) : " << _sroot  << "\n"
-                << "# Higgs mass (GeV)     : " << _mh     << "\n"
-                << "# Renorm. scale (GeV)  : " << _mur    << "\n"
-                << "# Fact. scale (GeV)    : " << _muf    << "\n";
+    output_file << "# PDF set name         : " << pdfname  << "\n"
+                << "# Matching scheme      : " << scheme   << "\n"
+                << "# Fixed Order          : " << order    << "\n"
+                << "# Partonic channel     : " << channel  << "\n"
+                << "# Center of M.E. (GeV) : " << _sroot   << "\n"
+                << "# Higgs mass (GeV)     : " << _mh      << "\n"
+                << "# Renorm. scale (GeV)  : " << _mur     << "\n"
+                << "# Fact. scale (GeV)    : " << _muf     << "\n";
     const int space = 16;
-    output_file << "# [pt value]" << std::setw(space) << "[dHpt (pb)]"
-                << std::setw(space) << "[error (pb)]" << "\n";
+    output_file << "# [pt value]" << std::setw(space) << "[dHpt (pb)]" << "\n";
 
     long double pt = ptmin;
     std::complex<long double> results;
     while (pt <= ptmax) {
         std::complex<long double> Ncmpx(nn,0.);
-
-		/* results = SpTresults.SmallptExpExpr(Ncmpx, pt); */
-        /* results = ThresResult.ThresExpExpr(Ncmpx, pt); */
 		results = combres.CombinedResExpr(Ncmpx, pt, scheme);
 
         // Generate some output logs & write to output file

@@ -51,14 +51,14 @@ CombinedRes::~CombinedRes()
 std::complex<long double> CombinedRes::Matching(std::complex<long double> N, long double pt, int scheme)
 {
  	// TODO: re-check definition MH2 vs. Qs2
- 	long double xp = std::pow(pt,2)/std::pow(MH2,2);
-	if (scheme==0) 					// small-pt only
+ 	long double xp = std::pow(pt,2)/MH2;
+	if (scheme==0) 	        // small-pt only
 	{
 		return (0.);
 	} else if (scheme==1) 	// threshold only
 	{
 		return (1.);
-	} else  								// combined
+	} else                  // combined
 	{
 		return (std::pow(N,3)*std::pow(xp,2)/(1.+std::pow(N,3)*std::pow(xp,2)));
 	}
@@ -69,7 +69,8 @@ std::complex<long double> CombinedRes::Matching(std::complex<long double> N, lon
 std::complex<long double> CombinedRes::CombinedResExpr(std::complex<long double> N, long double pt, int scheme)
 {
 	double pp = static_cast<double>(pt);
-	double nn = static_cast<double>(N.real()); // take only real part. Does not work for complex
+    // take only real part. Does not work for complex
+	double nn = static_cast<double>(N.real());
     std::complex<long double> mres;
 	std::vector<double> ResultsMellin;
     std::vector<double> zero(2, 0.0);
@@ -87,6 +88,7 @@ std::complex<long double> CombinedRes::CombinedResExpr(std::complex<long double>
 	std::complex<long double> ThresMellin = THRESHOLD->ThresExpExpr(N,pt);
 
 	std::complex<long double> ExactMellinCmpx(ExactMellin[0],0.);
+    std::cout << "Matching T=" << Matching(N,pt,scheme) << std::endl;
 	mres = (1.-Matching(N,pt,scheme))*SptMellin+Matching(N,pt,scheme)*ThresMellin;
 
     return ExactMellinCmpx + mres;

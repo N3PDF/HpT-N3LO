@@ -42,7 +42,7 @@ class CombinedRes{
         std::complex<long double> CombinedResExpr(std::complex<long double> N, long double pt, int scheme);
 
     private:
-        int EXACT_ORD;
+        int ORD, EXACT_ORD;
         /* long double LF, LR, LQ; */
         long double QS2, MH2, MUF2, MUR2;
         /* long double aass, SIGMA0; */

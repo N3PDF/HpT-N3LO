@@ -31,7 +31,8 @@ CombinedRes::CombinedRes(int order, int channel, std::string pdfname, void *para
     MUR2 = static_cast<long double>(std::pow(param.mur, 2));
     MUF2 = static_cast<long double>(std::pow(param.muf, 2));
 
-    EXACT_ORD = order-1;
+    ORD = order;
+    EXACT_ORD = order==0 ? 0 : order-1;
 
  	SMALLPT = new SmallptExp(order,channel,params);
  	THRESHOLD = new ThresExp(order,channel,params);
@@ -45,7 +46,6 @@ CombinedRes::~CombinedRes()
 	delete SMALLPT;
 	delete THRESHOLD;
 }
-        
 
 
 std::complex<long double> CombinedRes::Matching(std::complex<long double> N, long double pt, int scheme)
@@ -70,13 +70,24 @@ std::complex<long double> CombinedRes::CombinedResExpr(std::complex<long double>
 {
 	double pp = static_cast<double>(pt);
 	double nn = static_cast<double>(N.real()); // take only real part. Does not work for complex
+    std::complex<long double> mres;
+	std::vector<double> ResultsMellin;
+    std::vector<double> zero(2, 0.0);
 
-	std::vector<double> ResultsMellin = MELLINPARTONIC->partonichiggsdpt(pp,nn);
+    // Compute exact FO from HpT-MON
+    if (ORD==0) {
+        ResultsMellin = zero;
+    } else {
+        ResultsMellin = MELLINPARTONIC->partonichiggsdpt(pp,nn);
+    }
 	std::vector<long double> ExactMellin(ResultsMellin.begin(), ResultsMellin.end());
 
+    // Compute approximation from resummations
 	std::complex<long double> SptMellin = SMALLPT->SmallptExpExpr(N,pt);
 	std::complex<long double> ThresMellin = THRESHOLD->ThresExpExpr(N,pt);
 
 	std::complex<long double> ExactMellinCmpx(ExactMellin[0],0.);
-	return (1.-Matching(N,pt,scheme))*SptMellin+Matching(N,pt,scheme)*ThresMellin;
+	mres = (1.-Matching(N,pt,scheme))*SptMellin+Matching(N,pt,scheme)*ThresMellin;
+
+    return ExactMellinCmpx + mres;
 }

@@ -199,10 +199,10 @@ std::complex<long double> SmallptExp::SmallptExpExpr(std::complex<long double> N
                 /*     (4.*C1GG(N)+2.*h1gg+2.*AD.gg0*(LF-LQ)-LQ*(Bpt1g+(Bpt1g*LQ)/2.) \ */
                 /*     -Beta0*LR*pc)*(LQ*(Bpt1g+(Apt1g*LQ)/2.)+Beta0*LR*pc)-LQ*(Bpt2g \ */
                 /*     +2.*AD.gg1+Apt2g*LQ-2.*C1GG(N)*Beta0); */
-
                 std::complex<long double> HH2GG = zero;
 
-                result += aass*aass*(Sigma24gg*LC2(xp)+Sigma23gg*LC3(xp)+Sigma22gg \
+                // NLO contributions
+                result += aass*aass*(Sigma24gg*LC4(xp)+Sigma23gg*LC3(xp)+Sigma22gg \
                     *LC2(xp)+Sigma21gg*LC1(xp)+HH2GG);
             }
 			if ((CHANNEL==1)||(CHANNEL==4))

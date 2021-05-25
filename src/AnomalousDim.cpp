@@ -1,4 +1,5 @@
 #include "AnomalousDim.h"
+#include <cmath>
 
 // Construct the Anomalous dimension Computation
 AnomDimensions::AnomDimensions(void *params):HAP(false,false,false)
@@ -33,7 +34,8 @@ void AnomDimensions::ComputeGamma(std::complex<long double> N, int order)
         sums(N);
         DEF1(N);
 
-        gg1 = gammagg1(N)*std::pow(M_PIl,2);
+        /* gg1 = gammagg1(N)*std::pow(M_PIl,2); */
+        gg1 = ADGGNLO(N)*std::pow(M_PIl,2);
         gq1 = gammagS1(N)*std::pow(M_PIl,2);
         qg1 = gammaSg1(N)*std::pow(M_PIl,2);
         WW1 = gammansplus1(N)*std::pow(M_PIl,2);
@@ -197,27 +199,6 @@ void AnomDimensions::DEF1(std::complex<long double> N)
 
 
 //NLO anomalous dimensions
-std::complex<long double> AnomDimensions::gammaggx1(std::complex<long double> N)
-{
-    std::complex<long double> GG1 = 4.*CA*NF*(2./3.-16./3.*HAP.HS(1,N)-23./9. \
-    *(HAP.HS(1,N-2.)+HAP.HS(1,N+2.))+14./3.*(HAP.HS(1,N-1.)+HAP.HS(1,N+1.))+2. \
-    /3.*(HAP.HS(2,N-2.)-HAP.HS(2,N+2.)));
-    std::complex<long double> GG2 = 4.*CA*CA*(2.*HAP.HS(-3,N)-8./3.-14./3. \
-    *HAP.HS(1,N)+2.*HAP.HS(3,N)-4.*(HAP.HS(1,-2,N-2.)-2.*HAP.HS(1,-2,N-1.)-2. \
-    *HAP.HS(1,-2,N+1.)+HAP.HS(1,-2,N+2.)+3.*HAP.HS(1,-2,N))-4.*(HAP.HS(1,2,N-2.) \
-    -2.*HAP.HS(1,2,N-1.)-2.*HAP.HS(1,2,N+1.)+HAP.HS(1,2,N+2.)+3.*HAP.HS(1,2,N)) \
-    -4.*(HAP.HS(2,1,N-2.)-2.*HAP.HS(2,1,N-1.)-2.*HAP.HS(2,1,N+1.)+HAP.HS(2,1,N+2.) \
-    +3.*HAP.HS(2,1,N))+8./3.*(HAP.HS(2,N+1.)-HAP.HS(2,N+2.))-12.*(HAP.HS(2,N-1.) \
-    -3.*HAP.HS(2,N+1.)+HAP.HS(2,N+2.)+HAP.HS(2,N))+(HAP.HS(3,N-1.)-3.* \
-    HAP.HS(3,N+1.)+HAP.HS(3,N+2.)+HAP.HS(3,N))+109./18.*(HAP.HS(1,N-1.) \
-    +HAP.HS(1,N+1.))+61./3.*(HAP.HS(2,N-1.)-HAP.HS(2,N+1.)));
-    std::complex<long double> GG3 = 4.*CF*NF*(1./2.+2./3.*(HAP.HS(1,N-2.) \
-    -13.*HAP.HS(1,N-1.)-HAP.HS(1,N+1.)-5.*HAP.HS(1,N+2.)+18.*HAP.HS(1,N)) \
-    +(3.*HAP.HS(2,N-1.)-5.*HAP.HS(2,N+1.)+2.*HAP.HS(2,N))-2.*(HAP.HS(3,N-1.) \
-    -HAP.HS(3,N+3.)));
-    return (GG1+GG2+GG3)/pow(M_PIl,2);
-}
-
 std::complex<long double> AnomDimensions::gammagg1(std::complex<long double> N)
 {
     return (CA*CA*PGGA+0.5*NF*(CA*PGGB+CF*PGGC))*4./pow(4*M_PIl,2);
@@ -246,6 +227,74 @@ std::complex<long double> AnomDimensions::gammansplus1(std::complex<long double>
 std::complex<long double> AnomDimensions::gammansminus1(std::complex<long double> N)
 {
     return CF*((CF-CA/2.)*PNMA+CA*PNSB+0.5*NF*PNSC)/(pow(4*M_PIl,2));
+}
+
+std::complex<long double> AnomDimensions::gammGGnlo(std::complex<long double> N)
+{
+    // A. Vogt https://arxiv.org/pdf/hep-ph/0404111.pdf
+    std::complex<long double> GG1 = 4.*CA*NF*(2./3.-16./3.*HAP.HS(1,N)-23./9. \
+    *(HAP.HS(1,N-2.)+HAP.HS(1,N+2.))+14./3.*(HAP.HS(1,N-1.)+HAP.HS(1,N+1.))+2. \
+    /3.*(HAP.HS(2,N-1.)-HAP.HS(2,N+1.)));
+    std::complex<long double> GG2 = 4.*CA*CA*(2.*HAP.HS(-3,N)-8./3.-14./3. \
+    *HAP.HS(1,N)+2.*HAP.HS(3,N)-4.*(HAP.HS(1,-2,N-2.)-2.*HAP.HS(1,-2,N-1.)-2. \
+    *HAP.HS(1,-2,N+1.)+HAP.HS(1,-2,N+2.)+3.*HAP.HS(1,-2,N))-4.*(HAP.HS(1,2,N-2.) \
+    -2.*HAP.HS(1,2,N-1.)-2.*HAP.HS(1,2,N+1.)+HAP.HS(1,2,N+2.)+3.*HAP.HS(1,2,N)) \
+    -4.*(HAP.HS(2,1,N-2.)-2.*HAP.HS(2,1,N-1.)-2.*HAP.HS(2,1,N+1.)+HAP.HS(2,1,N+2.) \
+    +3.*HAP.HS(2,1,N))+8./3.*(HAP.HS(2,N+1.)-HAP.HS(2,N+2.))-12.*(HAP.HS(2,N-1.) \
+    -3.*HAP.HS(2,N+1.)+HAP.HS(2,N+2.)+HAP.HS(2,N))+4.*(HAP.HS(3,N-1.)-3.* \
+    HAP.HS(3,N+1.)+HAP.HS(3,N+2.)+HAP.HS(3,N))+109./18.*(HAP.HS(1,N-1.) \
+    +HAP.HS(1,N+1.))+61./3.*(HAP.HS(2,N-1.)-HAP.HS(2,N+1.)));
+    std::complex<long double> GG3 = 4.*CF*NF*(1./2.+2./3.*(HAP.HS(1,N-2.) \
+    -13.*HAP.HS(1,N-1.)-HAP.HS(1,N+1.)-5.*HAP.HS(1,N+2.)+18.*HAP.HS(1,N)) \
+    +(3.*HAP.HS(2,N-1.)-5.*HAP.HS(2,N+1.)+2.*HAP.HS(2,N))-2.*(HAP.HS(3,N-1.) \
+    -HAP.HS(3,N+1.)));
+    return (GG1+GG2+GG3)/pow(4.*M_PIl,2);
+}
+
+
+double fGG1(double x, void * params)
+{
+    AnomDimensions::nlo_ad* ps = (AnomDimensions::nlo_ad *) params;
+    double nb = ps->_NF;
+    double nn = ps->_NN;
+
+    double dgg = -(2.*nb)/3.+(27.*gsl_sf_zeta(3))/4.;
+    double sp1gg = (16.75-(3.*std::pow(M_PIl,2))/4.-(5*nb)/6.)/(1-x);
+    double sp2gg = ((-1.+x)*(10.*(1.+x)*(-61.+x*(-9.+x*(-9.+109.*x))) \
+    +9.*x*((-1.-x)*(25.+109.*x)+6.*std::pow(M_PIl,2)*(3.+2.*x*(2.+x+ \
+    std::pow(x,2)))))-12.*x*(10.*(-1.+x)*std::pow(1.+x,2)+27.* \
+    std::pow(1.+x-std::pow(x,2),2))*std::pow(std::log(x),2)+6.* \
+    std::log(x)*(108.*(1.+x)*std::pow(1.+(-1.+x)*x,2.)*std::log(1.-x) \
+    +(-1.+x)*(-(x*(1.+x)*(225.+99.*x*(-1.+4.*x)+10.*(9.+13.*x)))+108.* \
+    std::pow(1.+x+std::pow(x,2.),2.)*std::log(1.+x)))+648.*(-1.+x) \
+    *std::pow(1.+x+std::pow(x,2.),2.)*dilog_r(-x))/(72.*x*(-1.+std::pow(x,2)));
+
+    double fGG1 = (std::pow(x,nn-1)*sp2gg+(std::pow(x,nn-1)-1)*sp1gg+dgg) \
+                    /M_PIl/M_PIl;
+
+    return fGG1;
+}
+
+
+long double AnomDimensions::ADGGNLO(std::complex<long double> N)
+{
+    // This is only valid for real N
+    nlo_ad params;
+    params._NF = NF;
+    params._NN = static_cast<double>(N.real()-1.);
+
+    double result, error;
+    double precision = 1e-7;
+
+    gsl_function Integrand;
+    gsl_integration_workspace * w = gsl_integration_workspace_alloc(1000);
+    Integrand.function = fGG1;
+    Integrand.params = &params;
+
+    gsl_integration_qags(&Integrand,0,1,0,precision,1000,w,&result,&error);
+    gsl_integration_workspace_free(w);
+
+    return static_cast<long double>(result);
 }
 
 // NNLO important definitions

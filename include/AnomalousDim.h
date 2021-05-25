@@ -5,6 +5,7 @@
 #include <complex>
 #include <iostream>
 #include <gsl/gsl_math.h>
+#include <gsl/gsl_integration.h>
 
 #include "./HarmonicSum.h"
 #include "./ComplexDefs.h"
@@ -40,6 +41,11 @@ class AnomDimensions
         std::complex<long double> gg2,qq2,qg2,gq2,WW2,TT2,VV2;
         std::complex<long double> gg0,qq0,qg0,gq0,WW0,TT0,VV0;
 
+		struct nlo_ad {
+			long double _NF;
+			long double _NN;
+		};
+
     private:
         HSum HAP;
         gamma1sums g1s;
@@ -62,13 +68,14 @@ class AnomDimensions
         void DEF1(std::complex<long double> N);
 
         // NLO anomalous dimensions
+		long double ADGGNLO(std::complex<long double> N);
         std::complex<long double> gammagg1(std::complex<long double> N);
-        std::complex<long double> gammaggx1(std::complex<long double> N);
         std::complex<long double> gammaSg1(std::complex<long double> N);
         std::complex<long double> gammagS1(std::complex<long double> N);
         std::complex<long double> gammaps1(std::complex<long double> N);
         std::complex<long double> gammansplus1(std::complex<long double> N);
         std::complex<long double> gammansminus1(std::complex<long double> N);
+		std::complex<long double> gammGGnlo(std::complex<long double> N);
 
         // NNLO important definitions
         void DEF2(std::complex<long double> N);

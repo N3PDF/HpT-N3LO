@@ -187,8 +187,6 @@ std::complex<long double> SmallptExp::SmallptExpExpr(std::complex<long double> N
                     *(Bpt1g+(Bpt1g*LQ)/2.)-Beta0*LR*pc)-2.*(C1GQ(N)+AD.gq0*(LF-LQ)) \
                     *AD.qg0;
 
-                std::cout << "AD1GG=" << AD.gg1 << std::endl;
-
                 // constant terms when pt->0
                 // TODO: Implement/check expression of h2gg & C2GG!!!
                 /* long double h2gg = 0.; */

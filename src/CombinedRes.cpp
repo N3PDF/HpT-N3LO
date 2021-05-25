@@ -88,7 +88,6 @@ std::complex<long double> CombinedRes::CombinedResExpr(std::complex<long double>
 	std::complex<long double> ThresMellin = THRESHOLD->ThresExpExpr(N,pt);
 
 	std::complex<long double> ExactMellinCmpx(ExactMellin[0],0.);
-    std::cout << "Matching T=" << Matching(N,pt,scheme) << std::endl;
 	mres = (1.-Matching(N,pt,scheme))*SptMellin+Matching(N,pt,scheme)*ThresMellin;
 
     return ExactMellinCmpx + mres;

@@ -130,13 +130,13 @@ std::complex<long double> SmallptExp::SmallptExpExpr(std::complex<long double> N
     // (+1) i.e computed at (N+1).
 	AD.ComputeGamma(N+1.,1); // Init. Anomalous Dimensions
 
-    int pc = 2; // TODO: long double-check this
-    std::complex<long double> zero(0.,0.);
+  	int pc = 2; // TODO: long double-check this
+  	std::complex<long double> zero(0.,0.);
 	std::complex<long double> ones(1.,0.);
-    std::complex<long double> result(0.,0.);
+  	std::complex<long double> result(0.,0.);
 
-    // Hard functions
-    long double h1gg = (11.+3.*M_PIl*M_PIl)/2.;
+  	// Hard functions
+  	long double h1gg = (11.+3.*M_PIl*M_PIl)/2.;
 
  	// TODO: re-check definition MH2 vs. Qs2
  	long double xp = std::pow(pt,2)/MH2;
@@ -180,12 +180,11 @@ std::complex<long double> SmallptExp::SmallptExpExpr(std::complex<long double> N
                     +2.*AD.gg0*(LF-LQ)-LQ*(Bpt1g+(Bpt1g*LQ)/2.)-(Beta0*(-LQ+LR)) \
                     -Beta0*LR*pc))/2.+(-2.*AD.gg0*(-Bpt1g-2.*AD.gg0-Apt1g*LQ)+2. \
                     *AD.gq0*AD.qg0)/2.;
-                // TODO: check discrepency between AD.GG1 with notebook's implementation
-                std::complex<long double> Sigma21gg = -Bpt2g+Beta0*(2.*C1GG(N)+2. \
-                    *AD.gg1)-Apt2g*LQ+Beta0*(-Bpt1g-2.*AD.gg0-Apt1g*LQ)*(LQ-LR) \
-                    -(Bpt1g+2.*AD.gg0+Apt1g*LQ)*(2.*C1GG(N)+h1gg+2.*AD.gg0*(LF-LQ)-LQ \
-                    *(Bpt1g+(Bpt1g*LQ)/2.)-Beta0*LR*pc)-2.*(C1GQ(N)+AD.gq0*(LF-LQ)) \
-                    *AD.qg0;
+                std::complex<long double> Sigma21gg = -Bpt2g+2.*Beta0*C1GG(N) \
+                    -2.*AD.gg1-Apt2g*LQ+Beta0*(-Bpt1g-AD.gg0-Apt1g*LQ)*(LQ-LR) \
+                    -(Bpt1g+2.*AD.gg0+Apt1g*LQ)*(2.*C1GG(N)+h1gg+2.*AD.gg0* \
+                    (LF-LQ)-LQ*(Bpt1g+(Bpt1g*LQ)/2.)-Beta0*LR*pc)-2.*(C1GQ(N) \
+                    +AD.gq0*(LF-LQ))*AD.qg0;
 
                 // constant terms when pt->0
                 // TODO: Implement/check expression of h2gg & C2GG!!!

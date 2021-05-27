@@ -64,6 +64,8 @@ SmallptExp::SmallptExp(int order, int channel, void *params):AD(params)
 	Apt1g = CA;
 	Bpt1g = -1./6.*(11.*CA-2.*NF);
 	Apt2g = CA/2.*((67./18.-std::pow(M_PIl,2)/6.)*CA-5./9.*NF);
+    // TODO: check which def. of B2 is correct
+    /* Bpt2g = -6.+(2.*NF)/3.+Beta0*CA*zeta2-(27.*zeta3)/4.; */
     Bpt2g = (-2.*(-8./3.*CA*NF+(32./3.+12.*zeta3)*CA*CA-2.*CF*NF)/ \
             (std::pow(4.,2)))+Beta0*CA*zeta2*M_PIl;
 }

@@ -258,7 +258,7 @@ double fGG1(double x, void * params)
     double nb = ps->_NF;
     double nn = ps->_NN;
 
-    double dgg = -(2.*nb)/3.+(27.*gsl_sf_zeta(3))/4.;
+    double dgg = 6-(2.*nb)/3.+(27.*gsl_sf_zeta(3))/4.;
     double sp1gg = (16.75-(3.*std::pow(M_PIl,2))/4.-(5*nb)/6.)/(1-x);
     double sp2gg = ((-1.+x)*(10.*(1.+x)*(-61.+x*(-9.+x*(-9.+109.*x))) \
     +9.*x*((-1.-x)*(25.+109.*x)+6.*std::pow(M_PIl,2)*(3.+2.*x*(2.+x+ \
@@ -270,7 +270,7 @@ double fGG1(double x, void * params)
     *std::pow(1.+x+std::pow(x,2.),2.)*dilog_r(-x))/(72.*x*(-1.+std::pow(x,2)));
 
     double fGG1 = (std::pow(x,nn-1)*sp2gg+(std::pow(x,nn-1)-1)*sp1gg+dgg) \
-                    /M_PIl/M_PIl;
+                    /std::pow(M_PIl,2);
 
     return fGG1;
 }
@@ -278,10 +278,11 @@ double fGG1(double x, void * params)
 
 long double AnomDimensions::ADGGNLO(std::complex<long double> N)
 {
-    // This is only valid for real N
     nlo_ad params;
     params._NF = NF;
-    params._NN = static_cast<double>(N.real()-1.);
+    // This is only valid for real N
+    // TODO: Check shift (-1) or (+1) or (0)
+    params._NN = static_cast<double>(N.real());
 
     double result, error;
     double precision = 1e-7;

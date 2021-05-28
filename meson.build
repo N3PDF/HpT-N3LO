@@ -30,8 +30,18 @@ inc = include_directories(
 subdir('include')
 subdir('src')
 
+# create executable for cross section as a function of pt
 higgsexe = executable(
-  'higgspt', 'main.cpp',
+  'higgs-pt', 'dSigmadpt.cpp',
+  include_directories : inc,
+  dependencies : [glib_dep, higgsfo_lib, yaml_lib],
+  link_with : higgslib,
+  c_args : extra_args
+)
+
+# create executable for cross section as a function of N
+higgsexe = executable(
+  'higgs-n', 'dSigmadptN.cpp',
   include_directories : inc,
   dependencies : [glib_dep, higgsfo_lib, yaml_lib],
   link_with : higgslib,

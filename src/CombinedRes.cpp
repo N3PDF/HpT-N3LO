@@ -60,7 +60,9 @@ std::complex<long double> CombinedRes::Matching(std::complex<long double> N, lon
 		return (1.);
 	} else                  // combined
 	{
-		return (std::pow(N,3)*std::pow(xp,2)/(1.+std::pow(N,3)*std::pow(xp,2)));
+        long double k=2.;
+        long double m=9.75;
+		return (std::pow(N,m)*std::pow(xp,k))/(1.+std::pow(N,m)*std::pow(xp,2));
 	}
 }
     

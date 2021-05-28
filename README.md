@@ -1,4 +1,4 @@
-#### Description
+#### Descriptioh
 
 HpT-N3LO computes the approximation of the N3LO contribution to the Higgs
 boson production from gluon fusion by combining the small-pt and threshold
@@ -28,10 +28,11 @@ cd builddir
 meson compile
 ```
 
-This will generate a binary called <kbd>higgspt</kbd> in the `builddir` directory. To run
-the code, use one of the run cards in the `runcards` folder as follows:
+This will generate two executables called `higgs-pt` and `higgs-n` in the `builddir` 
+directory. To run the code, use one of the run cards in the `runcards` folder as follows:
 ```bash
-./higgspt ../runcards/inputfile.yaml
+./higgs-pt ../runcards/Mellin-HpT-as-pt.yaml  (for results as a function of pt)
+./higgs-n ../runcards/Mellin-HpT-as-N.yaml    (for results as a function of N)
 ```
 
 Every time changes are made, the code can be re-compiled by running `meson compile`

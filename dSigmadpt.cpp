@@ -82,9 +82,9 @@ int main(int argc, char* argv[]) {
         "_all_channels"
     };
     std::string matsch[3] = {
-        "_smallpt.dat",
-        "_threshold.dat",
-        "_combined.dat"
+        "_smallpt_aspt.dat",
+        "_threshold_aspt.dat",
+        "_combined_aspt.dat"
     };
 
     try {

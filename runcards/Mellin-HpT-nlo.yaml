@@ -1,4 +1,4 @@
-outfile : hadronic
+outfile : approx
 
 # pdf name
 pdfname : PDF4LHC15_nnlo_100
@@ -7,17 +7,17 @@ pdfname : PDF4LHC15_nnlo_100
 # 0<==>Small-pt
 # 1<==>Threshold
 # 2<==>Combined
-scheme  : 0
+scheme  : 2
 
 # order
 # 0<==>(LO)
 # 1<==>(NLO)
-order   : 0
+order   : 1
 
 # pt bins
-ptmin   : 10
-ptmax   : 100
-ptbin   : 10
+ptmin   : 1e-1
+ptmax   : 250
+ptbin   : 0.1
 
 # relevant scales in GeV
 mh      : 125		# mass of colorless final state
@@ -44,4 +44,4 @@ sroot   : 13000		# square root of the center of mass energy in GeV
 channel : 0
 
 # mellin moment
-N      : 3
+N       : 2.5

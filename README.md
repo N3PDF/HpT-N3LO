@@ -31,8 +31,8 @@ meson compile
 This will generate two executables called `higgs-pt` and `higgs-n` in the `builddir` 
 directory. To run the code, use one of the run cards in the `runcards` folder as follows:
 ```bash
-./higgs-pt ../runcards/Mellin-HpT-as-pt.yaml  (for results as a function of pt)
 ./higgs-n ../runcards/Mellin-HpT-as-N.yaml    (for results as a function of N)
+./higgs-pt ../runcards/Mellin-HpT-as-pt.yaml  (for results as a function of pt)
 ```
 
 Every time changes are made, the code can be re-compiled by running `meson compile`

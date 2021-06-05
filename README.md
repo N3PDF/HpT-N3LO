@@ -1,3 +1,5 @@
+[![DOI](https://zenodo.org/badge/368804644.svg)](https://zenodo.org/badge/latestdoi/368804644)
+
 #### Descriptioh
 
 HpT-N3LO computes the approximation of the N3LO contribution to the Higgs

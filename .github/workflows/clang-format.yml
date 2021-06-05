@@ -1,7 +1,10 @@
 name: Run clang-format Linter
 
 on:
-  pull_request:
+  push:
+    branches:
+      - main
+      - develop
   workflow_dispatch:
 
 jobs:
@@ -16,7 +19,7 @@ jobs:
         extensions: 'h,cpp'
         clangFormatVersion: 12
         inplace: True
-        style: llvm 
+        style: google 
     - uses: EndBug/add-and-commit@v4
       with:
         default_author: github_actions

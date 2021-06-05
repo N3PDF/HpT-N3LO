@@ -18,23 +18,23 @@
 
 #pragma once
 
-#include <cmath>
 #include <gsl/gsl_math.h>
-#include <iostream>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+#include <cmath>
+#include <iostream>
 #include <string>
 #include <vector>
 
 #include "./AnomalousDim.h"
 #include "./ComplexDefs.h"
 #include "./MellinFunc.h"
-
 #include "higgs-fo/params.h"
 
 class SmallptExp {
-public:
+ public:
   SmallptExp(int order, int channel, void *params);
   virtual ~SmallptExp();
 
@@ -42,7 +42,7 @@ public:
   std::complex<long double> SmallptExpExpr(std::complex<long double> N,
                                            long double pt);
 
-private:
+ private:
   AnomDimensions AD;
 
   int NC, NF, CA, ORD, CHANNEL;

@@ -1,12 +1,13 @@
 #pragma once
 
-#include <cmath>
-#include <complex>
-#include <functional>
 #include <gsl/gsl_math.h>
 #include <gsl/gsl_sf_dilog.h>
 #include <gsl/gsl_sf_log.h>
 #include <gsl/gsl_sf_zeta.h>
+
+#include <cmath>
+#include <complex>
+#include <functional>
 #include <iostream>
 #include <sstream>
 #include <string>
@@ -17,7 +18,7 @@
 using namespace std;
 
 class HSum {
-public:
+ public:
   HSum(bool verbose = false, bool testinterfun = false,
        bool testharmsums = false);
   virtual ~HSum();
@@ -29,7 +30,7 @@ public:
   std::complex<long double> HS(int i, int j, int k, int m,
                                std::complex<long double> N);
 
-private:
+ private:
   bool _verbose;
   bool _testinterpolatedfunction;
   bool _testharmonicsums;
@@ -232,8 +233,7 @@ private:
     std::complex<long double> sum, ris;
     z -= 1;
     sum = p[0];
-    for (int i = 1; i < (g + 2); i++)
-      sum += p[i] / (z + i);
+    for (int i = 1; i < (g + 2); i++) sum += p[i] / (z + i);
     ris = 0.5 * gsl_sf_log(2 * M_PI) + (z + 0.5) * log(z + g + 0.5) -
           (z + g + 0.5) + log(sum);
     return ris;
@@ -248,10 +248,10 @@ private:
     if (i == 0) {
       std::complex<long double> SUB = 0.;
       std::complex<long double> ZZ = z;
-      if (std::abs(std::imag(ZZ)) < 10.) { // if too close to the real axis...
+      if (std::abs(std::imag(ZZ)) < 10.) {  // if too close to the real axis...
       label1:
         if (std::real(ZZ) <
-            10.) { // ...use recurrence relation to push real(z) large enough
+            10.) {  // ...use recurrence relation to push real(z) large enough
           SUB = SUB - 1. / ZZ;
           ZZ = ZZ + 1.;
           goto label1;
@@ -266,14 +266,14 @@ private:
       int K1, K2;
       std::complex<long double> SUB = 0., SUBM;
       std::complex<long double> ZZ = z;
-      if (std::abs(std::imag(ZZ)) < 10.) { // if too close to the real axis...
+      if (std::abs(std::imag(ZZ)) < 10.) {  // if too close to the real axis...
       label2:
         SUBM = -1. / ZZ;
         for (K1 = 1; K1 <= i; K1++) {
           SUBM = -SUBM * K1 / ZZ;
         }
         if (std::real(ZZ) <
-            10.) { // ...use recurrence relation to push real(z) large enough
+            10.) {  // ...use recurrence relation to push real(z) large enough
           SUB = SUB + SUBM;
           ZZ = ZZ + 1.;
           goto label2;

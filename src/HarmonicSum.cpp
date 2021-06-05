@@ -2,9 +2,9 @@
 
 // Table of interpolated function
 HSum::HSum(bool verbose, bool testinterfun, bool testharmsums)
-    : _verbose(verbose), _testinterpolatedfunction(testinterfun),
+    : _verbose(verbose),
+      _testinterpolatedfunction(testinterfun),
       _testharmonicsums(testharmsums) {
-
   (_verbose)
       ? std::cout
             << "HSUM is a class to evaluate Harmonic Sums up to four order"
@@ -40,22 +40,22 @@ HSum::HSum(bool verbose, bool testinterfun, bool testharmsums)
 
 std::complex<long double> HSum::HS(int i, std::complex<long double> N) {
   switch (i) {
-  case (-4):
-    return H_m4(N);
-  case (-3):
-    return H_m3(N);
-  case (-2):
-    return H_m2(N);
-  case (-1):
-    return H_m1(N);
-  case (1):
-    return H_1(N);
-  case (2):
-    return H_2(N);
-  case (3):
-    return H_3(N);
-  case (4):
-    return H_4(N);
+    case (-4):
+      return H_m4(N);
+    case (-3):
+      return H_m3(N);
+    case (-2):
+      return H_m2(N);
+    case (-1):
+      return H_m1(N);
+    case (1):
+      return H_1(N);
+    case (2):
+      return H_2(N);
+    case (3):
+      return H_3(N);
+    case (4):
+      return H_4(N);
   }
   cout << "ERROR: not valid Harmonic Sums index (Implemented Weight up to four "
           "yet)"
@@ -65,78 +65,78 @@ std::complex<long double> HSum::HS(int i, std::complex<long double> N) {
 
 std::complex<long double> HSum::HS(int i, int j, std::complex<long double> N) {
   switch (i) {
-  case (-3): {
-    switch (j) {
-    case (-1):
-      return H_m3_m1(N);
-    case (1):
-      return H_m3_1(N);
-    }
-  } break;
-  case (-2): {
-    switch (j) {
-    case (-2):
-      return H_m2_m2(N);
-    case (-1):
-      return H_m2_m1(N);
-    case (1):
-      return H_m2_1(N);
-    case (2):
-      return H_m2_2(N);
-    }
-  } break;
-  case (-1): {
-    switch (j) {
-    case (-3):
-      return H_m1_m3(N);
-    case (-2):
-      return H_m1_m2(N);
-    case (-1):
-      return H_m1_m1(N);
-    case (1):
-      return H_m1_1(N);
-    case (2):
-      return H_m1_2(N);
-    case (3):
-      return H_m1_3(N);
-    }
-  } break;
-  case (1): {
-    switch (j) {
-    case (-3):
-      return H_1_m3(N);
-    case (-2):
-      return H_1_m2(N);
-    case (-1):
-      return H_1_m1(N);
-    case (1):
-      return H_1_1(N);
-    case (2):
-      return H_1_2(N);
-    case (3):
-      return H_1_3(N);
-    }
-  } break;
-  case (2): {
-    switch (j) {
-    case (-2):
-      return H_2_m2(N);
-    case (-1):
-      return H_2_m1(N);
-    case (1):
-      return H_2_1(N);
-    case (2):
-      return H_2_2(N);
-    }
-  } break;
-  case (3): {
-    switch (j) {
-    case (-1):
-      return H_3_m1(N);
-    case (1):
-      return H_3_1(N);
-    }
-  } break;
+    case (-3): {
+      switch (j) {
+        case (-1):
+          return H_m3_m1(N);
+        case (1):
+          return H_m3_1(N);
+      }
+    } break;
+    case (-2): {
+      switch (j) {
+        case (-2):
+          return H_m2_m2(N);
+        case (-1):
+          return H_m2_m1(N);
+        case (1):
+          return H_m2_1(N);
+        case (2):
+          return H_m2_2(N);
+      }
+    } break;
+    case (-1): {
+      switch (j) {
+        case (-3):
+          return H_m1_m3(N);
+        case (-2):
+          return H_m1_m2(N);
+        case (-1):
+          return H_m1_m1(N);
+        case (1):
+          return H_m1_1(N);
+        case (2):
+          return H_m1_2(N);
+        case (3):
+          return H_m1_3(N);
+      }
+    } break;
+    case (1): {
+      switch (j) {
+        case (-3):
+          return H_1_m3(N);
+        case (-2):
+          return H_1_m2(N);
+        case (-1):
+          return H_1_m1(N);
+        case (1):
+          return H_1_1(N);
+        case (2):
+          return H_1_2(N);
+        case (3):
+          return H_1_3(N);
+      }
+    } break;
+    case (2): {
+      switch (j) {
+        case (-2):
+          return H_2_m2(N);
+        case (-1):
+          return H_2_m1(N);
+        case (1):
+          return H_2_1(N);
+        case (2):
+          return H_2_2(N);
+      }
+    } break;
+    case (3): {
+      switch (j) {
+        case (-1):
+          return H_3_m1(N);
+        case (1):
+          return H_3_1(N);
+      }
+    } break;
   }
   cout << "ERROR: not valid Harmonic Sums index (Implemented Weight up to 4th "
           "order.)"
@@ -147,134 +147,134 @@ std::complex<long double> HSum::HS(int i, int j, std::complex<long double> N) {
 std::complex<long double> HSum::HS(int i, int j, int k,
                                    std::complex<long double> N) {
   switch (i) {
-  case (-2): {
-    switch (j) {
-    case (-1): {
-      switch (k) {
-      case (-1):
-        return H_m2_m1_m1(N);
-      case (1):
-        return H_m2_m1_1(N);
-      }
-    } break;
-    case (1): {
-      switch (k) {
-      case (-1):
-        return H_m2_1_m1(N);
-      case (1):
-        return H_m2_1_1(N);
-      }
-    } break;
-    }
-  } break;
-  case (-1): {
-    switch (j) {
     case (-2): {
-      switch (k) {
-      case (-1):
-        return H_m1_m2_m1(N);
-      case (1):
-        return H_m1_m2_1(N);
+      switch (j) {
+        case (-1): {
+          switch (k) {
+            case (-1):
+              return H_m2_m1_m1(N);
+            case (1):
+              return H_m2_m1_1(N);
+          }
+        } break;
+        case (1): {
+          switch (k) {
+            case (-1):
+              return H_m2_1_m1(N);
+            case (1):
+              return H_m2_1_1(N);
+          }
+        } break;
       }
     } break;
     case (-1): {
-      switch (k) {
-      case (-2):
-        return H_m1_m1_m2(N);
-      case (-1):
-        return H_m1_m1_m1(N);
-      case (1):
-        return H_m1_m1_1(N);
-      case (2):
-        return H_m1_m1_2(N);
+      switch (j) {
+        case (-2): {
+          switch (k) {
+            case (-1):
+              return H_m1_m2_m1(N);
+            case (1):
+              return H_m1_m2_1(N);
+          }
+        } break;
+        case (-1): {
+          switch (k) {
+            case (-2):
+              return H_m1_m1_m2(N);
+            case (-1):
+              return H_m1_m1_m1(N);
+            case (1):
+              return H_m1_m1_1(N);
+            case (2):
+              return H_m1_m1_2(N);
+          }
+        } break;
+        case (1): {
+          switch (k) {
+            case (-2):
+              return H_m1_1_m2(N);
+            case (-1):
+              return H_m1_1_m1(N);
+            case (1):
+              return H_m1_1_1(N);
+            case (2):
+              return H_m1_1_2(N);
+          }
+        } break;
+        case (2): {
+          switch (k) {
+            case (-1):
+              return H_m1_2_m1(N);
+            case (1):
+              return H_m1_2_1(N);
+          }
+        } break;
       }
     } break;
     case (1): {
-      switch (k) {
-      case (-2):
-        return H_m1_1_m2(N);
-      case (-1):
-        return H_m1_1_m1(N);
-      case (1):
-        return H_m1_1_1(N);
-      case (2):
-        return H_m1_1_2(N);
+      switch (j) {
+        case (-2): {
+          switch (k) {
+            case (-1):
+              return H_1_m2_m1(N);
+            case (1):
+              return H_1_m2_1(N);
+          }
+        } break;
+        case (-1): {
+          switch (k) {
+            case (-2):
+              return H_1_m1_m2(N);
+            case (-1):
+              return H_1_m1_m1(N);
+            case (1):
+              return H_1_m1_1(N);
+            case (2):
+              return H_1_m1_2(N);
+          }
+        } break;
+        case (1): {
+          switch (k) {
+            case (-2):
+              return H_1_1_m2(N);
+            case (-1):
+              return H_1_1_m1(N);
+            case (1):
+              return H_1_1_1(N);
+            case (2):
+              return H_1_1_2(N);
+          }
+        } break;
+        case (2): {
+          switch (k) {
+            case (-1):
+              return H_1_2_m1(N);
+            case (1):
+              return H_1_2_1(N);
+          }
+        } break;
       }
     } break;
     case (2): {
-      switch (k) {
-      case (-1):
-        return H_m1_2_m1(N);
-      case (1):
-        return H_m1_2_1(N);
+      switch (j) {
+        case (-1): {
+          switch (k) {
+            case (-1):
+              return H_2_m1_m1(N);
+            case (1):
+              return H_2_m1_1(N);
+          }
+        } break;
+        case (1): {
+          switch (k) {
+            case (-1):
+              return H_2_1_m1(N);
+            case (1):
+              return H_2_1_1(N);
+          }
+        } break;
       }
     } break;
-    }
-  } break;
-  case (1): {
-    switch (j) {
-    case (-2): {
-      switch (k) {
-      case (-1):
-        return H_1_m2_m1(N);
-      case (1):
-        return H_1_m2_1(N);
-      }
-    } break;
-    case (-1): {
-      switch (k) {
-      case (-2):
-        return H_1_m1_m2(N);
-      case (-1):
-        return H_1_m1_m1(N);
-      case (1):
-        return H_1_m1_1(N);
-      case (2):
-        return H_1_m1_2(N);
-      }
-    } break;
-    case (1): {
-      switch (k) {
-      case (-2):
-        return H_1_1_m2(N);
-      case (-1):
-        return H_1_1_m1(N);
-      case (1):
-        return H_1_1_1(N);
-      case (2):
-        return H_1_1_2(N);
-      }
-    } break;
-    case (2): {
-      switch (k) {
-      case (-1):
-        return H_1_2_m1(N);
-      case (1):
-        return H_1_2_1(N);
-      }
-    } break;
-    }
-  } break;
-  case (2): {
-    switch (j) {
-    case (-1): {
-      switch (k) {
-      case (-1):
-        return H_2_m1_m1(N);
-      case (1):
-        return H_2_m1_1(N);
-      }
-    } break;
-    case (1): {
-      switch (k) {
-      case (-1):
-        return H_2_1_m1(N);
-      case (1):
-        return H_2_1_1(N);
-      }
-    } break;
-    }
-  } break;
   }
   cout << "ERROR: not valid Harmonic Sums index (Implemented Weight up to four "
           "yet)"
@@ -285,94 +285,94 @@ std::complex<long double> HSum::HS(int i, int j, int k,
 std::complex<long double> HSum::HS(int i, int j, int k, int m,
                                    std::complex<long double> N) {
   switch (i) {
-  case (-1): {
-    switch (j) {
     case (-1): {
-      switch (k) {
-      case (-1): {
-        switch (m) {
-        case (-1):
-          return H_m1_m1_m1_m1(N);
-        case (1):
-          return H_m1_m1_m1_1(N);
-        }
-      } break;
-      case (1): {
-        switch (m) {
-        case (-1):
-          return H_m1_m1_1_m1(N);
-        case (1):
-          return H_m1_m1_1_1(N);
-        }
-      } break;
+      switch (j) {
+        case (-1): {
+          switch (k) {
+            case (-1): {
+              switch (m) {
+                case (-1):
+                  return H_m1_m1_m1_m1(N);
+                case (1):
+                  return H_m1_m1_m1_1(N);
+              }
+            } break;
+            case (1): {
+              switch (m) {
+                case (-1):
+                  return H_m1_m1_1_m1(N);
+                case (1):
+                  return H_m1_m1_1_1(N);
+              }
+            } break;
+          }
+        } break;
+        case (1): {
+          switch (k) {
+            case (-1): {
+              switch (m) {
+                case (-1):
+                  return H_m1_1_m1_m1(N);
+                case (1):
+                  return H_m1_1_m1_1(N);
+              }
+            } break;
+            case (1): {
+              switch (m) {
+                case (-1):
+                  return H_m1_1_1_m1(N);
+                case (1):
+                  return H_m1_1_1_1(N);
+              }
+            } break;
+          }
+        } break;
       }
     } break;
     case (1): {
-      switch (k) {
-      case (-1): {
-        switch (m) {
-        case (-1):
-          return H_m1_1_m1_m1(N);
-        case (1):
-          return H_m1_1_m1_1(N);
-        }
-      } break;
-      case (1): {
-        switch (m) {
-        case (-1):
-          return H_m1_1_1_m1(N);
-        case (1):
-          return H_m1_1_1_1(N);
-        }
-      } break;
+      switch (j) {
+        case (-1): {
+          switch (k) {
+            case (-1): {
+              switch (m) {
+                case (-1):
+                  return H_1_m1_m1_m1(N);
+                case (1):
+                  return H_1_m1_m1_1(N);
+              }
+            } break;
+            case (1): {
+              switch (m) {
+                case (-1):
+                  return H_1_m1_1_m1(N);
+                case (1):
+                  return H_1_m1_1_1(N);
+              }
+            } break;
+          }
+        } break;
+        case (1): {
+          switch (k) {
+            case (-1): {
+              switch (m) {
+                case (-1):
+                  return H_1_1_m1_m1(N);
+                case (1):
+                  return H_1_1_m1_1(N);
+              }
+            } break;
+            case (1): {
+              switch (m) {
+                case (-1):
+                  return H_1_1_1_m1(N);
+                case (1):
+                  return H_1_1_1_1(N);
+              }
+            } break;
+          }
+        } break;
       }
     } break;
-    }
-  } break;
-  case (1): {
-    switch (j) {
-    case (-1): {
-      switch (k) {
-      case (-1): {
-        switch (m) {
-        case (-1):
-          return H_1_m1_m1_m1(N);
-        case (1):
-          return H_1_m1_m1_1(N);
-        }
-      } break;
-      case (1): {
-        switch (m) {
-        case (-1):
-          return H_1_m1_1_m1(N);
-        case (1):
-          return H_1_m1_1_1(N);
-        }
-      } break;
-      }
-    } break;
-    case (1): {
-      switch (k) {
-      case (-1): {
-        switch (m) {
-        case (-1):
-          return H_1_1_m1_m1(N);
-        case (1):
-          return H_1_1_m1_1(N);
-        }
-      } break;
-      case (1): {
-        switch (m) {
-        case (-1):
-          return H_1_1_1_m1(N);
-        case (1):
-          return H_1_1_1_1(N);
-        }
-      } break;
-      }
-    } break;
-    }
-  } break;
   }
   cout << "ERROR: not valid Harmonic Sums index (Implemented Weight up to four "
           "yet)"

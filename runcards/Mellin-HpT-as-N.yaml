@@ -14,7 +14,7 @@ scheme  : 2
 # 1<==>(NLO)
 order   : 1
 
-# pt bins
+# Mellin N bins
 Nmin    : 1.5
 Nmax    : 10
 Nbin    : 0.1
@@ -43,5 +43,5 @@ sroot   : 13000		# square root of the center of mass energy in GeV
 # 3<==>qqb
 channel : 0
 
-# mellin moment
+# pt value
 pt      : 5

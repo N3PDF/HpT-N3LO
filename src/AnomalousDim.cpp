@@ -1,4 +1,5 @@
 #include "AnomalousDim.h"
+
 #include <cmath>
 
 // Construct the Anomalous dimension Computation
@@ -17,10 +18,10 @@ AnomDimensions::~AnomDimensions() {}
 // Functions that computes the Anomalous Dimensions
 void AnomDimensions::ComputeGamma(std::complex<long double> N, int order) {
   if (order >= 0) {
-    gg0 = gammagg0(N) * M_PIl;     // \gamma_gg^0
-    gq0 = gammagS0(N) * M_PIl;     // \gamma_gq^0
-    qg0 = gammaSg0(N) * M_PIl;     // \gamma_qg^0
-    qq0 = gammansplus0(N) * M_PIl; // \gamma_qq^0
+    gg0 = gammagg0(N) * M_PIl;      // \gamma_gg^0
+    gq0 = gammagS0(N) * M_PIl;      // \gamma_gq^0
+    qg0 = gammaSg0(N) * M_PIl;      // \gamma_qg^0
+    qq0 = gammansplus0(N) * M_PIl;  // \gamma_qq^0
 
     // Define the Eigenvalues of the Singlet Matrix
     plus0 = 0.5 *
@@ -124,8 +125,8 @@ void AnomDimensions::sums(std::complex<long double> N) {
 }
 
 // LO anomalous dimensions
-std::complex<long double>
-AnomDimensions::gammagg0(std::complex<long double> N) {
+std::complex<long double> AnomDimensions::gammagg0(
+    std::complex<long double> N) {
   return (-1. / (4. * M_PIl) *
           (CA * (4. * (HAP.HS(1, N - 2.) - 2. * HAP.HS(1, N - 1.) -
                        2. * HAP.HS(1, N + 1.) + HAP.HS(1, N + 2.) +
@@ -134,24 +135,24 @@ AnomDimensions::gammagg0(std::complex<long double> N) {
            2. / 3. * NF));
 }
 
-std::complex<long double>
-AnomDimensions::gammagS0(std::complex<long double> N) {
+std::complex<long double> AnomDimensions::gammagS0(
+    std::complex<long double> N) {
   return -1. / (4. * M_PIl) *
          (2. * CF *
           (2. * HAP.HS(1, N - 2.) - 4. * HAP.HS(1, N - 1.) - HAP.HS(1, N + 1.) +
            3. * HAP.HS(1, N)));
 }
 
-std::complex<long double>
-AnomDimensions::gammaSg0(std::complex<long double> N) {
+std::complex<long double> AnomDimensions::gammaSg0(
+    std::complex<long double> N) {
   return -1. / (4. * M_PIl) *
          (2. * NF *
           (HAP.HS(1, N - 1.) + 4. * HAP.HS(1, N + 1.) - 2. * HAP.HS(1, N + 2) -
            3. * HAP.HS(1, N)));
 }
 
-std::complex<long double>
-AnomDimensions::gammansplus0(std::complex<long double> N) {
+std::complex<long double> AnomDimensions::gammansplus0(
+    std::complex<long double> N) {
   return -1. / (4. * M_PIl) * CF *
          (2. * (HAP.HS(1, N - 1.) + HAP.HS(1, N + 1.)) - 3.);
 }
@@ -231,42 +232,42 @@ void AnomDimensions::DEF1(std::complex<long double> N) {
 }
 
 // NLO anomalous dimensions
-std::complex<long double>
-AnomDimensions::gammagg1(std::complex<long double> N) {
+std::complex<long double> AnomDimensions::gammagg1(
+    std::complex<long double> N) {
   return (CA * CA * PGGA + 0.5 * NF * (CA * PGGB + CF * PGGC)) * 4. /
          pow(4 * M_PIl, 2);
 }
 
-std::complex<long double>
-AnomDimensions::gammagS1(std::complex<long double> N) {
+std::complex<long double> AnomDimensions::gammagS1(
+    std::complex<long double> N) {
   return (CF * CF * PGQA + CF * CA * PGQB + 0.5 * NF * CF * PGQC) * 4. /
          pow(4 * M_PIl, 2);
 }
 
-std::complex<long double>
-AnomDimensions::gammaSg1(std::complex<long double> N) {
+std::complex<long double> AnomDimensions::gammaSg1(
+    std::complex<long double> N) {
   return 0.5 * NF * (CA * PQGA + CF * PQGB) * 4. / pow(4 * M_PIl, 2);
 }
 
-std::complex<long double>
-AnomDimensions::gammaps1(std::complex<long double> N) {
+std::complex<long double> AnomDimensions::gammaps1(
+    std::complex<long double> N) {
   return (0.5 * NF * CF * PPSA * 4. / pow(4 * M_PIl, 2));
 }
 
-std::complex<long double>
-AnomDimensions::gammansplus1(std::complex<long double> N) {
+std::complex<long double> AnomDimensions::gammansplus1(
+    std::complex<long double> N) {
   return CF * ((CF - CA / 2.) * PNPA + CA * PNSB + 0.5 * (NF)*PNSC) /
          pow(4 * M_PIl, 2);
 }
 
-std::complex<long double>
-AnomDimensions::gammansminus1(std::complex<long double> N) {
+std::complex<long double> AnomDimensions::gammansminus1(
+    std::complex<long double> N) {
   return CF * ((CF - CA / 2.) * PNMA + CA * PNSB + 0.5 * NF * PNSC) /
          (pow(4 * M_PIl, 2));
 }
 
-std::complex<long double>
-AnomDimensions::gammGGnlo(std::complex<long double> N) {
+std::complex<long double> AnomDimensions::gammGGnlo(
+    std::complex<long double> N) {
   // A. Vogt https://arxiv.org/pdf/hep-ph/0404111.pdf
   std::complex<long double> GG1 =
       4. * CA * NF *
@@ -506,37 +507,37 @@ void AnomDimensions::DEF2(std::complex<long double> N) {
 }
 
 // NNLO anomalous dimensions
-std::complex<long double>
-AnomDimensions::gammagg2(std::complex<long double> N) {
+std::complex<long double> AnomDimensions::gammagg2(
+    std::complex<long double> N) {
   return P2GGN / pow(4 * M_PIl, 3);
 }
 
-std::complex<long double>
-AnomDimensions::gammagS2(std::complex<long double> N) {
+std::complex<long double> AnomDimensions::gammagS2(
+    std::complex<long double> N) {
   return P2GQN / pow(4 * M_PIl, 3);
 }
 
-std::complex<long double>
-AnomDimensions::gammaSg2(std::complex<long double> N) {
+std::complex<long double> AnomDimensions::gammaSg2(
+    std::complex<long double> N) {
   return P2QGN / pow(4 * M_PIl, 3);
 }
 
-std::complex<long double>
-AnomDimensions::gammaps2(std::complex<long double> N) {
+std::complex<long double> AnomDimensions::gammaps2(
+    std::complex<long double> N) {
   return P2PSN / pow(4 * M_PIl, 3);
 }
 
-std::complex<long double>
-AnomDimensions::gammansplus2(std::complex<long double> N) {
+std::complex<long double> AnomDimensions::gammansplus2(
+    std::complex<long double> N) {
   return P2PLSN / pow(4 * M_PIl, 3);
 }
 
-std::complex<long double>
-AnomDimensions::gammansminus2(std::complex<long double> N) {
+std::complex<long double> AnomDimensions::gammansminus2(
+    std::complex<long double> N) {
   return P2MINN / pow(4 * M_PIl, 3);
 }
 
-std::complex<long double>
-AnomDimensions::gammansval2(std::complex<long double> N) {
+std::complex<long double> AnomDimensions::gammansval2(
+    std::complex<long double> N) {
   return P2VALN / pow(4 * M_PIl, 3);
 }

@@ -16,10 +16,11 @@
  * =====================================================================================
  */
 
-#include <cmath>
+#include "../include/CombinedRes.h"
+
 #include <higgs-fo/params.h>
 
-#include "../include/CombinedRes.h"
+#include <cmath>
 
 CombinedRes::CombinedRes(int order, int channel, std::string pdfname,
                          void *params) {
@@ -47,13 +48,13 @@ std::complex<long double> CombinedRes::Matching(std::complex<long double> N,
                                                 long double pt, int scheme) {
   // TODO: re-check definition MH2 vs. Qs2
   long double xp = std::pow(pt, 2) / MH2;
-  if (scheme == 0) // small-pt only
+  if (scheme == 0)  // small-pt only
   {
     return (0.);
-  } else if (scheme == 1) // threshold only
+  } else if (scheme == 1)  // threshold only
   {
     return (1.);
-  } else // combined
+  } else  // combined
   {
     long double k = 2.;
     long double m = 9.75;
@@ -62,9 +63,8 @@ std::complex<long double> CombinedRes::Matching(std::complex<long double> N,
   }
 }
 
-std::complex<long double>
-CombinedRes::CombinedResExpr(std::complex<long double> N, long double pt,
-                             int scheme) {
+std::complex<long double> CombinedRes::CombinedResExpr(
+    std::complex<long double> N, long double pt, int scheme) {
   double pp = static_cast<double>(pt);
   // take only real part. Does not work for complex
   double nn = static_cast<double>(N.real());

@@ -18,22 +18,22 @@
 
 #pragma once
 
-#include <cmath>
 #include <gsl/gsl_math.h>
-#include <iostream>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+#include <cmath>
+#include <iostream>
 #include <string>
 #include <vector>
 
 #include "./ComplexDefs.h"
 #include "./MellinFunc.h"
-
 #include "higgs-fo/params.h"
 
 class ThresExp {
-public:
+ public:
   ThresExp(int order, int channel, void *params);
   virtual ~ThresExp();
 
@@ -62,7 +62,7 @@ public:
   long double GOgqqH(long double);
   long double GOqqgH(long double);
 
-private:
+ private:
   int NC, NF, CA, ORD, CHANNEL;
   long double LF, LR, LQ;
   long double MH2, MUF2, MUR2, SROOT;

@@ -17,13 +17,14 @@
  * =====================================================================================
  */
 
+#include <stdio.h>
+#include <stdlib.h>
+
 #include <exception>
 #include <fstream>
 #include <iomanip>
 #include <iostream>
 #include <sstream>
-#include <stdio.h>
-#include <stdlib.h>
 #include <string>
 #include <vector>
 
@@ -73,10 +74,8 @@ int main(int argc, char *argv[]) {
                            "_combined_asN.dat"};
 
   try {
-    if (order < 0 || order > 1)
-      throw err_message();
-    if (channel < 0 || channel > 5)
-      throw err_message();
+    if (order < 0 || order > 1) throw err_message();
+    if (channel < 0 || channel > 5) throw err_message();
     filename += ord_fixod[order];
     filename += par_chanl[channel];
     filename += matsch[scheme];
@@ -87,14 +86,14 @@ int main(int argc, char *argv[]) {
 
   // Factors for Born cross-section
   double factor;
-  double gf = 1.16637e-5;     // Fermi Constant
-  double gevpb = 3.8937966e8; // GeV to pb
+  double gf = 1.16637e-5;      // Fermi Constant
+  double gevpb = 3.8937966e8;  // GeV to pb
 
   if (inorm == 1) {
     std::cout << "ERROR in inorm!" << std::endl;
-    exit(EXIT_FAILURE); // TODO: complete implementation!
+    exit(EXIT_FAILURE);  // TODO: complete implementation!
   } else if (inorm == 0) {
-    factor = gf / 288. / M_PI / sqrt(2.); // large-top mass limit
+    factor = gf / 288. / M_PI / sqrt(2.);  // large-top mass limit
   } else {
     std::cout << "ERROR in inorm!" << std::endl;
     exit(EXIT_FAILURE);

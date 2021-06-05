@@ -1,6 +1,5 @@
 #pragma once
 
-#include <complex>
 #include <complex_bessel.h>
 #include <gsl/gsl_math.h>
 #include <gsl/gsl_sf_dilog.h>
@@ -8,6 +7,8 @@
 #include <gsl/gsl_sf_log.h>
 #include <gsl/gsl_sf_result.h>
 #include <gsl/gsl_sf_zeta.h>
+
+#include <complex>
 #include <iostream>
 #include <numeric>
 #include <vector>
@@ -68,9 +69,9 @@ std::complex<long double> operator*(const unsigned int n,
                                     const std::complex<long double> &z);
 std::complex<long double> operator/(const unsigned int n,
                                     const std::complex<long double> &z);
-std::complex<long double>
-operator*(const std::vector<std::complex<long double>> &c1,
-          const std::vector<std::complex<long double>> &c2);
+std::complex<long double> operator*(
+    const std::vector<std::complex<long double>> &c1,
+    const std::vector<std::complex<long double>> &c2);
 
 bool operator==(const std::complex<long double> &z, const int n);
 bool operator!=(const std::complex<long double> &z, const int n);

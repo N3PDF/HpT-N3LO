@@ -18,22 +18,22 @@
 
 #pragma once
 
-#include <cmath>
-#include <iostream>
 #include <math.h>
 #include <stdio.h>
 #include <stdlib.h>
+
+#include <cmath>
+#include <iostream>
 #include <string>
 #include <vector>
 
 #include "./ComplexDefs.h"
 #include "./SmallptExp.h"
 #include "./ThresExp.h"
-
 #include "higgs-fo/partonic.h"
 
 class CombinedRes {
-public:
+ public:
   CombinedRes(int order, int channel, std::string pdfname, void *params);
   virtual ~CombinedRes();
 
@@ -41,7 +41,7 @@ public:
   std::complex<long double> CombinedResExpr(std::complex<long double> N,
                                             long double pt, int scheme);
 
-private:
+ private:
   int ORD, EXACT_ORD;
   /* long double LF, LR, LQ; */
   long double QS2, MH2, MUF2, MUR2;

@@ -1,15 +1,15 @@
 #pragma once
 
-#include <cmath>
-#include <complex>
 #include <gsl/gsl_integration.h>
 #include <gsl/gsl_math.h>
-#include <iostream>
 #include <stdio.h>
+
+#include <cmath>
+#include <complex>
+#include <iostream>
 
 #include "./ComplexDefs.h"
 #include "./HarmonicSum.h"
-
 #include "higgs-fo/params.h"
 
 using namespace std;
@@ -26,7 +26,7 @@ struct gamma1sums {
 };
 
 class AnomDimensions {
-public:
+ public:
   AnomDimensions(void *params);
   virtual ~AnomDimensions();
 
@@ -43,7 +43,7 @@ public:
     long double _NN;
   };
 
-private:
+ private:
   HSum HAP;
   gamma1sums g1s;
 

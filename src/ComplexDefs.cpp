@@ -197,9 +197,9 @@ bool isfinite(const std::complex<long double> &z) {
 }
 
 // Inner Product
-std::complex<long double>
-operator*(const std::vector<std::complex<long double>> &c1,
-          const std::vector<std::complex<long double>> &c2) {
+std::complex<long double> operator*(
+    const std::vector<std::complex<long double>> &c1,
+    const std::vector<std::complex<long double>> &c2) {
   std::complex<long double> result;
   std::complex<long double> zero(0., 0.);
   result = std::inner_product(c1.begin(), c1.end(), c2.begin(), zero);
@@ -244,8 +244,7 @@ std::complex<long double> log_c_angle(std::complex<long double> z,
 std::complex<long double> expm1(const std::complex<long double> &z) {
   const long double x = std::real(z), y = std::imag(z);
 
-  if ((std::abs(x) >= 1.0) || (std::abs(y) >= 1.0))
-    return (std::exp(z) - 1.0);
+  if ((std::abs(x) >= 1.0) || (std::abs(y) >= 1.0)) return (std::exp(z) - 1.0);
 
   const long double expm1_x = std::expm1(x);
   const long double exp_x = 1.0 + expm1_x;
@@ -261,8 +260,7 @@ std::complex<long double> log1p(const std::complex<long double> &z) {
 
   const long double xp1 = 1.0 + x, abs_x = std::abs(x), abs_y = std::abs(y);
 
-  if ((abs_x >= 1.0) || (abs_y >= 1.0))
-    return std::log(1.0 + z);
+  if ((abs_x >= 1.0) || (abs_y >= 1.0)) return std::log(1.0 + z);
 
   const long double y_over_xp1 = y / xp1;
 
@@ -295,8 +293,7 @@ std::complex<long double> LogGamma(std::complex<long double> z) {
         0.8441822398385274E-4,  -0.26190838401581408E-4, 0.3689918265953162E-5};
 
     std::complex<long double> sum = c[0];
-    for (int i = 1; i < 15; i++)
-      sum += c[i] / (zm1 + i);
+    for (int i = 1; i < 15; i++) sum += c[i] / (zm1 + i);
 
     const std::complex<long double> log_Gamma_z =
         log_sqrt_2Pi + std::log(sum) + z_m_0p5 * std::log(z_pg_m0p5) -
@@ -341,8 +338,7 @@ std::complex<long double> Gamma_inv(const std::complex<long double> &z) {
         0.844182239838527E-4,   -0.26190838401581408E-4, 0.3689918265953162E-5};
 
     std::complex<long double> sum = c[0];
-    for (int i = 1; i < 15; i++)
-      sum += c[i] / (zm1 + i);
+    for (int i = 1; i < 15; i++) sum += c[i] / (zm1 + i);
 
     const std::complex<long double> Gamma_inv_z =
         exp(z_pg_m0p5 - z_m_0p5 * log(z_pg_m0p5) - log_sqrt_2Pi) / sum;
@@ -491,9 +487,8 @@ std::complex<long double> CBesselK(std::complex<long double> nu,
 }
 
 // Useful functions to evaluate Hypergeometric2F1 (see AEAE for more details)
-std::complex<long double>
-Gamma_ratio_diff_small_eps(const std::complex<long double> &z,
-                           const std::complex<long double> &eps) {
+std::complex<long double> Gamma_ratio_diff_small_eps(
+    const std::complex<long double> &z, const std::complex<long double> &eps) {
   const long double g = 4.7421875;
   if (inf_norm(eps) > 0.1)
     std::cout << "One must have |eps|oo < 0.1 in Gamma_ratio_diff_small_eps.",
@@ -560,9 +555,8 @@ Gamma_ratio_diff_small_eps(const std::complex<long double> &z,
   }
 }
 
-std::complex<long double>
-Gamma_inv_diff_eps(const std::complex<long double> &z,
-                   const std::complex<long double> &eps) {
+std::complex<long double> Gamma_inv_diff_eps(
+    const std::complex<long double> &z, const std::complex<long double> &eps) {
   const std::complex<long double> eps_pz = z + eps;
   const double x = std::real(z), eps_px = std::real(eps_pz);
   const int n = static_cast<int>(std::rint(x));
@@ -590,28 +584,25 @@ Gamma_inv_diff_eps(const std::complex<long double> &z,
     }
   } else if (is_z_negative_integer && is_eps_pz_negative_integer) {
     long double fact = -1.0;
-    for (int k = -1; k >= n; k--)
-      fact *= k;
+    for (int k = -1; k >= n; k--) fact *= k;
 
     return fact;
   } else
     return Gamma_ratio_diff_small_eps(z, eps) * Gamma_inv(eps_pz);
 }
 
-std::complex<long double>
-A_sum_init(const int m, const std::complex<long double> &eps,
-           const std::complex<long double> &Gamma_inv_one_meps) {
+std::complex<long double> A_sum_init(
+    const int m, const std::complex<long double> &eps,
+    const std::complex<long double> &Gamma_inv_one_meps) {
   const std::complex<long double> one_meps = 1.0 - eps;
 
   if (one_meps - m != 1 - m) {
     std::complex<long double> Gamma_inv_one_meps_mm = Gamma_inv_one_meps;
-    for (int i = 1; i <= m; i++)
-      Gamma_inv_one_meps_mm *= one_meps - i;
+    for (int i = 1; i <= m; i++) Gamma_inv_one_meps_mm *= one_meps - i;
     return Gamma_inv_one_meps_mm / eps;
   } else {
     long double fact = 1.0;
-    for (int n = 2; n < m; n++)
-      fact *= n;
+    for (int n = 2; n < m; n++) fact *= n;
 
     return (m % 2 == 0) ? (fact) : (-fact);
   }
@@ -634,16 +625,15 @@ std::complex<long double> log_A_sum_init(const int m,
   }
 }
 
-std::complex<long double>
-B_sum_init_PS_one(const std::complex<long double> &a,
-                  const std::complex<long double> &b,
-                  const std::complex<long double> &c,
-                  const std::complex<long double> &Gamma_c,
-                  const std::complex<long double> &Gamma_inv_one_meps,
-                  const std::complex<long double> &Gamma_inv_eps_pa_pm,
-                  const std::complex<long double> &Gamma_inv_eps_pb_pm,
-                  const std::complex<long double> &one_minus_z, const int m,
-                  const std::complex<long double> &eps) {
+std::complex<long double> B_sum_init_PS_one(
+    const std::complex<long double> &a, const std::complex<long double> &b,
+    const std::complex<long double> &c,
+    const std::complex<long double> &Gamma_c,
+    const std::complex<long double> &Gamma_inv_one_meps,
+    const std::complex<long double> &Gamma_inv_eps_pa_pm,
+    const std::complex<long double> &Gamma_inv_eps_pb_pm,
+    const std::complex<long double> &one_minus_z, const int m,
+    const std::complex<long double> &eps) {
   const long double inf_norm_eps = inf_norm(eps);
   const long double phase = (m % 2 == 0) ? (1) : (-1);
   const std::complex<long double> a_pm = a + m;
@@ -653,15 +643,13 @@ B_sum_init_PS_one(const std::complex<long double> &a,
   const std::complex<long double> Pi_eps_pm = M_PIl * (eps + m);
 
   std::complex<long double> Gamma_inv_one_meps_mm = Gamma_inv_one_meps;
-  for (int i = 1; i <= m; i++)
-    Gamma_inv_one_meps_mm *= one_meps - i;
+  for (int i = 1; i <= m; i++) Gamma_inv_one_meps_mm *= one_meps - i;
   if (inf_norm_eps > 0.1) {
     const std::complex<long double> Gamma_inv_eps_pm_p1 =
         phase * std::sin(Pi_eps) / (Pi_eps_pm * Gamma_inv_one_meps_mm);
     std::complex<long double> prod1 =
         Gamma_inv_one_meps * Gamma_inv_eps_pa_pm * Gamma_inv_eps_pb_pm;
-    for (int n = 0; n < m; n++)
-      prod1 *= (a + n) * (b + n) / (n + 1.0);
+    for (int n = 0; n < m; n++) prod1 *= (a + n) * (b + n) / (n + 1.0);
     const std::complex<long double> prod2 = Gamma_inv(a) * Gamma_inv(b) *
                                             Gamma_inv_eps_pm_p1 *
                                             std::pow(one_minus_z, eps);
@@ -704,8 +692,7 @@ B_sum_init_PS_one(const std::complex<long double> &a,
           phase * sin(Pi_eps) / (Pi_eps_pm * Gamma_inv_one_meps_mm);
       std::complex<long double> prod1 =
           Gamma_inv_one_meps * Gamma_inv_eps_pa_pm * Gamma_inv_eps_pb_pm;
-      for (int n = 0; n < m; n++)
-        prod1 *= (a + n) * (b + n) / (n + 1.0);
+      for (int n = 0; n < m; n++) prod1 *= (a + n) * (b + n) / (n + 1.0);
       const std::complex<long double> prod2 = Gamma_inv(a) * Gamma_inv(b) *
                                               Gamma_inv_eps_pm_p1 *
                                               pow(one_minus_z, eps);
@@ -716,15 +703,14 @@ B_sum_init_PS_one(const std::complex<long double> &a,
   }
 }
 
-std::complex<long double>
-B_sum_init_PS_infinity(const std::complex<long double> &a,
-                       const std::complex<long double> &c,
-                       const std::complex<long double> &Gamma_c,
-                       const std::complex<long double> &Gamma_inv_cma,
-                       const std::complex<long double> &Gamma_inv_one_meps,
-                       const std::complex<long double> &Gamma_inv_eps_pa_pm,
-                       const std::complex<long double> &z, const int m,
-                       const std::complex<long double> &eps) {
+std::complex<long double> B_sum_init_PS_infinity(
+    const std::complex<long double> &a, const std::complex<long double> &c,
+    const std::complex<long double> &Gamma_c,
+    const std::complex<long double> &Gamma_inv_cma,
+    const std::complex<long double> &Gamma_inv_one_meps,
+    const std::complex<long double> &Gamma_inv_eps_pa_pm,
+    const std::complex<long double> &z, const int m,
+    const std::complex<long double> &eps) {
   const double inf_norm_eps = inf_norm(eps);
   const double phase = (m % 2 == 0) ? (1) : (-1);
   const std::complex<long double> cma = c - a, a_mc_p1 = 1.0 - c + a;
@@ -738,8 +724,7 @@ B_sum_init_PS_infinity(const std::complex<long double> &a,
   const std::complex<long double> Pi_eps_pm = M_PIl * (eps + m);
 
   std::complex<long double> Gamma_inv_one_meps_mm = Gamma_inv_one_meps;
-  for (int i = 1; i <= m; i++)
-    Gamma_inv_one_meps_mm *= one_meps - i;
+  for (int i = 1; i <= m; i++) Gamma_inv_one_meps_mm *= one_meps - i;
 
   if (inf_norm_eps > 0.1) {
     const std::complex<long double> Gamma_inv_eps_pm_p1 =
@@ -781,8 +766,7 @@ B_sum_init_PS_infinity(const std::complex<long double> &a,
       Gamma_inv_mp1 /= n + 1.0;
 
       if (n != n0) {
-        if (is_n0_here)
-          prod_eps_pa_mc_p1_n0 *= eps_pa_mc_p1_pn;
+        if (is_n0_here) prod_eps_pa_mc_p1_n0 *= eps_pa_mc_p1_pn;
         sum +=
             (is_eps_non_zero) ? (log1p(eps / a_mc_p1_pn)) : (1.0 / a_mc_p1_pn);
       }
@@ -926,11 +910,10 @@ std::complex<long double> hyp_PS_zero(const std::complex<long double> &a,
   return sum;
 }
 
-std::complex<long double>
-hyp_PS_one(const std::complex<long double> &a,
-           const std::complex<long double> &b,
-           const std::complex<long double> &c,
-           const std::complex<long double> &one_minus_z) {
+std::complex<long double> hyp_PS_one(
+    const std::complex<long double> &a, const std::complex<long double> &b,
+    const std::complex<long double> &c,
+    const std::complex<long double> &one_minus_z) {
   const int m = static_cast<int>(std::rint(std::real(c - a - b)));
   const int phase = (m % 2 == 0) ? (1) : (-1);
   const int m_m1 = m - 1, m_p1 = m + 1;
@@ -975,8 +958,7 @@ hyp_PS_one(const std::complex<long double> &a,
     A_sum += A_term, prod_B *= ratio;
   }
 
-  if (m > 0)
-    prod_B *= (a + m - 1.0) * (b + m - 1.0) / m;
+  if (m > 0) prod_B *= (a + m - 1.0) * (b + m - 1.0) / m;
 
   std::complex<long double> B_extra_term =
       prod_B * Gamma_prod * Gamma_inv_one_meps;
@@ -1070,8 +1052,7 @@ std::complex<long double> hyp_PS_infinity(const std::complex<long double> &a,
     prod_B *= ratio;
   }
 
-  if (m > 0)
-    prod_B *= (a + m - 1.0) * (a_mc_p1 + m - 1.0) / m;
+  if (m > 0) prod_B *= (a + m - 1.0) * (a_mc_p1 + m - 1.0) / m;
 
   std::complex<long double> B_extra_term =
       prod_B * Gamma_prod * Gamma_inv_one_meps;
@@ -1218,8 +1199,7 @@ std::complex<long double> Hyp2F1(std::complex<long double> a,
   }
 
   const long double abs_zm1 = std::abs(zm1);
-  if (abs_zm1 < 1E-5)
-    return hyp_PS_one(a, b, c, -zm1);
+  if (abs_zm1 < 1E-5) return hyp_PS_one(a, b, c, -zm1);
 
   const long double abs_z = abs(z), abs_z_inv = 1.0 / abs_z,
                     abs_z_over_zm1 = abs_z / abs_zm1;
@@ -1235,8 +1215,7 @@ std::complex<long double> Hyp2F1(std::complex<long double> a,
   for (unsigned int i = 0; i < 5; i++) {
     const long double R = R_tab[i];
 
-    if (abs_z <= R)
-      return hyp_PS_zero(a, b, c, z);
+    if (abs_z <= R) return hyp_PS_zero(a, b, c, z);
     if (is_cmb_small && (abs_z_over_zm1 <= R))
       return std::pow(-zm1, -a) * hyp_PS_zero(a, c - b, c, z / zm1);
   }
@@ -1244,13 +1223,11 @@ std::complex<long double> Hyp2F1(std::complex<long double> a,
   for (unsigned int i = 0; i < 5; i++) {
     const long double R = R_tab[i];
 
-    if (abs_z_inv <= R)
-      return hyp_PS_infinity(a, b, c, z);
+    if (abs_z_inv <= R) return hyp_PS_infinity(a, b, c, z);
     if (is_cmb_small && (abs_zm1_over_z <= R))
       return std::pow(-zm1, -a) * hyp_PS_infinity(a, c - b, c, z / zm1);
 
-    if (are_abc_small && (abs_zm1 <= R))
-      return hyp_PS_one(a, b, c, -zm1);
+    if (are_abc_small && (abs_zm1 <= R)) return hyp_PS_one(a, b, c, -zm1);
     if (are_a_cmb_c_small && (abs_zm1_inv <= R))
       return std::pow(-zm1, -a) * hyp_PS_one(a, c - b, c, -1.0 / zm1);
   }

@@ -59,8 +59,8 @@ std::complex<long double> MellinFunc::Li3mzplus(std::complex<long double> N) {
            0.5 * zeta2 * H.HS(-2, N - 1.) - 3. / 4. * zeta3 * H.HS(-1, N - 1.) +
            1. / 8. * zeta2q - 3. / 4. * zeta3 * log2));
 }
-std::complex<long double>
-MellinFunc::Li2zLogminus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::Li2zLogminus(
+    std::complex<long double> N) {
   return (1. / N *
           (-2. * zeta3 - zeta2 * H.HS(1, N) +
            1. / N * (H.HS(1, N) * H.HS(1, N) + H.HS(2, N)) + H.HS(2, 1, N)));
@@ -77,8 +77,8 @@ std::complex<long double> MellinFunc::Li2zLogplus(std::complex<long double> N) {
            (2. * N * H.HS(-2, 1, N) - 2. * N * zeta2 * (H.HS(-1, N) + log2) +
             (zeta2 + 2. * H.HS(-1, 1, N) - log2q) + 5. / 4. * N * zeta3)));
 }
-std::complex<long double>
-MellinFunc::Li2mzLogplus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::Li2mzLogplus(
+    std::complex<long double> N) {
   long double n = 0.;
   return (1. / (N * N) *
           (log2 * (-0.5 * zeta2 * N + log2) +
@@ -95,8 +95,8 @@ std::complex<long double> MellinFunc::Li2mzLogz(std::complex<long double> N) {
           pow(-1., n) * (1. / (N * N) * (0.5 * zeta2 + H.HS(-2, N)) +
                          1. / (N * N * N) * (2. * H.HS(-1, N) + 2. * log2)));
 }
-std::complex<long double>
-MellinFunc::Li2zLogzplusminus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::Li2zLogzplusminus(
+    std::complex<long double> N) {
   long double n = 0.;
   return (
       1. / 960. *
@@ -107,8 +107,8 @@ MellinFunc::Li2zLogzplusminus(std::complex<long double> N) {
              60. * (H.HS(2, N - 1.) * H.HS(2, N - 1.) + H.HS(4, N - 1.)) +
              240. * H.HS(3, 1, N - 1.))));
 }
-std::complex<long double>
-MellinFunc::Li2mzLogzplus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::Li2mzLogzplus(
+    std::complex<long double> N) {
   long double n = 0.;
   return (-pow(-1., n) *
           (2. * H.HS(3, -1, N - 1.) + H.HS(2, -2, N - 1.) -
@@ -117,15 +117,15 @@ MellinFunc::Li2mzLogzplus(std::complex<long double> N) {
            4. * Li4 + 13. / 8. * zeta2q - 7. / 2. * zeta3 * log2 +
            zeta2 * log2q - 1. / 6. * log2q * log2q));
 }
-std::complex<long double>
-MellinFunc::LogzLogminus2minus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::LogzLogminus2minus(
+    std::complex<long double> N) {
   return (H.HS(2, N - 1.) * H.HS(2, N - 1.) - zeta2 * H.HS(2, N - 1.) +
           2. * H.HS(4, N - 1.) +
           H.HS(1, N - 1.) * H.HS(1, N - 1.) * (H.HS(2, N - 1.) - zeta2) +
           2. * H.HS(1, N - 1.) * (H.HS(3, N - 1.) - zeta3) - 4. / 5. * zeta2q);
 }
-std::complex<long double>
-MellinFunc::Li2mzLogplusplus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::Li2mzLogplusplus(
+    std::complex<long double> N) {
   long double n = 0.;
   return (-pow(-1., n) *
           (H.HS(1, 2, -1, N - 1.) + 2. * H.HS(2, 1, -1, N - 1.) +
@@ -139,15 +139,15 @@ MellinFunc::Li2mzLogplusplus(std::complex<long double> N) {
            6. / 5. * zeta2q - 21. / 8. * zeta3 * log2 + 0.5 * zeta2 * log2q -
            1. / 8. * log2q * log2q));
 }
-std::complex<long double>
-MellinFunc::Logz2Logminusminus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::Logz2Logminusminus(
+    std::complex<long double> N) {
   return (-2. * zeta3 * H.HS(1, N - 1.) +
           2. * H.HS(1, N - 1.) * H.HS(3, N - 1.) -
           2. * zeta2 * H.HS(2, N - 1.) + H.HS(2, N - 1.) * H.HS(2, N - 1.) +
           3. * H.HS(4, N - 1.) - zeta2q / 5.);
 }
-std::complex<long double>
-MellinFunc::Logz3minusplus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::Logz3minusplus(
+    std::complex<long double> N) {
   long double n = 0.;
   return (pow(-1., n) * (21. / 20. * zeta2q + 3. * H.HS(-4, N - 1.)) -
           6. / 5. * zeta2q + 3. * H.HS(4, N - 1.));
@@ -157,8 +157,8 @@ std::complex<long double> MellinFunc::Logplusplus(std::complex<long double> N) {
   return (pow(-1., n) * (H.HS(1, -1, N - 1.) - 0.5 * log2q +
                          (-H.HS(-1, N - 1.) + H.HS(1, N - 1.)) * log2));
 }
-std::complex<long double>
-MellinFunc::Li2zLogplusplus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::Li2zLogplusplus(
+    std::complex<long double> N) {
   long double n = 0.;
   return (pow(-1., n) *
           (3. / 40. * zeta2q - H.HS(-2, -1, -1, N - 1.) -
@@ -171,8 +171,8 @@ MellinFunc::Li2zLogplusplus(std::complex<long double> N) {
                 4. * (H.HS(-1, N - 1.) - H.HS(1, N - 1.)) * log2) -
            5. / 8. * H.HS(1, N - 1.) * zeta3));
 }
-std::complex<long double>
-MellinFunc::Logz2Logplusplus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::Logz2Logplusplus(
+    std::complex<long double> N) {
   long double n = 0.;
   return (pow(-1., n) *
           (2. * H.HS(3, -1, N - 1.) + 2. * H.HS(1, -3, N - 1.) +
@@ -187,16 +187,16 @@ std::complex<long double> MellinFunc::LogzLogplus(std::complex<long double> N) {
           (-12. * log2 + pow(-1., n) * (6. * N * zeta2 + 12. * N * H.HS(-2, N) +
                                         12. * H.HS(-1, N) + 12. * log2)));
 }
-std::complex<long double>
-MellinFunc::Logz2Logplus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::Logz2Logplus(
+    std::complex<long double> N) {
   long double n = 0.;
   return (1. / (N * N * N) * 2. * log2 -
           pow(-1., n) * (1. / (N * N) * (zeta2 + 2. * H.HS(-2, N)) +
                          1. / (N * N * N) * (2. * H.HS(-1, N) + 2. * log2) +
                          1. / N * (2. * H.HS(-3, N) + 3. / 2. * zeta3)));
 }
-std::complex<long double>
-MellinFunc::LogzLogplus2(std::complex<long double> N) {
+std::complex<long double> MellinFunc::LogzLogplus2(
+    std::complex<long double> N) {
   long double n = 0.;
   return (-1. / (12. * N * N) *
           (12. * log2q +
@@ -208,8 +208,8 @@ MellinFunc::LogzLogplus2(std::complex<long double> N) {
                                      2. * N * H.HS(2, N) + log2) -
                                 N * zeta3))));
 }
-std::complex<long double>
-MellinFunc::LogzLogplus2plus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::LogzLogplus2plus(
+    std::complex<long double> N) {
   long double n = 0.;
   return (2. * pow(-1., n) *
           (H.HS(1, 1, -2, N - 1.) + H.HS(1, 2, -1, N - 1.) +
@@ -283,19 +283,19 @@ std::complex<long double> MellinFunc::Logz2(std::complex<long double> N) {
 std::complex<long double> MellinFunc::Logz3(std::complex<long double> N) {
   return (-6. / (N * N * N * N));
 }
-std::complex<long double>
-MellinFunc::LogzLogminus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::LogzLogminus(
+    std::complex<long double> N) {
   return (-1. / N * zeta2 + 1. / N * H.HS(2, N) + 1. / (N * N) * H.HS(1, N));
 }
-std::complex<long double>
-MellinFunc::LogzLogminus2(std::complex<long double> N) {
+std::complex<long double> MellinFunc::LogzLogminus2(
+    std::complex<long double> N) {
   return (1. / (N * N) *
           (-H.HS(1, N) * H.HS(1, N) +
            2. * N * H.HS(1, N) * (zeta2 - H.HS(2, N)) - H.HS(2, N) -
            2. * N * H.HS(3, N) + 2. * N * zeta3));
 }
-std::complex<long double>
-MellinFunc::Logz2Logminus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::Logz2Logminus(
+    std::complex<long double> N) {
   return (-2. / (N * N * N) * H.HS(1, N) +
           1. / (N * N) * (2. * zeta2 - 2. * H.HS(2, N)) -
           2. / N * (H.HS(3, N) - zeta3));
@@ -311,16 +311,16 @@ std::complex<long double> MellinFunc::Logminus3(std::complex<long double> N) {
           (H.HS(1, N) * H.HS(1, N) * H.HS(1, N) + 3. * H.HS(1, N) * H.HS(2, N) +
            2. * H.HS(3, N)));
 }
-std::complex<long double>
-MellinFunc::LogzLogminusminus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::LogzLogminusminus(
+    std::complex<long double> N) {
   return (zeta3 + zeta2 * H.HS(1, N - 1.) - H.HS(1, N - 1.) * H.HS(2, N - 1.) -
           H.HS(3, N - 1.));
 }
 std::complex<long double> MellinFunc::Logzminus(std::complex<long double> N) {
   return (-zeta2 + H.HS(2, N - 1.));
 }
-std::complex<long double>
-MellinFunc::Logzminusplus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::Logzminusplus(
+    std::complex<long double> N) {
   long double n = 0.;
   return (pow(-1., n) * (0.25 * zeta2 + 0.5 * H.HS(-2, N - 1.)) +
           0.5 * H.HS(2, N - 1.) - 0.5 * zeta2);
@@ -329,30 +329,30 @@ std::complex<long double> MellinFunc::plus(std::complex<long double> N) {
   long double n = 0.;
   return (-pow(-1., n) * (H.HS(-1, N - 1.) + log2));
 }
-std::complex<long double>
-MellinFunc::Li2minusminus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::Li2minusminus(
+    std::complex<long double> N) {
   return (-zeta2 * H.HS(1, N - 1.) + H.HS(1, 2, N - 1.) + zeta3);
 }
-std::complex<long double>
-MellinFunc::S12zregminus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::S12zregminus(
+    std::complex<long double> N) {
   return (-6. / 5. * zeta2q + H.HS(2, 1, 1, N - 1.));
 }
-std::complex<long double>
-MellinFunc::Li2zregminus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::Li2zregminus(
+    std::complex<long double> N) {
   return (H.HS(2, 1, N - 1.) - 2. * zeta3);
 }
-std::complex<long double>
-MellinFunc::Li3zregminus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::Li3zregminus(
+    std::complex<long double> N) {
   return (-0.5 * zeta2q + zeta2 * H.HS(2, N - 1.) - H.HS(3, 1, N - 1.));
 }
-std::complex<long double>
-MellinFunc::Li2zregLogminusminus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::Li2zregLogminusminus(
+    std::complex<long double> N) {
   return (6. / 5. * zeta2q - H.HS(1, 2, 1, N - 1.) -
           2. * H.HS(2, 1, 1, N - 1.) + 2. * H.HS(1, N - 1.) * zeta3);
 }
 
-std::complex<long double>
-MellinFunc::Logplus3plus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::Logplus3plus(
+    std::complex<long double> N) {
   long double n = 0.;
   return (
       1. / 4. * pow(-1., n) *
@@ -365,8 +365,8 @@ MellinFunc::Logplus3plus(std::complex<long double> N) {
                        12. * H.HS(1, -1, N - 1.) - 4. * H.HS(1, N - 1.) * log2 +
                        log2q + 4. * H.HS(-1, N - 1.) * log2))));
 }
-std::complex<long double>
-MellinFunc::Li3zregminusplus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::Li3zregminusplus(
+    std::complex<long double> N) {
   long double n = 0.;
   return (1. / 720. *
           (-5. * (pow(M_PIl, 4) - 12. * pow(M_PIl, 2) * H.HS(2, N - 1.) +
@@ -376,8 +376,8 @@ MellinFunc::Li3zregminusplus(std::complex<long double> N) {
                 60. * H.HS(-3, 1, N - 1.) + 5. * M_PIl * M_PIl * log2q -
                 5. * (log2q * log2q + 24. * Li4 + 21. * log2 * zeta3))));
 }
-std::complex<long double>
-MellinFunc::Li3zoverplusplus(std::complex<long double> N) {
+std::complex<long double> MellinFunc::Li3zoverplusplus(
+    std::complex<long double> N) {
   long double n = 0.;
   return (1. / 288. * pow(-1., n) *
           (pow(M_PIl, 4) + 288. * H.HS(3, -1, N - 1.) -

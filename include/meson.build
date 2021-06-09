@@ -6,7 +6,10 @@ install_headers(
   	'AnomalousDim.h',
     'HarmonicSum.h',
     'SmallptExp.h',
-    'CombinedRes.h'
+    'CombinedRes.h',
+    'Integration.h',
+	'ThresXspace.h',
+    'IntMellin.h'
   ],
   subdir : 'higgs-n3lo'
 )

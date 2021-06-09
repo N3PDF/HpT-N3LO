@@ -38,7 +38,7 @@ class MellinTrans {
 
   double ExtractThresMom(double x, double N, double pt);
   std::complex<long double> xSpaceThres(std::complex<long double> N,
-										long double pt);
+                                        long double pt);
 
  private:
   int NF, ORD, CHANNEL;

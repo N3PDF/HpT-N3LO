@@ -23,13 +23,11 @@ struct IntData {
   void *param;
 };
 
-
 int xIntegrand(int *ndim, double *x, int *ncomp, double *y, void *p) {
   IntData inparam = *reinterpret_cast<IntData *>(p);
   y[0] = inparam.fun(x[0], inparam.param);
   return 0;
 }
-
 
 double ExtrIntegration::IntegrateOverx(int method, double(Func)(double, void *),
                                        void *pp, double *error) {

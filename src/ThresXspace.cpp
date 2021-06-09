@@ -116,12 +116,12 @@ double ThresXspace::ThresXspaceExpr(double x, double N, double pt) {
         double g1 = -Beta0 + 6. * NC * theta1 +
                     2. * NC * std::log((1. - axp) / 2.) -
                     2. * NC * std::log(axp * xp) + 2. * LF;
-                    /* + 4. * std::log((1. / axp - 1.) / 2.); */
+        /* + 4. * std::log((1. / axp - 1.) / 2.); */
         double g0 = -(Beta0 * theta1) + 6. * NC * theta2 +
                     2. * NC * theta1 * std::log((1. - axp) / 2.) -
                     2. * NC * theta1 * std::log(axp * xp) +
                     2. * (2. * NC * theta1 + Beta0) * LF;
-                    /*  *(LF + std::log((1 / axp) - 1.) / 2.); */
+        /*  *(LF + std::log((1 / axp) - 1.) / 2.); */
         double SIGMAGG =
             g2 * std::pow(std::log(1. - x), 2) + g1 * std::log(1. - x) + g0;
         result += aass * LOgggH(x, xp) * SIGMAGG;

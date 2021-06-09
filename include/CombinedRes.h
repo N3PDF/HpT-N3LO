@@ -28,10 +28,10 @@
 #include <vector>
 
 #include "./ComplexDefs.h"
-#include "./SmallptExp.h"
-#include "./ThresExp.h"
 #include "./HighEnergyExp.h"
 #include "./IntMellin.h"
+#include "./SmallptExp.h"
+#include "./ThresExp.h"
 #include "higgs-fo/partonic.h"
 
 class CombinedRes {

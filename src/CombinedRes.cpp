@@ -67,9 +67,8 @@ std::complex<long double> CombinedRes::Matching(std::complex<long double> N,
   }
 }
 
-std::complex<long double>
-CombinedRes::CombinedResExpr(std::complex<long double> N, long double pt,
-                             int scheme) {
+std::complex<long double> CombinedRes::CombinedResExpr(
+    std::complex<long double> N, long double pt, int scheme) {
   std::complex<long double> mres;
 
   // Compute approximation from resummations
@@ -79,7 +78,7 @@ CombinedRes::CombinedResExpr(std::complex<long double> N, long double pt,
 
   mres = (1. - Matching(N, pt, scheme)) * SptMellin +
          Matching(N, pt, scheme) * xThresMellin;
-         /* Matching(N, pt, scheme) * ThresMellin; */
+  /* Matching(N, pt, scheme) * ThresMellin; */
 
   return mres;
 }

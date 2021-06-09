@@ -74,29 +74,28 @@ HighEnergyExp::~HighEnergyExp() {}
 //                               gg-channel NLO pt-distributions //
 //------------------------------------------------------------------------------------------//
 
-
 std::complex<long double> HighEnergyExp::C1gg(std::complex<long double> NN,
-                                           long double xp) {
+                                              long double xp) {
   std::complex<long double> result;
-  result = 2*CA/M_PIl / xp / NN;
+  result = 2 * CA / M_PIl / xp / NN;
   return result;
 }
 
 std::complex<long double> HighEnergyExp::C2gg(std::complex<long double> NN,
-                                           long double xp) {
+                                              long double xp) {
   std::complex<long double> result;
-  result = 2*std::pow(CA,2)/std::pow(M_PIl,2) * (log(xp)/xp) / std::pow(NN,2);
+  result = 2 * std::pow(CA, 2) / std::pow(M_PIl, 2) * (log(xp) / xp) /
+           std::pow(NN, 2);
   return result;
 }
-
 
 //==========================================================================================//
 //                             Expanded Resummed Expression //
 //------------------------------------------------------------------------------------------//
 
 // TODO: change this into a vector
-std::complex<long double> HighEnergyExp::HighEnergyExpExpr(std::complex<long double> N,
-                                                 long double pt) {
+std::complex<long double> HighEnergyExp::HighEnergyExpExpr(
+    std::complex<long double> N, long double pt) {
   // TODO: re-check definition MH2 vs. Qs2
   long double xp = std::pow(pt, 2) / MH2;
   std::complex<long double> zero(0., 0.);
@@ -119,7 +118,7 @@ std::complex<long double> HighEnergyExp::HighEnergyExpExpr(std::complex<long dou
     case (1):  // order as^2
     {
       if ((CHANNEL == 0) || (CHANNEL == 5)) {
-        result += std::pow(aass,2) * C2gg(N, xp);
+        result += std::pow(aass, 2) * C2gg(N, xp);
       }
       if ((CHANNEL == 1) || (CHANNEL == 5)) {
         return zero;

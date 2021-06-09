@@ -42,18 +42,15 @@ class HighEnergyExp {
   /*     std::complex<long double> N, long double xp */
   /* ); */
   std::complex<long double> HighEnergyExpExpr(std::complex<long double> N,
-                                         long double pt);
-
+                                              long double pt);
 
   // Matching Coefficients
   long double Hth1gggH(long double xp);
   long double Hth1gqqH(long double xp);
   long double Hth1qqgH(long double xp);
 
-  std::complex<long double> C1gg(std::complex<long double> NN,
-                                            long double xp);
-  std::complex<long double> C2gg(std::complex<long double> NN,
-                                            long double xp);
+  std::complex<long double> C1gg(std::complex<long double> NN, long double xp);
+  std::complex<long double> C2gg(std::complex<long double> NN, long double xp);
   // LO pt-distribution
   std::complex<long double> LOgggH(std::complex<long double> NN,
                                    long double xp);

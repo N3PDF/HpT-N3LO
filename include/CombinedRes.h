@@ -28,9 +28,9 @@
 #include <vector>
 
 #include "./ComplexDefs.h"
+#include "./IntMellin.h"
 #include "./SmallptExp.h"
 #include "./ThresExp.h"
-#include "./IntMellin.h"
 #include "higgs-fo/partonic.h"
 
 class CombinedRes {

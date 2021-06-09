@@ -30,9 +30,7 @@ MellinTrans::MellinTrans(int order, int channel, std::string pdfname,
   MUF2 = static_cast<long double>(std::pow(param.muf, 2));
 }
 
-
 MellinTrans::~MellinTrans() {}
-
 
 struct IntStruct {
   MellinTrans *TransMellin;
@@ -40,20 +38,17 @@ struct IntStruct {
   double pt;
 };
 
-
 double MellinTrans::ExtractThresMom(double x, double N, double pt) {
   return xThres.ThresXspaceExpr(x, N, pt);
 }
-
 
 double xThresIntegrand(double x, void *p) {
   IntStruct par = *reinterpret_cast<IntStruct *>(p);
   return par.TransMellin->ExtractThresMom(x, par.N, par.pt);
 }
 
-
-std::complex<long double> MellinTrans::xSpaceThres(
-    std::complex<long double> N, long double pt) {
+std::complex<long double> MellinTrans::xSpaceThres(std::complex<long double> N,
+                                                   long double pt) {
   int method = 0;
   double reslt, error;
   double nn = static_cast<double>(N.real());

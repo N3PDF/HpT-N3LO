@@ -72,12 +72,12 @@ CombinedRes::CombinedResExpr(std::complex<long double> N, long double pt,
 
   // Compute approximation from resummations
   std::complex<long double> SptMellin = SMALLPT->SmallptExpExpr(N, pt);
-  std::complex<long double> ThresMellin = THRESHOLD->ThresExpExpr(N, pt);
+  /* std::complex<long double> ThresMellin = THRESHOLD->ThresExpExpr(N, pt); */
   std::complex<long double> xThresMellin = MELLIN->xSpaceThres(N, pt);
 
   mres = (1. - Matching(N, pt, scheme)) * SptMellin +
-         Matching(N, pt, scheme) * ThresMellin;
-         /* Matching(N, pt, scheme) * xThresMellin; */
+         Matching(N, pt, scheme) * xThresMellin;
+         /* Matching(N, pt, scheme) * ThresMellin; */
 
   return mres;
 }

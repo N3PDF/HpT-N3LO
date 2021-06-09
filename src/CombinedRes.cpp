@@ -69,16 +69,39 @@ std::complex<long double> CombinedRes::Matching(std::complex<long double> N,
 
 std::complex<long double> CombinedRes::CombinedResExpr(
     std::complex<long double> N, long double pt, int scheme) {
+  double pp = static_cast<double>(pt);
+  // take only real part. Does not work for complex
+  double nn = static_cast<double>(N.real());
   std::complex<long double> mres;
+  std::vector<double> ResultsMellin;
+  std::vector<double> zero(2, 0.0);
+
+  // Compute exact FO from HpT-MON
+  if (ORD == 0) {
+    ResultsMellin = zero;
+  } else {
+    ResultsMellin = MELLINPARTONIC->partonichiggsdpt(pp, nn);
+  }
+  std::vector<long double> ExactMellin(ResultsMellin.begin(),
+                                       ResultsMellin.end());
 
   // Compute approximation from resummations
-  std::complex<long double> SptMellin = SMALLPT->SmallptExpExpr(N, pt);
-  /* std::complex<long double> ThresMellin = THRESHOLD->ThresExpExpr(N, pt); */
-  std::complex<long double> xThresMellin = MELLIN->xSpaceThres(N, pt);
+  if (scheme == 3) // High Energy
+  {
+    std::complex<long double> ExactMellinCmpx(ExactMellin[0], 0.);
+    std::complex<long double> HighEnergyMellin = HIGHENERGY->HighEnergyExpExpr(N, pt);
+    return ExactMellinCmpx + HighEnergyMellin;
+  } else
+  {
+    std::complex<long double> SptMellin = SMALLPT->SmallptExpExpr(N, pt);
+    std::complex<long double> ThresMellin = THRESHOLD->ThresExpExpr(N, pt);
 
-  mres = (1. - Matching(N, pt, scheme)) * SptMellin +
-         Matching(N, pt, scheme) * xThresMellin;
-  /* Matching(N, pt, scheme) * ThresMellin; */
+    std::complex<long double> ExactMellinCmpx(ExactMellin[0], 0.);
+    mres = (1. - Matching(N, pt, scheme)) * SptMellin +
+          Matching(N, pt, scheme) * ThresMellin;
 
-  return mres;
+    return ExactMellinCmpx + mres;
+
+  }
 }
+

@@ -261,33 +261,33 @@ std::complex<long double> ThresExp::ThresExpExpr(std::complex<long double> N,
 
   switch (ORD) {
     // TODO: Match CASES with HpT-MON
-  case (0): // order as^1
-  {
-    if ((CHANNEL == 0) || (CHANNEL == 5)) {
-      result += LOgggH(N, xp);
-    }
-    if ((CHANNEL == 1) || (CHANNEL == 5)) {
-      result += LOgqqH(N, xp);
-    }
-    if ((CHANNEL == 2) || (CHANNEL == 5)) {
-      result += LOqqgH(N, xp);
-    }
-  } break;
-  case (1): // order as^2
-  {
-    if ((CHANNEL == 0) || (CHANNEL == 5)) {
-      std::complex<long double> SIGMAGG =
-          Sigma22ggg(xp) * std::pow(LNbar, 2) +
-          Sigma21ggg(xp) * LNbar; /* +Sigma20ggg(xp); */
-      result += aass * LOgggH(N, xp) * (GOgggH(xp) + SIGMAGG);
-    }
-    if ((CHANNEL == 1) || (CHANNEL == 5)) {
-      return zero;
-    }
-    if ((CHANNEL == 2) || (CHANNEL == 5)) {
-      return zero;
-    }
-  } break;
+    case (0):  // order as^1
+    {
+      if ((CHANNEL == 0) || (CHANNEL == 5)) {
+        result += LOgggH(N, xp);
+      }
+      if ((CHANNEL == 1) || (CHANNEL == 5)) {
+        result += LOgqqH(N, xp);
+      }
+      if ((CHANNEL == 2) || (CHANNEL == 5)) {
+        result += LOqqgH(N, xp);
+      }
+    } break;
+    case (1):  // order as^2
+    {
+      if ((CHANNEL == 0) || (CHANNEL == 5)) {
+        std::complex<long double> SIGMAGG =
+            Sigma22ggg(xp) * std::pow(LNbar, 2) +
+            Sigma21ggg(xp) * LNbar; /* +Sigma20ggg(xp); */
+        result += aass * LOgggH(N, xp) * (GOgggH(xp) + SIGMAGG);
+      }
+      if ((CHANNEL == 1) || (CHANNEL == 5)) {
+        return zero;
+      }
+      if ((CHANNEL == 2) || (CHANNEL == 5)) {
+        return zero;
+      }
+    } break;
   }
 
   return 2. * pt / MH2 * SIGMA0 * result;

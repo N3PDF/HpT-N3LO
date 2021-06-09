@@ -35,11 +35,8 @@ CombinedRes::CombinedRes(int order, int channel, std::string pdfname,
 
   SMALLPT = new SmallptExp(order, channel, params);
   THRESHOLD = new ThresExp(order, channel, params);
-<<<<<<< HEAD
   HIGHENERGY = new HighEnergyExp(order, channel, params);
-=======
   MELLIN = new MellinTrans(order, channel, pdfname, params);
->>>>>>> f00a03b (Mellin transform of the x-space threshold resummation)
   MELLINPARTONIC = new CrossHiggs(EXACT_ORD, channel, pdfname, params);
 }
 

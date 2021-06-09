@@ -3,7 +3,7 @@ install_headers(
 	'ComplexDefs.h',
 	'MellinFunc.h',
 	'ThresExp.h',
-  'HighEnergyExp.h',
+    'HighEnergyExp.h',
   	'AnomalousDim.h',
     'HarmonicSum.h',
     'SmallptExp.h',

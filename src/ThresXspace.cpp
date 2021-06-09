@@ -66,7 +66,7 @@ double ThresXspace::LOgggH(double x, double xp) {
       (-4. * NC * std::pow(1. - tau, 2) * tau +
        2. * NC * std::pow(tau, 2) * xp) /
           den;
-  return aass * CLOgggH;
+  return aass / M_PI * CLOgggH;
 }
 
 // gq->q
@@ -91,13 +91,13 @@ double ThresXspace::ThresXspaceExpr(double x, double N, double pt) {
     case (0):  // order as^1
     {
       if ((CHANNEL == 0) || (CHANNEL == 5)) {
-        result += LOgggH(N, xp);
+        result += LOgggH(x, xp);
       }
       if ((CHANNEL == 1) || (CHANNEL == 5)) {
-        result += LOgqqH(N, xp);
+        result += LOgqqH(x, xp);
       }
       if ((CHANNEL == 2) || (CHANNEL == 5)) {
-        result += LOqqgH(N, xp);
+        result += LOqqgH(x, xp);
       }
     } break;
     case (1):  // order as^2

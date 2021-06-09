@@ -91,6 +91,7 @@ std::complex<long double> CombinedRes::CombinedResExpr(
   std::complex<long double> ExactMellinCmpx(ExactMellin[0], 0.);
   mres = (1. - Matching(N, pt, scheme)) * SptMellin +
          Matching(N, pt, scheme) * ThresMellin;
+         /* Matching(N, pt, scheme) * xThresMellin; */
 
   return ExactMellinCmpx + mres;
 }

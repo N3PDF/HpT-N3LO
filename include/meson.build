@@ -9,7 +9,8 @@ install_headers(
     'SmallptExp.h',
     'CombinedRes.h',
     'Integration.h',
-	'ThresXspace.h'
+	'ThresXspace.h',
+    'IntMellin.h'
   ],
   subdir : 'higgs-n3lo'
 )

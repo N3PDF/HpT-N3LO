@@ -30,7 +30,11 @@
 #include "./ComplexDefs.h"
 #include "./SmallptExp.h"
 #include "./ThresExp.h"
+<<<<<<< HEAD
 #include "./HighEnergyExp.h"
+=======
+#include "./IntMellin.h"
+>>>>>>> f00a03b (Mellin transform of the x-space threshold resummation)
 #include "higgs-fo/partonic.h"
 
 class CombinedRes {
@@ -52,6 +56,7 @@ class CombinedRes {
   SmallptExp *SMALLPT;
   ThresExp *THRESHOLD;
   HighEnergyExp *HIGHENERGY;
+  MellinTrans *MELLIN;
 
   // Init. exact FO class
   CrossHiggs *MELLINPARTONIC;

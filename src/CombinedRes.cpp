@@ -35,11 +35,16 @@ CombinedRes::CombinedRes(int order, int channel, std::string pdfname,
 
   SMALLPT = new SmallptExp(order, channel, params);
   THRESHOLD = new ThresExp(order, channel, params);
+<<<<<<< HEAD
   HIGHENERGY = new HighEnergyExp(order, channel, params);
+=======
+  MELLIN = new MellinTrans(order, channel, pdfname, params);
+>>>>>>> f00a03b (Mellin transform of the x-space threshold resummation)
   MELLINPARTONIC = new CrossHiggs(EXACT_ORD, channel, pdfname, params);
 }
 
 CombinedRes::~CombinedRes() {
+  delete MELLIN;
   delete MELLINPARTONIC;
   delete SMALLPT;
   delete THRESHOLD;
@@ -84,15 +89,9 @@ std::complex<long double> CombinedRes::CombinedResExpr(
                                        ResultsMellin.end());
 
   // Compute approximation from resummations
-  if (scheme == 3) // High Energy
-  {
-    std::complex<long double> ExactMellinCmpx(ExactMellin[0], 0.);
-    std::complex<long double> HighEnergyMellin = HIGHENERGY->HighEnergyExpExpr(N, pt);
-    return ExactMellinCmpx + HighEnergyMellin;
-  } else
-  {
-    std::complex<long double> SptMellin = SMALLPT->SmallptExpExpr(N, pt);
-    std::complex<long double> ThresMellin = THRESHOLD->ThresExpExpr(N, pt);
+  std::complex<long double> SptMellin = SMALLPT->SmallptExpExpr(N, pt);
+  std::complex<long double> ThresMellin = THRESHOLD->ThresExpExpr(N, pt);
+  std::complex<long double> xThresMellin = MELLIN->xSpaceThres(N, pt);
 
     std::complex<long double> ExactMellinCmpx(ExactMellin[0], 0.);
     mres = (1. - Matching(N, pt, scheme)) * SptMellin +

@@ -8,7 +8,8 @@ sources = [
   'SmallptExp.cpp',
   'CombinedRes.cpp',
   'Integration.cpp',
-  'ThresXspace.cpp'
+  'ThresXspace.cpp',
+  'IntMellin.cpp'
 ]
 
 higgslib = static_library(

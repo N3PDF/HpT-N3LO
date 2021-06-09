@@ -29,8 +29,6 @@
 #include <string>
 #include <vector>
 
-#include "./ComplexDefs.h"
-#include "./MellinFunc.h"
 #include "higgs-fo/params.h"
 
 class ThresXspace {

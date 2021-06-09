@@ -30,6 +30,7 @@
 #include "./ComplexDefs.h"
 #include "./SmallptExp.h"
 #include "./ThresExp.h"
+#include "./HighEnergyExp.h"
 #include "higgs-fo/partonic.h"
 
 class CombinedRes {
@@ -50,6 +51,7 @@ class CombinedRes {
   // Init. resummation classes
   SmallptExp *SMALLPT;
   ThresExp *THRESHOLD;
+  HighEnergyExp *HIGHENERGY;
 
   // Init. exact FO class
   CrossHiggs *MELLINPARTONIC;

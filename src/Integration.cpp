@@ -16,7 +16,7 @@
  * =====================================================================================
  */
 
-#include "../include/IntMellin.h"
+#include "../include/Integration.h"
 
 struct IntData {
   std::function<double(double, void *)> fun;

@@ -6,7 +6,8 @@ sources = [
   'ComplexDefs.cpp',
   'HarmonicSum.cpp',
   'SmallptExp.cpp',
-  'CombinedRes.cpp'
+  'CombinedRes.cpp',
+  'IntMellin.cpp'
 ]
 
 higgslib = static_library(

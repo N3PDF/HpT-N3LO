@@ -94,11 +94,13 @@ std::complex<long double> CombinedRes::CombinedResExpr(
   } else
   {
     std::complex<long double> SptMellin = SMALLPT->SmallptExpExpr(N, pt);
-    std::complex<long double> ThresMellin = THRESHOLD->ThresExpExpr(N, pt);
+    /* std::complex<long double> ThresMellin = THRESHOLD->ThresExpExpr(N, pt); */
+    std::complex<long double> xThresMellin = MELLIN->xSpaceThres(N, pt);
 
     std::complex<long double> ExactMellinCmpx(ExactMellin[0], 0.);
     mres = (1. - Matching(N, pt, scheme)) * SptMellin +
-          Matching(N, pt, scheme) * ThresMellin;
+          Matching(N, pt, scheme) * xThresMellin;
+          /* Matching(N, pt, scheme) * ThresMellin; */
 
     return ExactMellinCmpx + mres;
 

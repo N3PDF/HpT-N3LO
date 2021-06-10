@@ -108,7 +108,7 @@ double ThresXspace::ThresXspaceExpr(double x, double N, double pt) {
         // Theta functions
         double theta1 = psi0one - psi0half;
         double theta2 = 1. / 2. * std::pow(psi0half, 2) - 1. / 2. * psi1half +
-                        1. / 2. * (psi1half + std::pow(psi0half, 2)) -
+                        1. / 2. * (psi1one + std::pow(psi0one, 2)) -
                         psi0one * psi0half;
 
         // g functions

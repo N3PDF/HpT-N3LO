@@ -108,17 +108,20 @@ double ThresXspace::ThresXspaceExpr(double x, double N, double pt) {
         // Theta functions
         double theta1 = psi0one - psi0half;
         double theta2 = 1. / 2. * std::pow(psi0half, 2) - 1. / 2. * psi1half +
-                        1. / 2. * (psi1half + std::pow(psi0half, 2)) -
+                        1. / 2. * (psi1one + std::pow(psi0one, 2)) -
                         psi0one * psi0half;
 
         // g functions
         double g2 = 3. * NC;
         double g1 = -Beta0 + 6. * NC * theta1 +
                     2. * NC * std::log((1. - axp) / 2.) -
-                    2. * NC * std::log(axp * xp);
+                    2. * NC * std::log(axp * xp) + 2. * LF;
+        /* + 4. * std::log((1. / axp - 1.) / 2.); */
         double g0 = -(Beta0 * theta1) + 6. * NC * theta2 +
                     2. * NC * theta1 * std::log((1. - axp) / 2.) -
-                    2. * NC * theta1 * std::log(axp * xp);
+                    2. * NC * theta1 * std::log(axp * xp) +
+                    2. * (2. * NC * theta1 + Beta0) * LF;
+        /*  *(LF + std::log((1 / axp) - 1.) / 2.); */
         double SIGMAGG =
             g2 * std::pow(std::log(1. - x), 2) + g1 * std::log(1. - x) + g0;
         result += aass * LOgggH(x, xp) * SIGMAGG;

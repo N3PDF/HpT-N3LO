@@ -28,6 +28,7 @@
 #include <vector>
 
 #include "./ComplexDefs.h"
+#include "./HighEnergyExp.h"
 #include "./IntMellin.h"
 #include "./SmallptExp.h"
 #include "./ThresExp.h"
@@ -51,6 +52,7 @@ class CombinedRes {
   // Init. resummation classes
   SmallptExp *SMALLPT;
   ThresExp *THRESHOLD;
+  HighEnergyExp *HIGHENERGY;
   MellinTrans *MELLIN;
 
   // Init. exact FO class

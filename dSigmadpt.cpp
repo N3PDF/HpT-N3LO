@@ -37,6 +37,7 @@
 #include "include/CombinedRes.h"
 #include "include/SmallptExp.h"
 #include "include/ThresExp.h"
+#include "include/HighEnergyExp.h"
 #include "yaml-cpp/yaml.h"
 
 // Exception for wrong inputs

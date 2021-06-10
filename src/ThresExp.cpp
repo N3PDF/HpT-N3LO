@@ -260,7 +260,7 @@ std::complex<long double> ThresExp::ThresExpExpr(std::complex<long double> N,
   std::complex<long double> LNbar = 2. * aass * Beta0 * std::log(Nbar);
 
   switch (ORD) {
-      // TODO: Match CASES with HpT-MON
+    // TODO: Match CASES with HpT-MON
     case (0):  // order as^1
     {
       if ((CHANNEL == 0) || (CHANNEL == 5)) {

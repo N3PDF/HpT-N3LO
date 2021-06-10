@@ -131,4 +131,3 @@ std::complex<long double> HighEnergyExp::HighEnergyExpExpr(
 
   return 2. * pt / MH2 * SIGMA0 * result;
 }
-

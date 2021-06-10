@@ -86,26 +86,25 @@ std::complex<long double> CombinedRes::CombinedResExpr(
   /*                                      ResultsMellin.end()); */
 
   // Compute approximation from resummations
-  if (scheme == 3) // High Energy
+  if (scheme == 3)  // High Energy
   {
     /* std::complex<long double> ExactMellinCmpx(ExactMellin[0], 0.); */
-    std::complex<long double> HighEnergyMellin = HIGHENERGY->HighEnergyExpExpr(N, pt);
+    std::complex<long double> HighEnergyMellin =
+        HIGHENERGY->HighEnergyExpExpr(N, pt);
     /* return ExactMellinCmpx + HighEnergyMellin; */
     return HighEnergyMellin;
-  } else
-  {
+  } else {
     std::complex<long double> SptMellin = SMALLPT->SmallptExpExpr(N, pt);
-    /* std::complex<long double> ThresMellin = THRESHOLD->ThresExpExpr(N, pt); */
+    /* std::complex<long double> ThresMellin = THRESHOLD->ThresExpExpr(N, pt);
+     */
     std::complex<long double> xThresMellin = MELLIN->xSpaceThres(N, pt);
 
     /* std::complex<long double> ExactMellinCmpx(ExactMellin[0], 0.); */
     mres = (1. - Matching(N, pt, scheme)) * SptMellin +
-          Matching(N, pt, scheme) * xThresMellin;
-          /* Matching(N, pt, scheme) * ThresMellin; */
+           Matching(N, pt, scheme) * xThresMellin;
+    /* Matching(N, pt, scheme) * ThresMellin; */
 
     /* return ExactMellinCmpx + mres; */
     return mres;
-
   }
 }
-

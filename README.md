@@ -1,6 +1,6 @@
 [![DOI](https://zenodo.org/badge/368804644.svg)](https://zenodo.org/badge/latestdoi/368804644)
 
-#### Descriptioh
+#### Description
 
 HpT-N3LO computes the approximation of the N3LO contribution to the Higgs
 boson production from gluon fusion by combining the small-pt and threshold

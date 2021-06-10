@@ -53,6 +53,7 @@ class ThresXspace {
 
   // Polygamma functions
   double psi0one = gsl_sf_psi_n(0, 1);
+  double psi1one = gsl_sf_psi_n(1, 1);
   double psi0half = gsl_sf_psi_n(0, 0.5);
   double psi1half = gsl_sf_psi_n(1, 0.5);
 };

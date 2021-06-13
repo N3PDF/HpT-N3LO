@@ -74,8 +74,8 @@ int main(int argc, char *argv[]) {
   std::string ord_fixod[2] = {"_LO", "_NLO"};
   std::string par_chanl[5] = {"_gg_channel", "_gq_channel", "_qq_channel",
                               "_qqb_channel", "_all_channels"};
-  std::string matsch[3] = {"_smallpt_aspt.dat", "_threshold_aspt.dat",
-                           "_combined_aspt.dat"};
+  std::string matsch[4] = {"_smallpt_aspt.dat", "_threshold_aspt.dat",
+                           "_combined_aspt.dat", "_highenergy_aspt.dat"};
 
   try {
     if (order < 0 || order > 1) throw err_message();

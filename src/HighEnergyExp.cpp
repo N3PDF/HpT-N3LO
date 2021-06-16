@@ -49,16 +49,14 @@ HighEnergyExp::~HighEnergyExp() {}
 //                               gg-channel NLO pt-distributions //
 //------------------------------------------------------------------------------------------//
 
-long double HighEnergyExp::C1ggx(long double x,
-                                              long double xp) {
+long double HighEnergyExp::C1ggx(long double x, long double xp) {
   long double result = 2 * CA / M_PIl / xp;
   return result;
 }
 
-long double HighEnergyExp::C2ggx(long double x,
-                                              long double xp) {
-  long double result = 4 * std::pow(CA, 2) / std::pow(M_PIl, 2) * (log(xp) / xp) *
-           std::log(x);
+long double HighEnergyExp::C2ggx(long double x, long double xp) {
+  long double result =
+      4 * std::pow(CA, 2) / std::pow(M_PIl, 2) * (log(xp) / xp) * std::log(x);
   return result;
 }
 
@@ -121,8 +119,7 @@ std::complex<long double> HighEnergyExp::HighEnergyExpExpr(
 }
 
 // TODO: change this into a vector
-long double HighEnergyExp::HighEnergyExpExprX(
-    long double x, long double pt) {
+long double HighEnergyExp::HighEnergyExpExprX(long double x, long double pt) {
   // TODO: re-check definition MH2 vs. Qs2
   long double xp = std::pow(pt, 2) / MH2;
   long double zero = 0.;

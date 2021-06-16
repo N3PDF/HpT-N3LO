@@ -40,8 +40,7 @@ class HighEnergyExp {
   // Attribute that compute the expanded results
   std::complex<long double> HighEnergyExpExpr(std::complex<long double> N,
                                               long double pt);
-  long double HighEnergyExpExprX(long double x,
-                                              long double pt);
+  long double HighEnergyExpExprX(long double x, long double pt);
 
   // Coefficients in x space
   long double C1ggx(long double x, long double xp);

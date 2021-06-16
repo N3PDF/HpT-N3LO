@@ -109,8 +109,8 @@ std::complex<long double> CombinedRes::CombinedResExpr(
   }
 }
 
-long double CombinedRes::CombinedResExprX(
-    long double x, long double pt, int scheme) {
+long double CombinedRes::CombinedResExprX(long double x, long double pt,
+                                          int scheme) {
   /* double pp = static_cast<double>(pt); */
   // take only real part. Does not work for complex
   /* double nn = static_cast<double>(N.real()); */
@@ -131,14 +131,14 @@ long double CombinedRes::CombinedResExprX(
   if (scheme == 3)  // High Energy
   {
     /* std::complex<long double> ExactMellinCmpx(ExactMellin[0], 0.); */
-    long double HighEnergyMellin =
-        HIGHENERGY->HighEnergyExpExprX(x, pt);
+    long double HighEnergyMellin = HIGHENERGY->HighEnergyExpExprX(x, pt);
     /* return ExactMellinCmpx + HighEnergyMellin; */
     return HighEnergyMellin;
   } else {
     // std::complex<long double> SptMellin = SMALLPT->SmallptExpExpr(N, pt);
     // std::complex<long double> ThresMellin = THRESHOLD->ThresExpExpr(N, pt);
-    std::complex<long double> xThresMellin = xTHRESHOLD->ThresXspaceExpr(x, 1, pt);
+    std::complex<long double> xThresMellin =
+        xTHRESHOLD->ThresXspaceExpr(x, 1, pt);
 
     /* std::complex<long double> ExactMellinCmpx(ExactMellin[0], 0.); */
     long double mres = static_cast<long double>(xThresMellin.real());

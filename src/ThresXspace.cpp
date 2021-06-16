@@ -124,7 +124,7 @@ double ThresXspace::ThresXspaceExpr(double x, double N, double pt) {
          *(LF + std::log((1 / axp) - 1.) / 2.);
         double SIGMAGG =
             g2 * std::pow(std::log(1. - x), 2) + g1 * std::log(1. - x) + g0;
-        result += aass / (2.*M_PI) * LOgggH(x, xp) * SIGMAGG;
+        result += aass / (2. * M_PI) * LOgggH(x, xp) * SIGMAGG;
       }
       if ((CHANNEL == 1) || (CHANNEL == 5)) {
         return zero;

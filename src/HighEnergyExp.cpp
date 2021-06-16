@@ -84,7 +84,7 @@ std::complex<long double> HighEnergyExp::C1gg(std::complex<long double> NN,
 std::complex<long double> HighEnergyExp::C2gg(std::complex<long double> NN,
                                               long double xp) {
   std::complex<long double> result;
-  result = -4 * std::pow(CA, 2) / std::pow(M_PIl, 2) * (log(xp) / xp) /
+  result = 4 * std::pow(CA, 2) / std::pow(M_PIl, 2) * (log(xp) / xp) /
            std::pow(NN, 2);
   return result;
 }

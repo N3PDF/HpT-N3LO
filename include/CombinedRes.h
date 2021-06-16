@@ -41,9 +41,9 @@ class CombinedRes {
   virtual ~CombinedRes();
 
   // Attribute that compute the expanded results
-  std::complex<long double> CombinedResExpr(std::complex<long double> N,
+  long double CombinedResExprX(long double x,
                                             long double pt, int scheme);
-  std::complex<long double> CombinedResExprX(long double x,
+  std::complex<long double> CombinedResExpr(std::complex<long double> N,
                                             long double pt, int scheme);
 
  private:

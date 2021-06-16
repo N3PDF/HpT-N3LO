@@ -49,17 +49,15 @@ HighEnergyExp::~HighEnergyExp() {}
 //                               gg-channel NLO pt-distributions //
 //------------------------------------------------------------------------------------------//
 
-std::complex<long double> HighEnergyExp::C1ggx(long double x,
+long double HighEnergyExp::C1ggx(long double x,
                                               long double xp) {
-  std::complex<long double> result;
-  result = 2 * CA / M_PIl / xp;
+  long double result = 2 * CA / M_PIl / xp;
   return result;
 }
 
-std::complex<long double> HighEnergyExp::C2ggx(long double x,
+long double HighEnergyExp::C2ggx(long double x,
                                               long double xp) {
-  std::complex<long double> result;
-  result = 4 * std::pow(CA, 2) / std::pow(M_PIl, 2) * (log(xp) / xp) *
+  long double result = 4 * std::pow(CA, 2) / std::pow(M_PIl, 2) * (log(xp) / xp) *
            std::log(x);
   return result;
 }
@@ -123,12 +121,12 @@ std::complex<long double> HighEnergyExp::HighEnergyExpExpr(
 }
 
 // TODO: change this into a vector
-std::complex<long double> HighEnergyExp::HighEnergyExpExprX(
+long double HighEnergyExp::HighEnergyExpExprX(
     long double x, long double pt) {
   // TODO: re-check definition MH2 vs. Qs2
   long double xp = std::pow(pt, 2) / MH2;
-  std::complex<long double> zero(0., 0.);
-  std::complex<long double> result(0., 0.);
+  long double zero = 0.;
+  long double result = 0.;
 
   switch (ORD) {
       // TODO: Match CASES with HpT-MON

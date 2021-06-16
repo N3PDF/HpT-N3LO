@@ -48,6 +48,15 @@ higgsexen = executable(
   c_args : extra_args
 )
 
+# create executable for cross section as a function of x
+higgsexex = executable(
+  'higgs-x', 'dSigmadptX.cpp',
+  include_directories : inc,
+  dependencies : [glib_dep, higgsfo_lib, yaml_lib],
+  link_with : higgslib,
+  c_args : extra_args
+)
+
 pkg_mod = import('pkgconfig')
 pkg_mod.generate(
   libraries : higgslib,

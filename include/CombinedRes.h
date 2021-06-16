@@ -32,6 +32,7 @@
 #include "./IntMellin.h"
 #include "./SmallptExp.h"
 #include "./ThresExp.h"
+#include "./ThresXspace.h"
 #include "higgs-fo/partonic.h"
 
 class CombinedRes {
@@ -41,6 +42,8 @@ class CombinedRes {
 
   // Attribute that compute the expanded results
   std::complex<long double> CombinedResExpr(std::complex<long double> N,
+                                            long double pt, int scheme);
+  std::complex<long double> CombinedResExprX(long double x,
                                             long double pt, int scheme);
 
  private:
@@ -52,6 +55,7 @@ class CombinedRes {
   // Init. resummation classes
   SmallptExp *SMALLPT;
   ThresExp *THRESHOLD;
+  ThresXspace *xTHRESHOLD;
   HighEnergyExp *HIGHENERGY;
   MellinTrans *MELLIN;
 
